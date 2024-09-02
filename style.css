@@ -83,3 +83,69 @@ footer {
     font-size: small;
     float: right;
 }
+#locations-container {
+    display: flex;
+    padding: 20px;
+}
+
+#locations-list {
+    flex: 1;
+    margin-right: 20px;
+}
+
+    #locations-list h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+#search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.location {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+    .location img {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+        border-radius: 5px;
+    }
+
+.location-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .location-details h2 {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .location-details p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+    .location-details a {
+        color: #007BFF;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .location-details a:hover {
+            text-decoration: underline;
+        }
+
+#map-container {
+    flex: 2;
+}
