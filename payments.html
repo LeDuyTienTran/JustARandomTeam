@@ -44,3 +44,12 @@
                 <button class="save-btn">Save Details</button>
             </div>
         </div>
+        <script>
+            // Script to toggle hidden information visibility
+            const hiddenInfos = document.querySelectorAll('.hidden-info');
+            hiddenInfos.forEach(info => {
+                info.addEventListener('click', () => {
+                    info.classList.toggle('reveal');
+                });
+            });
+    
