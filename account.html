@@ -7,6 +7,18 @@
         <title>UTR | Account</title>
         
         <link rel="stylesheet" href="style.css">
+
+        <script>
+            function showPassword() {
+                var password = document.getElementById("password");
+                
+                if (password.type == "password") {
+                    password.type = "text";
+                } else {
+                    password.type = "password";
+                }
+            }
+        </script>
     </head>
     
     <body>
@@ -47,7 +59,8 @@
                     <input type="text" id="username" name="username"><br><br>
 
                     <label for="password">Password:</label><br>
-                    <input type="password" id="password" name="password"><br><br>
+                    <input type="password" id="password" name="password">
+                    <button type="button" onclick="showPassword()">Show Password</button><br><br>
                     
                     <button type="submit">Update</button>
                 </form>
