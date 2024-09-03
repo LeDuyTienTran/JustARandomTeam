@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <title>UTR | Home</title>
+        
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <div id="logo">UTR</div>
+                    
+                    <li>
+                        <a href="home.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="">Locations</a>
+                    </li>
+                    <li>
+                        <a href="">Food & Beverage</a>
+                    </li>
+                    <li>
+                        <a href="">Gas & Go</a>
+                    </li>
+                    <li>
+                        <a href="">Account</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>     
+        
+        <div class="hero-image">
+            <div class="body1">
+                <div class="container">
+                    <h2>Reset Your Password</h2>
+                    <form id="forgotPasswordForm" onsubmit="validateEmail(event)">
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                        <button type="submit">Reset Password</button><br/>
+                        <a href="login.html" class="login-link">Back to Login</a>
+                        <div id="errorMessage" class="error-message"></div>
+                        <div id="successMessage" class="success-message"></div>
+                    </form>
+                </div>       
+        </div>
+        </div>
+        
+        <script>
+            function validateEmail(event) {
+                event.preventDefault();
+                const email = document.getElementById("email").value;
+                const errorMessage = document.getElementById("errorMessage");
+                const successMessage = document.getElementById("successMessage");
+    
+                errorMessage.innerText = "";
+                successMessage.innerText = "";
+    
+                if (!isValidEmail(email)) {
+                    errorMessage.innerText = "Please enter a valid email address.";
+                    return;
+                }
+
+                successMessage.innerText = "A password reset link has been sent to your email.";
+                
+                setTimeout(function() {
+                    window.location.href = "login.html"; 
+                }, 9000); 
+            }
+    
+            function isValidEmail(email) {
+                const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return pattern.test(email);
+            }
+        </script>
+    </body>
+</html>
