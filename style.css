@@ -149,3 +149,108 @@ footer {
 #map-container {
     flex: 2;
 }
+
+.hero-image {
+    background-image: url("images/gas_station.jpg");
+    background-color: #cccccc;
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    align-items: center;
+  }
+
+.body1 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+}
+.container h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.container input {
+    width: 80%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    outline: none;
+    transition: background 0.3s;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+.container input:focus {
+    background: rgba(255, 255, 255, 1);
+}
+.container button {
+    width: 70%;
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 30px;
+    background: #5a4318;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.container button:hover {
+    background: #8f9e09;
+}
+.container .forgot-password, .container .create-account {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.container .forgot-password:hover, .login-container .create-account:hover {
+    color: #fff;
+}
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.container .login-link {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.container .login-link:hover {
+    color: #fff;
+}
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+}
+.success-message {
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    margin-top: 10px;
+}
