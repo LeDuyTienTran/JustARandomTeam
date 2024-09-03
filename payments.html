@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTR | PaymentMethod</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <div id="logo">UTR</div>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="locations.html">Locations</a></li>
+                <li><a href="food_beverage.html">Food & Beverage</a></li>
+                <li><a href="gas_go.html">Gas & Go</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+    <body>
+        <div class="payment-container">
+            <div class="payment-card">
+                <h2>Payment Card</h2>
+                <div class="hidden-info">
+                    <span>Card Number: **** **** **** 1234</span>
+                </div>
+                <div class="hidden-info">
+                    <span>Expiry Date: 12/25</span>
+                </div>
+                <div class="hidden-info">
+                    <span>CVV: ***</span>
+                </div>
+            </div>
+            <div class="payment-details">
+                <h3>Edit Payment Details</h3>
+                <input type="text" id="NameOnCard" placeholder="Full Name on Card">
+                <input type="text" id="cardNumber" placeholder="Card Number">
+                <input type="text" id="expiryDate" placeholder="Expiry Date (MM/YY)">
+                <input type="text" id="cvv" placeholder="CVV">
+                <button class="save-btn">Save Details</button>
+            </div>
+        </div>
+        <script>
+            // Script to toggle hidden information visibility
+            const hiddenInfos = document.querySelectorAll('.hidden-info');
+            hiddenInfos.forEach(info => {
+                info.addEventListener('click', () => {
+                    info.classList.toggle('reveal');
+                });
+            });
+            // Script to save payment details
+        const saveButton = document.querySelector('.save-btn');
+        saveButton.addEventListener('click', () => {
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+
+            if (cardNumber && expiryDate && cvv) {
+                alert('Payment details saved successfully!');
+                // Here you would typically send the data to a server
+            } else {
+                alert('Please fill in all fields before saving.');
+            }
+        });
+    </script>
+    
