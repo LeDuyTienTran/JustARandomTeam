@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <title>UTR | Home</title>
+        
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <div id="logo">UTR</div>
+                    
+                    <li>
+                        <a href="home.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="">Locations</a>
+                    </li>
+                    <li>
+                        <a href="">Food & Beverage</a>
+                    </li>
+                    <li>
+                        <a href="">Gas & Go</a>
+                    </li>
+                    <li>
+                        <a href="">Account</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>     
+        
+        <div class="hero-image">
+            <div class="body1">
+                <div class="container">
+                    <h2>Create Account</h2>
+                    <form id="signupForm" onsubmit="validateSignup(event)">
+                        <input type="text" id="fullname" placeholder="Full Name" required>
+                        <input type="email" id="email" placeholder="Email" required>
+                        <input type="password" id="password" placeholder="Password (min 6 characters)" required>
+                        <button type="submit">Sign Up</button><br/>
+                        <a href="LogIn.html" class="login-link">Already have an account? Log In</a>
+                        <div id="errorMessage" class="error-message"></div>
+                        <div id="successMessage" class="success-message"></div>
+                    </form>
+                </div>            
+        </div>
+        </div>
+        
+        <script>
+            function validateSignup(event) {
+                event.preventDefault();
+
+                const fullName = document.getElementById("fullname").value;
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                const errorMessage = document.getElementById("errorMessage");
+                const successMessage = document.getElementById("successMessage");
+    
+                errorMessage.innerText = "";
+                successMessage.innerText = "";
+    
+                if (fullName.length < 3) {
+                    errorMessage.innerText = "Full name must be at least 3 characters long.";
+                    return;
+                }
+                if (!validateEmail(email)) {
+                    errorMessage.innerText = "Please enter a valid email address.";
+                    return;
+                }
+                if (password.length < 6) {
+                    errorMessage.innerText = "Password must be at least 6 characters long.";
+                    return;
+                }
+    
+                successMessage.innerText = "Signup successful!";
+                
+                setTimeout(function() {
+                    window.location.href = "LogIn.html"; 
+                }, 2000); 
+            }
+    
+            function validateEmail(email) {
+                const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return pattern.test(email);
+            }
+        </script>
+
+
+    </body>
+</html>
