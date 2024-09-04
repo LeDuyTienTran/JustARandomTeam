@@ -350,11 +350,3 @@ label {
     height: auto;
     border-radius: 10px;
 }
-
-:root {
-    --primary-color: black;
-    --secondary-color: yellow;
-    --background-color: rgb(224, 224, 224);
-    --border-color: rgb(184, 184, 184);
-
-}
