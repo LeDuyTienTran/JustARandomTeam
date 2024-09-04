@@ -7,6 +7,7 @@
     <title>UTR | Account</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header>
@@ -21,6 +22,7 @@
             </ul>
         </nav>
     </header>
+
     <body>
         <div class="payment-container">
             <div class="payment-card">
@@ -53,20 +55,20 @@
                 });
             });
             // Script to save payment details
-        const saveButton = document.querySelector('.save-btn');
-        saveButton.addEventListener('click', () => {
-            const cardNumber = document.getElementById('cardNumber').value;
-            const expiryDate = document.getElementById('expiryDate').value;
-            const cvv = document.getElementById('cvv').value;
+            const saveButton = document.querySelector('.save-btn');
+            saveButton.addEventListener('click', () => {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
 
-            if (cardNumber && expiryDate && cvv) {
-                alert('Payment details saved successfully!');
-                // Here you would typically send the data to a server
-            } else {
-                alert('Please fill in all fields before saving.');
-            }
-        });
-    </script>
+                if (cardNumber && expiryDate && cvv) {
+                    alert('Payment details saved successfully!');
+                    // Here you would typically send the data to a server
+                } else {
+                    alert('Please fill in all fields before saving.');
+                }
+            });
+        </script>
     </body>
-    </html>
-    
+
+</html>
