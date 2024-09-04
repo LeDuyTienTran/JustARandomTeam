@@ -347,5 +347,6 @@ label {
 .menu-category img,
 .menu-item img {
     width: 150px;
-    height: auto border-radius: 8px;
+    height: auto;
+    border-radius: 8px;
 }
