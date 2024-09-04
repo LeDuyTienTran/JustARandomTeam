@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <title>UTR | Account</title>
+        
+        <link rel="stylesheet" href="style.css">
+
+        <script>
+            function showPassword() {
+                var password = document.getElementById("password");
+                
+                if (password.type == "password") {
+                    password.type = "text";
+                } else {
+                    password.type = "password";
+                }
+            }
+        </script>
+    </head>
+    
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <div id="logo">UTR</div>
+                    
+                    <li>
+                        <a href="home-logged_in.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="locations.html">Locations</a>
+                    </li>
+                    <li>
+                        <a href="">Food & Beverage</a>
+                    </li>
+                    <li>
+                        <a href="">Gas & Go</a>
+                    </li>
+                    <li>
+                        <a href="account.html">Account</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>     
+        
+        <main>
+            <div>
+                <form>
+                    <label for="name">Full Name:</label><br>
+                    <input type="text" id="name" name="name"><br><br>
+
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email"><br><br>
+
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username"><br><br>
+
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password">
+                    <button type="button" onclick="showPassword()">Show Password</button><br><br>
+                    
+                    <button type="button" onclick="alert('Account details successfully updated.')">Update</button><br><br>
+                </form>
+
+                <article>
+                    <p>To update payment details, click <a href="payments.html">here</a></p>
+                </article>
+
+                <article>
+                    <p>To log out and return to the homepage, click <a href="home.html">here</a></p>
+                </article>
+            </div>
+        </main>
+        
+        <footer>
+            ©Copyright UTR Pty Ltd, 2024. All rights reserved.
+        </footer>
+    </body>
+</html>
