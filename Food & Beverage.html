@@ -12,21 +12,94 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#">UTR Location</a></li>
-                <li><a href="#">Food & Beverage</a></li>
-                <li><a href="#">Gas & Go</a></li>
-                <li><a href="#">Account</a></li>
+                <div id="logo">UTR</div>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="locations.html">Locations</a></li>
+                <li><a href="Food & Beverage.html">Food & Beverage</a></li>
+                <li><a href="Gas & Go.html">Gas & Go</a></li>
+                <li><a href="payments.html">Account</a></li>
             </ul>
             <div class="order-options">
                 <button id="delivery">Delivery</button>
-                <buttom id="pickup">Pickup</button>
+                <button id="pickup">Pickup</button>
             </div>
         </nav>
     </header>
 
     <main>
+        <section id="menu">
+            <h2>UTR Menus</h2>
+            <div class="menu-category">
+                <h3>Brekky</h3>
+                <div class="menu-item">
+                    <img src="images/coffee.jpg" alt="Coffee">
+                    <p>Price: $3.00</p>
+                    <button>Customise</button>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <img src="images/Sanwich.jpg" alt="Sandwich">
+                    <p>Sandwich</p>
+                    <p>Price: $6.00</p>
+                    <button>Customise</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
 
-    </main>>
+            <div class="menu-category">
+                <h3>Lunch</h3>
+                <div class="menu-item">
+                    <img src="images/Wraps.jpg" alt="Wrap">
+                    <p>Wrap</p>
+                    <p>Price: $8.00</p>
+                    <button>Customize</button>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <img src="images/salad.jpg" alt="Salad">
+                    <p>Greek Salad</p>
+                    <p>Price: $6.00</p>
+                    <button>Customize</button>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <img src="images/drink.png" alt="Drink">
+                    <p>Cola</p>
+                    <p>Price: $3.00</p>
+                    <button>Customize</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="customise-menu">
+            <h2>Customise Set Menu</h2>
+            <p>Choose the ingredients</p>
+            <form id="customise-form">
+                <label>
+                    <input type="checkbox" name="ingredient" value="extra cheese"> Extra Cheese
+                </label>
+                <label>
+                    <input type="checkbox" name="ingredient" value="bacon"> Bacon
+                </label>
+                <label>
+                    <input type="checkbox" name="ingredient" value="tomatoes"> Tomatoes
+                </label>
+                <button type="submit">Add to Order</button>
+            </form>
+        </section>
+
+        <section id="fuel-skip">
+            <h2> Fuel Only?</h2>
+            <p>Skip the menu and proceed to your fuel payment.</p>
+            <a href="Gas & Go.html"><button>Gas and Go</button></a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; UTR Pty Ltd, 2024. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
