@@ -1,0 +1,11 @@
+﻿beverage_id,name,cost,image_url
+23,Coke,1.99,https://tkcdn.tekedia.com/wp-content/uploads/2022/05/23204855/coke-768x432.jpg
+24,Pepsi,1.89,https://insidefmcg.com.au/wp-content/uploads/2020/11/Pepsi.png
+25,Orange Juice,2.49,https://images-prod.healthline.com/hlcmsresource/images/AN_images/orange-juice-1296x728-feature.jpg
+26,Coffee,2.99,https://coffeeconnection.com.au/cdn/shop/articles/Health-Benefits-Of-Cappuccino-Coffee.jpg?v=1667752802
+27,Tea,1.99,"https://imageio.forbes.com/specials-images/imageserve/5f6c061ca71799093f55fd02/0x0.jpg?format=jpg&crop=5023,3350,x0,y0,safe&height=600&width=1200&fit=bounds"
+28,Water,0.99,https://i.guim.co.uk/img/media/9ebfe6eb392f208e944a21d1903b698965d35527/0_0_7360_4417/master/7360.jpg?width=465&dpr=1&s=none
+29,Milk,1.49,https://img.freepik.com/premium-vector/cartoon-milk-box-carton-varian-design-vector-illustration_773815-92.jpg
+30,Lemonade,2.29,https://www.jocooks.com/wp-content/uploads/2023/05/lemonade-1-28.jpg
+31,Energy Drink,3.49,https://www.mydrinkbeverages.com/wp-content/uploads/bfi_thumb/dreamstime_m_97745941-39x022mlw2ksem0gfw1ugp8bxroltel28zs1f9o3s3jcz1kao.jpg
+32,Smoothie,3.99,https://www.dinneratthezoo.com/wp-content/uploads/2018/05/frozen-fruit-smoothie-3.jpg
