@@ -7,20 +7,22 @@
     <title>UTR | Account</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header>
         <nav>
             <ul>
                 <div id="logo">UTR</div>
-                <li><a href="home.html">Home</a></li>
+                <li><a href="home-logged_in.html">Home</a></li>
                 <li><a href="locations.html">Locations</a></li>
-                <li><a href="food_beverage.html">Food & Beverage</a></li>
-                <li><a href="gas_go.html">Gas & Go</a></li>
+                <li><a href="Food & Beverage.html">Food & Beverage</a></li>
+                <li><a href="Gas & Go.html">Gas & Go</a></li>
                 <li><a href="account.html">Account</a></li>
             </ul>
         </nav>
     </header>
+
     <body>
         <div class="payment-container">
             <div class="payment-card">
@@ -53,20 +55,24 @@
                 });
             });
             // Script to save payment details
-        const saveButton = document.querySelector('.save-btn');
-        saveButton.addEventListener('click', () => {
-            const cardNumber = document.getElementById('cardNumber').value;
-            const expiryDate = document.getElementById('expiryDate').value;
-            const cvv = document.getElementById('cvv').value;
+            const saveButton = document.querySelector('.save-btn');
+            saveButton.addEventListener('click', () => {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
 
-            if (cardNumber && expiryDate && cvv) {
-                alert('Payment details saved successfully!');
-                // Here you would typically send the data to a server
-            } else {
-                alert('Please fill in all fields before saving.');
-            }
-        });
-    </script>
+                if (cardNumber && expiryDate && cvv) {
+                    alert('Payment details saved successfully!');
+                    // Here you would typically send the data to a server
+                } else {
+                    alert('Please fill in all fields before saving.');
+                }
+            });
+        </script>
+
+        <footer>
+            ©Copyright UTR Pty Ltd, 2024. All rights reserved.
+        </footer>
     </body>
-    </html>
-    
+
+</html>
