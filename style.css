@@ -49,9 +49,13 @@ nav ul {
 }
 
 nav ul li {
-    padding: 5px 100px;
+    padding: 5px 80px;
     padding-top: 12px;
     font-size: x-large;
+}
+
+nav ul li button {
+    background-color: var(--navigation-color);
 }
 
 #logo {
