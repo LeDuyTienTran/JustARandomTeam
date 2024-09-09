@@ -45,35 +45,38 @@ a:hover {
 header {
     background-color: var(--navigation-color);
     border-bottom: solid 1px var(--border-color);
-    padding: 20px 0;
+    padding: 10px; /* Reduced padding for a smaller header */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* So that the mobile nav stays within the header */
-    flex-wrap: wrap; /* Allow header items to wrap if needed */
+    position: relative;
+    flex-wrap: wrap;
+    overflow: hidden; /* Prevent content from spilling out */
 }
 
 path {
     fill: var(--secondary-color);
 }
 
+/* Ensure logo and navigation items fit within the header */
 #logo {
-    font-size: 3.5rem;
+    font-size: 2.5rem; /* Adjusted logo size for smaller header */
     font-weight: bold;
     color: white;
 }
 
 nav ul {
     display: flex;
-    justify-content: center;
     list-style: none;
     padding: 0;
     margin: 0;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping if necessary */
 }
 
 nav ul li {
-    padding: 10px 20px;
-    font-size: 1.2rem;
+    padding: 8px 15px; /* Adjusted padding for smaller header */
+    font-size: 1rem; /* Adjusted font size for smaller header */
     color: #fff;
 }
 
@@ -85,10 +88,11 @@ nav ul li a {
 /* Mobile Menu Icon */
 .menu-icon {
     display: none;
-    font-size: 4rem; /* Adjusted font size for mobile */
+    font-size: 3rem; /* Adjusted font size for mobile */
     cursor: pointer;
     color: var(--menu-icon-color);
 }
+
 img {
     max-width: 100%; /* Ensure images don't exceed the container width */
     height: auto; /* Maintain aspect ratio */
@@ -195,29 +199,34 @@ button:hover {
 }
 
 /* Mobile Responsive Layout */
+/* Mobile Responsive Layout */
 @media (max-width: 768px) {
     header {
-        flex-direction: column; /* Stack items vertically */
-        text-align: center; /* Center align text */
+        flex-direction: row; /* Keep items in a row */
+        flex-wrap: wrap; /* Allow items to wrap if needed */
+        justify-content: space-between; /* Space out items */
+        align-items: center;
+        padding: 5px; /* Further reduced padding for mobile */
+        text-align: center;
     }
 
     #logo {
-        font-size: 2.5rem; /* Adjust logo size for mobile */
+        font-size: 2rem; /* Adjusted logo size for mobile */
     }
 
     nav ul {
-        flex-direction: column; /* Stack menu items vertically */
-        align-items: center; /* Center align menu items */
+        flex-direction: row; /* Keep menu items in a row */
+        align-items: center;
     }
 
     nav ul li {
-        padding: 12px 0; /* Increase padding for easier touch interaction */
-        font-size: 1.1rem; /* Increase font size for better readability */
+        padding: 8px 10px; /* Further adjusted padding */
+        font-size: 0.9rem; /* Further adjusted font size */
     }
 
     .menu-icon {
         display: block; /* Show the menu icon */
-        font-size: 5rem; /* Increase menu icon size for better visibility */
+        font-size: 4rem; /* Increased menu icon size for better visibility */
     }
 
     #locations-container {
@@ -230,23 +239,24 @@ button:hover {
     }
 
     button {
-        padding: 15px 25px; /* Increase button size for better touch interaction */
-        font-size: 1.2rem; /* Increase font size for better readability */
+        padding: 12px 20px; /* Adjusted padding for mobile */
+        font-size: 1rem; /* Adjusted font size for better readability */
     }
 
     p {
-        font-size: 1.2rem; /* Increase font size for better readability */
-        padding: 0 20px; /* Adjust padding for mobile */
+        font-size: 1rem; /* Adjusted font size for better readability */
+        padding: 0 10px; /* Adjusted padding for mobile */
     }
 
     .location-details h2 {
-        font-size: 1.2rem; /* Increase font size for better readability */
+        font-size: 1rem; /* Adjusted font size for better readability */
     }
 
     .location-details p, .location-details a {
-        font-size: 1rem; /* Increase font size for better readability */
+        font-size: 0.9rem; /* Adjusted font size for better readability */
     }
+
     .cart-icon {
-        width: 25px; /* Adjust icon size for mobile */
+        width: 20px; /* Adjusted icon size for mobile */
     }
 }
