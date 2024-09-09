@@ -436,7 +436,7 @@ label {
 }
 
 .checkout-button {
-    background-color: #1dbf73;
+    background-color: #55cb94;
     display: block;
     width: 100%;
     padding: 15px 0;
@@ -450,7 +450,96 @@ label {
 }
 
 .checkout-button:hover {
-    background-color: #17a565;
+    background-color: #36a975;
 }
 
 /* cart.html */
+
+
+
+/* checkout.html */
+
+.checkout-container {
+    background-color: var(--box-color);
+    margin: 50px auto;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    width: 400px;
+}
+
+.checkout-information {
+    margin-bottom: 10px;
+}
+
+.checkout-information label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.checkout-information input {
+    padding: 10px;
+    border-radius: 12px;
+    font-size: large;
+}
+
+#postcode,
+#cvv {
+    width: 40px;
+}
+
+#cvv-unhide {
+    color: var(--secondary-color);
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#cvv-hidden {
+    font-size: large;
+    display: none;
+}
+
+#cvv-unhide:hover+#cvv-hidden {
+    display: block;
+}
+
+.summary {
+    border-radius: 12px;
+}
+
+.summary p {
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+}
+
+.total p {
+    font-size: large;
+    font-weight: bold;
+}
+
+.pay-button {
+    background-color: #55cb94;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.pay-button:hover {
+    background-color: #36a975;
+}
+
+#pay-confirmed {
+    font-size: large;
+    margin-bottom: 1px;
+}
+
+/* checkout.html */

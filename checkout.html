@@ -8,6 +8,29 @@
         <title>UTR | Checkout</title>
 
         <link rel="stylesheet" href="style.css">
+
+        <script>
+            function validatePayment() {
+                event.preventDefault();
+
+                const address = document.getElementById("address").value;
+                const city = document.getElementById("city").value;
+                const postcode = document.getElementById("postcode").value;
+                
+                const card_number = document.getElementById("card-number").value;
+                const card_name = document.getElementById("card-name").value;
+                const expiration_date = document.getElementById("expiration-date").value;
+                const cvv = document.getElementById("cvv").value;
+
+                if (address.length > 0 && city.length > 0 && postcode.length > 0 && card_number.length > 0 && card_name.length > 0 && expiration_date.length > 0 && cvv.length > 0) {
+                    document.getElementById("pay-confirmed").innerText = "Payment confirmed. Returning to homepage...";
+                   
+                    setTimeout(function () {
+                        window.location.href = "home-logged_in.html";
+                    }, 2000);
+                }
+            }
+        </script>
     </head>
 
     <body>
@@ -32,7 +55,7 @@
                         <a href="account.html">Account</a>
                     </li>
                     <li>
-                        <a href="account.html">
+                        <a href="cart.html">
                             <button>
                                 <div>
                                     <svg width="20" height="20" viewBox="0 0 24 24">
@@ -47,7 +70,71 @@
         </header>
 
         <main>
+            <div>
+                <h1>Payment Information</h1>
+        
+                <form class="checkout-container" onsubmit="validatePayment()">
+                    <div>
+                        <h2>Delivery Address</h2>
+
+                        <div class="checkout-information">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" placeholder="123 Main Street" required>
+                        </div>
+
+                        <div class="checkout-information">
+                            <label for="city">City/Suburb</label>
+                            <input type="text" id="city" placeholder="Mawson Lakes" required>
+                        </div>
+
+                        <div class="checkout-information">
+                            <label for="postcode">Postcode</label>
+                            <input type="text" id="postcode" maxlength="4" placeholder="5000" required>
+                        </div>
+                    </div>
+        
+                    <div>
+                        <h2>Payment Method</h2>
+
+                        <div class="checkout-information">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        
+                        <div class="checkout-information">
+                            <label for="card-name">Name on Card</label>
+                            <input type="text" id="card-name" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="checkout-information">
+                            <label for="expiration-date">Expiration Date</label>
+                            <input type="month" id="expiration-date" required>
+                        </div>
+
+                        <div class="checkout-information">
+                            <label for="cvv">Security Code (CVV/CVC)</label>
+                            <input type="text" id="cvv" maxlength="4" placeholder="100" required>
+                            <p id="cvv-unhide">What's this?</p>
+                            <p id="cvv-hidden">The security code is the last 3 digits on the back of your card. For American Express cards, the security code is a 4-digit number on the front of the card.</p>
+                        </div>
+                    </div>
             
+                    <div class="summary">
+                        <h2>Order Summary</h2>
+                        
+                        <p>Subtotal: <span>$15.00</span></p>
+                        <p>Delivery Fee: <span>$2.99</span></p>
+                        <p>Service Fee: <span>$1.75</span></p>
+
+                        <div class="total">
+                            <p>Total: <span>$19.74</span></p>
+                        </div>
+                    </div>
+            
+                    <button type="submit" class="pay-button" onclick="returnToHomepage()">Pay Now</button>
+                    <p id="pay-confirmed"></p>
+                </div>
+            </div>
         </main>
 
         <footer>
