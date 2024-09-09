@@ -1,15 +1,19 @@
 :root {
-    --background-color: rgb(224, 224, 224);
-    --primary-color: brown;
-    --secondary-color: blue;
-    --navigation-color: rgb(184, 184, 184);
-    --border-color: black;
+    --background-color: #e0f7fa; /* Sky blue background for a refreshing look */
+    --primary-color: #0277bd; /* Sky blue for headings and primary elements */
+    --secondary-color: #d32f2f; /* Red accent for buttons and highlights */
+    --navigation-color: #01579b; /* Darker blue for navigation */
+    --border-color: #b3e5fc; /* Lighter blue for soft borders */
+    --button-hover-color: #b71c1c; /* Dark red for button hover */
+    --menu-icon-color: #ffffff; /* White for the hamburger icon */
 }
 
 html {
     background-color: var(--background-color);
+    font-family: 'Poppins', sans-serif; /* Changed to Poppins */
 }
 
+/* Headings and text styling */
 h1 {
     color: var(--primary-color);
     font-size: xxx-large;
@@ -19,334 +23,207 @@ h1 {
 h2 {
     color: var(--primary-color);
     font-size: xx-large;
+    text-align: center;
 }
 
+p {
+    font-size: x-large;
+    padding: 0 50px;
+}
+
+/* Links */
 a {
     color: var(--secondary-color);
     text-decoration: none;
 }
 
-p {
-    font-size: x-large;
-    padding-left: 50px;
-    padding-right: 50px;
+a:hover {
+    text-decoration: underline;
 }
 
+/* Header Styling */
 header {
     background-color: var(--navigation-color);
-    border-style: solid;
-}
-
-article,
-aside {
-    border-top-style: solid;
-}
-
-nav ul {
-    display: inline-flex;
-    flex-wrap: wrap;
-    list-style: none;
-}
-
-nav ul li {
-    padding: 5px 100px;
-    padding-top: 12px;
-    font-size: x-large;
+    border-bottom: solid 1px var(--border-color);
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* So that the mobile nav stays within the header */
+    flex-wrap: wrap; /* Allow header items to wrap if needed */
 }
 
 #logo {
-    color: var(--primary-color);
-    font-size: xxx-large;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: white;
 }
 
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Mobile Menu Icon */
+.menu-icon {
+    display: none;
+    font-size: 4rem; /* Adjusted font size for mobile */
+    cursor: pointer;
+    color: var(--menu-icon-color);
+}
+img {
+    max-width: 100%; /* Ensure images don't exceed the container width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Images */
 #gas_station {
     padding-top: 20px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     width: 100%;
+    max-width: 1200px;
+    height: auto;
 }
 
-.about {
-    border-top-style: none;
+.location img {
+    width: 100%; /* Make the image width responsive */
+    max-width: 150px; /* Set a maximum width for larger screens */
+    height: auto; /* Maintain aspect ratio */
 }
 
-aside {
-    padding-left: 50px;
-}
-
-aside ul li {
-    font-size: large;
-}
-
-footer {
-    font-size: small;
-    float: right;
-}
-
+/* Location Container */
 #locations-container {
     display: flex;
+    flex-wrap: wrap;
     padding: 20px;
-}
-
-#locations-list {
-    flex: 1;
-    margin-right: 20px;
-}
-
-#locations-list h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-#search-bar {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    justify-content: center;
 }
 
 .location {
     display: flex;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-}
-
-.location img {
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
-    border-radius: 5px;
-}
-
-.location-details {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
 }
 
 .location-details h2 {
-    margin: 0;
+    color: var(--primary-color);
     font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .location-details p {
-    margin: 5px 0;
     font-size: 14px;
+    color: #7f8c8d;
 }
 
 .location-details a {
-    color: #007BFF;
+    color: var(--secondary-color);
     text-decoration: none;
     font-size: 14px;
 }
 
-.location-details a:hover {
-    text-decoration: underline;
+/* Buttons */
+button {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-#map-container {
-    flex: 2;
+button:hover {
+    background-color: var(--button-hover-color);
 }
 
-.payment-container {
-    width: 600px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
+/* Payment Card */
 .payment-card {
-    text-align: center;
-    background: linear-gradient(to bottom, #2980b9, #6dd5fa);
+    background: linear-gradient(to right, #0277bd, #d32f2f);
     color: white;
     padding: 20px;
     border-radius: 10px;
-    position: relative;
     margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .payment-card h2 {
     margin: 0 0 10px;
 }
 
-.hidden-info {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+/* Mobile Responsive Layout */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center; /* Center align text */
+    }
 
-.hidden-info span {
-    visibility: hidden;
-}
+    #logo {
+        font-size: 2.5rem; /* Adjust logo size for mobile */
+    }
 
-.hidden-info.reveal span {
-    visibility: visible;
-}
+    nav ul {
+        flex-direction: column; /* Stack menu items vertically */
+        align-items: center; /* Center align menu items */
+    }
 
-.payment-details input,
-.payment-details button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+    nav ul li {
+        padding: 12px 0; /* Increase padding for easier touch interaction */
+        font-size: 1.1rem; /* Increase font size for better readability */
+    }
 
-.save-btn {
-    background-color: #2980b9;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .menu-icon {
+        display: block; /* Show the menu icon */
+        font-size: 5rem; /* Increase menu icon size for better visibility */
+    }
 
-.save-btn:hover {
-    background-color: #216a94;
-}
+    #locations-container {
+        flex-direction: column;
+    }
 
-.hero-image {
-    background-image: url("images/gas_station.jpg");
-    background-color: #cccccc;
-    height: 700px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    align-items: center;
-}
+    .location {
+        width: 90%;
+        margin: 10px 0;
+    }
 
-.body1 {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+    button {
+        padding: 15px 25px; /* Increase button size for better touch interaction */
+        font-size: 1.2rem; /* Increase font size for better readability */
+    }
 
-.container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 350px;
-}
+    p {
+        font-size: 1.2rem; /* Increase font size for better readability */
+        padding: 0 20px; /* Adjust padding for mobile */
+    }
 
-.container h2 {
-    color: #fff;
-    margin-bottom: 20px;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
+    .location-details h2 {
+        font-size: 1.2rem; /* Increase font size for better readability */
+    }
 
-.container input {
-    width: 80%;
-    padding: 15px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.8);
-    outline: none;
-    transition: background 0.3s;
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-}
-
-.container input:focus {
-    background: rgba(255, 255, 255, 1);
-}
-
-.container button {
-    width: 70%;
-    padding: 15px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 30px;
-    background: #5a4318;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.container button:hover {
-    background: #8f9e09;
-}
-
-.container .forgot-password,
-.container .create-account {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #ddd;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.container .forgot-password:hover,
-.login-container .create-account:hover {
-    color: #fff;
-}
-
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.container .login-link {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #ddd;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.container .login-link:hover {
-    color: #fff;
-}
-
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.success-message {
-    color: rgb(0, 0, 0);
-    font-size: 15px;
-    margin-top: 10px;
-}
-
-form {
-    padding-top: 20px;
-}
-
-label {
-    color: var(--primary-color);
-    font-size: x-large;
-}
-
-.menu-category,
-.menu-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 15px
-}
-
-.menu-category img,
-.menu-item img {
-    width: 150px;
-    height: auto;
-    border-radius: 10px;
+    .location-details p, .location-details a {
+        font-size: 1rem; /* Increase font size for better readability */
+    }
 }
