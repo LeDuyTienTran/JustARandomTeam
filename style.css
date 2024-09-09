@@ -1,15 +1,27 @@
 :root {
-    --background-color: rgb(224, 224, 224);
-    --primary-color: brown;
-    --secondary-color: blue;
-    --box-color: rgb(184, 184, 184);
-    --border-color: black;
+    --background-color: #e0f7fa;
+    /* Sky blue background for a refreshing look */
+    --primary-color: #0277bd;
+    /* Sky blue for headings and primary elements */
+    --secondary-color: #d32f2f;
+    /* Red accent for buttons and highlights */
+    --navigation-color: #01579b;
+    /* Darker blue for navigation */
+    --border-color: #b3e5fc;
+    /* Lighter blue for soft borders */
+    --button-hover-color: #b71c1c;
+    /* Dark red for button hover */
+    --menu-icon-color: #ffffff;
+    /* White for the hamburger icon */
 }
 
 html {
     background-color: var(--background-color);
+    font-family: 'Poppins', sans-serif;
+    /* Changed to Poppins */
 }
 
+/* Headings and text styling */
 h1 {
     color: var(--primary-color);
     font-size: xxx-large;
@@ -19,527 +31,274 @@ h1 {
 h2 {
     color: var(--primary-color);
     font-size: xx-large;
+    text-align: center;
 }
 
+p {
+    font-size: x-large;
+    padding: 0 50px;
+}
+
+/* Links */
 a {
     color: var(--secondary-color);
     text-decoration: none;
 }
 
-p {
-    font-size: x-large;
-    padding-left: 50px;
-    padding-right: 50px;
+a:hover {
+    text-decoration: underline;
 }
 
+/* Header Styling */
 header {
-    background-color: var(--box-color);
-    border-style: solid;
-    border-radius: 12px;
-}
-
-article,
-aside {
-    border-top-style: solid;
-}
-
-nav ul {
-    display: inline-flex;
+    background-color: var(--navigation-color);
+    border-bottom: solid 1px var(--border-color);
+    padding: 10px;
+    /* Reduced padding for a smaller header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
     flex-wrap: wrap;
-    list-style: none;
-}
-
-nav ul li {
-    padding: 5px 80px;
-    padding-top: 12px;
-    font-size: x-large;
-}
-
-nav ul li button {
-    background-color: var(--box-color);
-    cursor: pointer;
-}
-
-nav ul li button:hover {
-    background-color: rgb(152, 152, 152);
+    overflow: hidden;
+    /* Prevent content from spilling out */
 }
 
 path {
     fill: var(--secondary-color);
 }
 
+/* Ensure logo and navigation items fit within the header */
 #logo {
-    color: var(--primary-color);
-    font-size: xxx-large;
+    font-size: 2.5rem;
+    /* Adjusted logo size for smaller header */
+    font-weight: bold;
+    color: white;
 }
 
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Allow wrapping if necessary */
+}
+
+nav ul li {
+    padding: 8px 15px;
+    /* Adjusted padding for smaller header */
+    font-size: 1rem;
+    /* Adjusted font size for smaller header */
+    color: #fff;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Mobile Menu Icon */
+.menu-icon {
+    display: none;
+    font-size: 3rem;
+    /* Adjusted font size for mobile */
+    cursor: pointer;
+    color: var(--menu-icon-color);
+}
+
+img {
+    max-width: 100%;
+    /* Ensure images don't exceed the container width */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+#cart {
+    width: 100%;
+    max-width: 1200px;
+
+}
+
+/* Images */
 #gas_station {
     padding-top: 20px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     width: 100%;
+    max-width: 1200px;
+    height: auto;
 }
 
-.about {
-    border-top-style: none;
+.location img {
+    width: 100%;
+    /* Make the image width responsive */
+    max-width: 150px;
+    /* Set a maximum width for larger screens */
+    height: auto;
+    /* Maintain aspect ratio */
 }
 
-aside {
-    padding-left: 50px;
-}
-
-aside ul li {
-    font-size: large;
-}
-
-footer {
-    font-size: small;
-    float: right;
-}
-
+/* Location Container */
 #locations-container {
     display: flex;
+    flex-wrap: wrap;
     padding: 20px;
-}
-
-#locations-list {
-    flex: 1;
-    margin-right: 20px;
-}
-
-#locations-list h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-#search-bar {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    justify-content: center;
 }
 
 .location {
     display: flex;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-}
-
-.location img {
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
-    border-radius: 5px;
-}
-
-.location-details {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
 }
 
 .location-details h2 {
-    margin: 0;
+    color: var(--primary-color);
     font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .location-details p {
-    margin: 5px 0;
     font-size: 14px;
+    color: #7f8c8d;
 }
 
 .location-details a {
-    color: #007BFF;
+    color: var(--secondary-color);
     text-decoration: none;
     font-size: 14px;
 }
 
-.location-details a:hover {
-    text-decoration: underline;
+/* Cart Icon Styling */
+.cart-link {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
 }
 
-#map-container {
-    flex: 2;
+.cart-icon {
+    width: 30px;
+    /* Adjust the size as needed */
+    height: auto;
 }
 
-.payment-container {
-    width: 600px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Buttons */
+button {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
+button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Payment Card */
 .payment-card {
-    text-align: center;
-    background: linear-gradient(to bottom, #2980b9, #6dd5fa);
+    background: linear-gradient(to right, #0277bd, #d32f2f);
     color: white;
     padding: 20px;
     border-radius: 10px;
-    position: relative;
     margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .payment-card h2 {
     margin: 0 0 10px;
 }
 
-.hidden-info {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+/* Mobile Responsive Layout */
+/* Mobile Responsive Layout */
+@media (max-width: 768px) {
+    header {
+        flex-direction: row;
+        /* Keep items in a row */
+        flex-wrap: wrap;
+        /* Allow items to wrap if needed */
+        justify-content: space-between;
+        /* Space out items */
+        align-items: center;
+        padding: 5px;
+        /* Further reduced padding for mobile */
+        text-align: center;
+    }
+
+    #logo {
+        font-size: 2rem;
+        /* Adjusted logo size for mobile */
+    }
+
+    nav ul {
+        flex-direction: row;
+        /* Keep menu items in a row */
+        align-items: center;
+    }
+
+    nav ul li {
+        padding: 8px 10px;
+        /* Further adjusted padding */
+        font-size: 0.9rem;
+        /* Further adjusted font size */
+    }
+
+    .menu-icon {
+        display: block;
+        /* Show the menu icon */
+        font-size: 4rem;
+        /* Increased menu icon size for better visibility */
+    }
+
+    #locations-container {
+        flex-direction: column;
+    }
+
+    .location {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    button {
+        padding: 12px 20px;
+        /* Adjusted padding for mobile */
+        font-size: 1rem;
+        /* Adjusted font size for better readability */
+    }
+
+    p {
+        font-size: 1rem;
+        /* Adjusted font size for better readability */
+        padding: 0 10px;
+        /* Adjusted padding for mobile */
+    }
+
+    .location-details h2 {
+        font-size: 1rem;
+        /* Adjusted font size for better readability */
+    }
+
+    .location-details p,
+    .location-details a {
+        font-size: 0.9rem;
+        /* Adjusted font size for better readability */
+    }
+
+    .cart-icon {
+        width: 20px;
+        /* Adjusted icon size for mobile */
+    }
 }
-
-.hidden-info span {
-    visibility: hidden;
-}
-
-.hidden-info.reveal span {
-    visibility: visible;
-}
-
-.payment-details input,
-.payment-details button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.save-btn {
-    background-color: #2980b9;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.save-btn:hover {
-    background-color: #216a94;
-}
-
-.hero-image {
-    background-image: url("images/gas_station.jpg");
-    background-color: #cccccc;
-    height: 700px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    align-items: center;
-}
-
-.body1 {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 350px;
-}
-
-.container h2 {
-    color: #fff;
-    margin-bottom: 20px;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.container input {
-    width: 80%;
-    padding: 15px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.8);
-    outline: none;
-    transition: background 0.3s;
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-}
-
-.container input:focus {
-    background: rgba(255, 255, 255, 1);
-}
-
-.container button {
-    width: 70%;
-    padding: 15px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 30px;
-    background: #5a4318;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.container button:hover {
-    background: #8f9e09;
-}
-
-.container .forgot-password,
-.container .create-account {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #ddd;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.container .forgot-password:hover,
-.login-container .create-account:hover {
-    color: #fff;
-}
-
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.container .login-link {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #ddd;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.container .login-link:hover {
-    color: #fff;
-}
-
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.success-message {
-    color: rgb(0, 0, 0);
-    font-size: 15px;
-    margin-top: 10px;
-}
-
-form {
-    padding-top: 20px;
-}
-
-label {
-    color: var(--primary-color);
-    font-size: x-large;
-}
-
-.menu-category,
-.menu-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 15px
-}
-
-.menu-category img,
-.menu-item img {
-    width: 150px;
-    height: auto;
-    border-radius: 10px;
-}
-
-/* cart.html */
-
-.cart-container {
-    background-color: var(--box-color);
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 12px;
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid;
-}
-
-.cart-item img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-}
-
-.item-details {
-    flex: 1;
-    margin-left: 20px;
-}
-
-.quantity-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px;
-}
-
-.quantity-controls button {
-    background: none;
-    border: none;
-    padding: 5px 10px;
-    font-size: large;
-    cursor: pointer;
-}
-
-.quantity-controls input {
-    width: 40px;
-    text-align: center;
-    font-size: large;
-    margin: 0 10px;
-}
-
-#fries-quantity,
-#burger-quantity {
-    background: none;
-    border: none;
-}
-
-.item-total {
-    font-size: x-large;
-    min-width: 100px;
-    text-align: right;
-}
-
-.cart-summary {
-    text-align: right;
-    padding: 20px 0;
-    font-size: x-large;
-    font-weight: bold;
-}
-
-.checkout-button {
-    background-color: #55cb94;
-    display: block;
-    width: 100%;
-    padding: 15px 0;
-    text-align: center;
-    font-size: large;
-    border: none;
-    cursor: pointer;
-    border-radius: 12px;
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-.checkout-button:hover {
-    background-color: #36a975;
-}
-
-/* cart.html */
-
-
-
-/* checkout.html */
-
-.checkout-container {
-    background-color: var(--box-color);
-    margin: 50px auto;
-    border-radius: 12px;
-    padding: 30px;
-    text-align: center;
-    width: 400px;
-}
-
-.checkout-information {
-    margin-bottom: 10px;
-}
-
-.checkout-information label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.checkout-information input {
-    padding: 10px;
-    border-radius: 12px;
-    font-size: large;
-}
-
-#postcode,
-#cvv {
-    width: 40px;
-}
-
-#cvv-unhide {
-    color: var(--secondary-color);
-    font-size: large;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#cvv-hidden {
-    font-size: large;
-    display: none;
-}
-
-#cvv-unhide:hover+#cvv-hidden {
-    display: block;
-}
-
-.summary {
-    border-radius: 12px;
-}
-
-.summary p {
-    display: flex;
-    justify-content: space-between;
-    font-size: large;
-}
-
-.total p {
-    font-size: large;
-    font-weight: bold;
-}
-
-.pay-button {
-    background-color: #55cb94;
-    display: block;
-    width: 100%;
-    padding: 15px 0;
-    text-align: center;
-    font-size: large;
-    border: none;
-    cursor: pointer;
-    border-radius: 12px;
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-.pay-button:hover {
-    background-color: #36a975;
-}
-
-#pay-confirmed {
-    font-size: large;
-    margin-bottom: 1px;
-}
-
-/* checkout.html */
