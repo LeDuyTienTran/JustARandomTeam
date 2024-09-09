@@ -53,6 +53,10 @@ header {
     flex-wrap: wrap; /* Allow header items to wrap if needed */
 }
 
+path {
+    fill: var(--secondary-color);
+}
+
 #logo {
     font-size: 3.5rem;
     font-weight: bold;
