@@ -146,6 +146,18 @@ img {
     text-decoration: none;
     font-size: 14px;
 }
+/* Cart Icon Styling */
+.cart-link {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+.cart-icon {
+    width: 30px; /* Adjust the size as needed */
+    height: auto;
+}
 
 /* Buttons */
 button {
@@ -228,5 +240,8 @@ button:hover {
 
     .location-details p, .location-details a {
         font-size: 1rem; /* Increase font size for better readability */
+    }
+    .cart-icon {
+        width: 25px; /* Adjust icon size for mobile */
     }
 }
