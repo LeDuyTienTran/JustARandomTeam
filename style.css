@@ -93,6 +93,11 @@ img {
     max-width: 100%; /* Ensure images don't exceed the container width */
     height: auto; /* Maintain aspect ratio */
 }
+#cart {
+    width: 100%;
+    max-width: 1200px;
+
+}
 /* Images */
 #gas_station {
     padding-top: 20px;
