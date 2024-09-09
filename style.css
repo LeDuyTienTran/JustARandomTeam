@@ -1,3 +1,5 @@
+/* Overall style (PC) */
+
 :root {
     --background-color: #e0f7fa;
     /* Sky blue background for a refreshing look */
@@ -5,14 +7,14 @@
     /* Sky blue for headings and primary elements */
     --secondary-color: #d32f2f;
     /* Red accent for buttons and highlights */
-    --navigation-color: #01579b;
+    --container-color: #01579b;
     /* Darker blue for navigation */
+    --container-content-color: rgb(244, 244, 244);
+    /* Slightly dark white (to prevent contrast) for all content inside a container */
     --border-color: #b3e5fc;
     /* Lighter blue for soft borders */
-    --button-hover-color: #b71c1c;
+    --hover-color: #b71c1c;
     /* Dark red for button hover */
-    --menu-icon-color: #ffffff;
-    /* White for the hamburger icon */
 }
 
 html {
@@ -31,7 +33,6 @@ h1 {
 h2 {
     color: var(--primary-color);
     font-size: xx-large;
-    text-align: center;
 }
 
 p {
@@ -39,23 +40,55 @@ p {
     padding: 0 50px;
 }
 
-/* Links */
+aside {
+    padding-left: 50px;
+}
+
+aside ul li {
+    font-size: large;
+}
+
+footer {
+    font-size: small;
+    float: right;
+}
+
+form {
+    padding-top: 20px;
+}
+
+label {
+    color: var(--container-content-color);
+    font-size: x-large;
+}
+
+/* Overall style */
+
+
+
+/* Link style */
+
 a {
     color: var(--secondary-color);
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
+a:hover,
+article a h1:hover {
+    color: var(--hover-color);
 }
 
-/* Header Styling */
+/* Link style */
+
+
+
+/* Header style */
+
 header {
-    background-color: var(--navigation-color);
-    border-bottom: solid 1px var(--border-color);
+    background-color: var(--container-color);
+    border-radius: 12px;
     padding: 10px;
     /* Reduced padding for a smaller header */
-    display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
@@ -64,16 +97,12 @@ header {
     /* Prevent content from spilling out */
 }
 
-path {
-    fill: var(--secondary-color);
-}
-
-/* Ensure logo and navigation items fit within the header */
 #logo {
-    font-size: 2.5rem;
+    /* Ensure logo and navigation items fit within the header */
+    font-size: 3rem;
     /* Adjusted logo size for smaller header */
     font-weight: bold;
-    color: white;
+    color: var(--secondary-color);
 }
 
 nav ul {
@@ -87,49 +116,23 @@ nav ul {
 }
 
 nav ul li {
-    padding: 8px 15px;
+    padding: 0 90px;
     /* Adjusted padding for smaller header */
+    padding-top: 18px;
     font-size: 1rem;
     /* Adjusted font size for smaller header */
-    color: #fff;
 }
 
 nav ul li a {
-    color: white;
+    color: var(--container-content-color);
     text-decoration: none;
 }
 
-/* Mobile Menu Icon */
-.menu-icon {
-    display: none;
-    font-size: 3rem;
-    /* Adjusted font size for mobile */
-    cursor: pointer;
-    color: var(--menu-icon-color);
-}
+/* Header style */
 
-img {
-    max-width: 100%;
-    /* Ensure images don't exceed the container width */
-    height: auto;
-    /* Maintain aspect ratio */
-}
 
-#cart {
-    width: 100%;
-    max-width: 1200px;
 
-}
-
-/* Images */
-#gas_station {
-    padding-top: 20px;
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1200px;
-    height: auto;
-}
+/* Location image style */
 
 .location img {
     width: 100%;
@@ -140,7 +143,12 @@ img {
     /* Maintain aspect ratio */
 }
 
-/* Location Container */
+/* Location image style */
+
+
+
+/* Location container style */
+
 #locations-container {
     display: flex;
     flex-wrap: wrap;
@@ -178,24 +186,30 @@ img {
     font-size: 14px;
 }
 
-/* Cart Icon Styling */
+/* Location container style */
+
+
+
+/* Cart icon style */
+
 .cart-link {
     display: flex;
-    align-items: center;
-    padding: 0;
     cursor: pointer;
 }
 
 .cart-icon {
-    width: 30px;
-    /* Adjust the size as needed */
-    height: auto;
+    width: 50px;
 }
 
-/* Buttons */
+/* Cart icon style */
+
+
+
+/* Button style */
+
 button {
     background-color: var(--secondary-color);
-    color: #fff;
+    color: var(--container-content-color);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -204,10 +218,15 @@ button {
 }
 
 button:hover {
-    background-color: var(--button-hover-color);
+    background-color: var(--hover-color);
 }
 
-/* Payment Card */
+/* Button style */
+
+
+
+/* payment_details.html */
+
 .payment-card {
     background: linear-gradient(to right, #0277bd, #d32f2f);
     color: white;
@@ -222,8 +241,11 @@ button:hover {
     margin: 0 0 10px;
 }
 
-/* Mobile Responsive Layout */
-/* Mobile Responsive Layout */
+/* payment_details.html */
+
+
+
+/* Responsive mobile */
 @media (max-width: 768px) {
     header {
         flex-direction: row;
@@ -302,3 +324,328 @@ button:hover {
         /* Adjusted icon size for mobile */
     }
 }
+
+/* Responsive mobile */
+
+
+
+/* Overall style (mobile) */
+
+.menu-icon {
+    display: none;
+    font-size: 3rem;
+    /* Adjusted font size for mobile */
+    cursor: pointer;
+    color: var(--container-content-color);
+}
+
+img {
+    max-width: 100%;
+    /* Ensure images don't exceed the container width */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+/* Overall style (mobile) */
+
+
+
+/* Khurl's part */
+
+.hero-image {
+    background-image: url("images/gas_station.jpg");
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    align-items: center;
+}
+
+.body1 {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+}
+
+.container h2 {
+    color: var(--container-content-color);
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.container input {
+    background: var(--container-content-color);
+    width: 80%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    transition: background 0.3s;
+    font-size: medium;
+    text-align: center;
+}
+
+.container input:focus {
+    background: rgb(255, 255, 255);
+}
+
+.container button {
+    width: 70%;
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.container .forgot-password,
+.container .create-account,
+.container .login-link {
+    margin-top: 10px;
+    font-size: small;
+    color: var(--container-content-color);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.container .forgot-password:hover,
+.container .create-account:hover,
+.container .login-link:hover {
+    color: black;
+}
+
+.error-message,
+.success-message {
+    color: black;
+    font-size: small;
+    margin-top: 10px;
+}
+
+/* Khurl's part */
+
+
+
+/* Chun's part */
+
+.menu-category,
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px
+}
+
+.menu-category img,
+.menu-item img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Chun's part */
+
+
+
+/* cart.html */
+
+.cart-container {
+    background-color: var(--container-color);
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.item-details {
+    color: var(--container-content-color);
+    flex: 1;
+    margin-left: 20px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+}
+
+.quantity-controls button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.quantity-controls input {
+    color: var(--container-content-color);
+    width: 40px;
+    text-align: center;
+    font-size: large;
+    margin: 0 10px;
+}
+
+#fries-quantity,
+#burger-quantity {
+    background: none;
+    border: none;
+}
+
+.item-total {
+    color: var(--container-content-color);
+    font-size: x-large;
+    min-width: 100px;
+    text-align: right;
+}
+
+.cart-summary {
+    color: var(--container-content-color);
+    text-align: right;
+    padding: 20px 0;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.checkout-button {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* cart.html */
+
+
+
+/* checkout.html */
+
+.checkout-container {
+    background-color: var(--container-color);
+    margin: 50px auto;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    width: 400px;
+}
+
+.checkout-container div h2 {
+    color: var(--container-content-color);
+    font-size: xx-large;
+}
+
+.checkout-information {
+    margin-bottom: 10px;
+}
+
+.checkout-information label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.checkout-information input {
+    padding: 10px;
+    border-radius: 12px;
+    font-size: large;
+}
+
+#postcode,
+#cvv {
+    width: 40px;
+}
+
+#cvv-unhide {
+    color: var(--secondary-color);
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#cvv-unhide:hover {
+    color: var(--hover-color);
+}
+
+#cvv-hidden {
+    color: var(--container-content-color);
+    font-size: large;
+    display: none;
+}
+
+#cvv-unhide:hover+#cvv-hidden {
+    display: block;
+}
+
+.summary {
+    color: var(--container-content-color);
+    border-radius: 12px;
+}
+
+.summary p {
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+}
+
+.total p {
+    font-size: large;
+    font-weight: bold;
+}
+
+.pay-button {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#pay-confirmed {
+    color: var(--container-content-color);
+    font-size: large;
+    margin-bottom: 1px;
+}
+
+/* checkout.html */
