@@ -8,6 +8,39 @@
         <title>UTR | Cart</title>
 
         <link rel="stylesheet" href="style.css">
+
+        <script>
+            const prices = {
+                burger: 10.00,
+                fries: 5.00
+            };
+
+            function changeQuantity(item, amount) {
+                let quantityElement = document.getElementById(item + '-quantity');
+                let currentQuantity = parseInt(quantityElement.value);
+                let newQuantity = currentQuantity + amount;
+                
+                if (newQuantity < 1) newQuantity = 1;
+                
+                quantityElement.value = newQuantity;
+
+                updateItemTotal(item, newQuantity);
+                updateCartTotal();
+            }
+
+            function updateItemTotal(item, quantity) {
+                let totalElement = document.getElementById(item + '-total');
+                totalElement.innerHTML = '$' + (prices[item] * quantity).toFixed(2);
+            }
+
+            function updateCartTotal() {
+                let burgerTotal = prices.burger * parseInt(document.getElementById('burger-quantity').value);
+                let friesTotal = prices.fries * parseInt(document.getElementById('fries-quantity').value);
+                let cartTotal = burgerTotal + friesTotal;
+
+                document.getElementById('cart-total').innerHTML = '$' + cartTotal.toFixed(2);
+            }
+        </script>
     </head>
 
     <body>
@@ -36,7 +69,7 @@
                             <button>
                                 <div>
                                     <svg width="20" height="20" viewBox="0 0 24 24">
-                                        <path d="M5.5 18H21l2-12.5H6.5l-.5-3H.9v3h2.5L5.5 18Zm14-9.5-1 6.5H8L7 8.5h12.5ZM7.5 23a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm14-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
+                                        <path d="M5.5 18H21l2-12.5H6.5l-.5-3H.9v3h2.5L5.5 18Zm14-9.5-1 6.5H8L7 8.5h12.5ZM7.5 23a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm14-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" fill="var(--secondary-color)"></path>
                                     </svg>
                                 </div>
                             </button>
@@ -47,7 +80,51 @@
         </header>
 
         <main>
-            
+            <div>
+                <h1>Your Cart</h1>
+    
+                <div class="cart-container">
+                    <div class="cart-item">
+                        <img src="" alt="Image of a burger">
+                        
+                        <div class="item-details">
+                            <p>Burger</p>
+                            <p>$10.00</p>
+                        </div>
+        
+                        <div class="quantity-controls">
+                            <button onclick="changeQuantity('burger', -1)">-</button>
+                            <input type="number" id="burger-quantity" value="1" readonly>
+                            <button onclick="changeQuantity('burger', 1)">+</button>
+                        </div>
+        
+                        <div class="item-total" id="burger-total">$10.00</div>
+                    </div>
+        
+                    <div class="cart-item">
+                        <img src="" alt="Image of fries">
+                        
+                        <div class="item-details">
+                            <p>Fries</p>
+                            <p>$5.00</p>
+                        </div>
+        
+                        <div class="quantity-controls">
+                            <button onclick="changeQuantity('fries', -1)">-</button>
+                            <input type="number" id="fries-quantity" value="1" readonly>
+                            <button onclick="changeQuantity('fries', 1)">+</button>
+                        </div>
+                        
+                        <div class="item-total" id="fries-total">$5.00</div>
+                    </div>
+        
+                    <div class="cart-summary">
+                        Total: <span id="cart-total">$15.00</span>
+                    </div>
+        
+                    <button class="checkout-button">Proceed to Checkout</button>
+                </div>    
+            </div>        
         </main>
 
         <footer>
