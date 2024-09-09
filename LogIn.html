@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
     <meta charset="utf-8">
-
     <title>UTR | Log In</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,22 +12,14 @@
         <nav>
             <ul>
                 <div id="logo">UTR</div>
-
-                <li>
-                    <a href="home.html">Home</a>
-                </li>
-                <li>
-                    <a href="locations.html">Locations</a>
-                </li>
-                <li>
-                    <a href="Food & Beverage.html">Food & Beverage</a>
-                </li>
-                <li>
-                    <a href="Gas & Go.html">Gas & Go</a>
-                </li>
-                <li>
-                    <a href="LogIn.html">Account</a>
-                </li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="locations.html">Locations</a></li>
+                <li><a href="Food & Beverage.html">Food & Beverage</a></li>
+                <li><a href="Gas & Go.html">Gas & Go</a></li>
+                <li><a href="LogIn.html">Account</a></li>
+                <a href="LogIn.html" class="cart-link">
+                    <img src="images/cart.png" alt="Image of a cart" class="cart-icon" />
+                </a>
             </ul>
         </nav>
     </header><br />
@@ -51,22 +40,25 @@
         </div>
     </div>
 
-
     <script>
         function validateLogin(event) {
             event.preventDefault();
 
-            const validUsername = "user123";
-            const validPassword = "password123";
-
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
 
-            if (username === validUsername && password === validPassword) {
-                setTimeout(function () {
-                    window.location.href = "home-logged_in.html";
-                }, 2000);
-
+            const storedUser = localStorage.getItem(username);
+            if (storedUser) {
+                const user = JSON.parse(storedUser);
+                
+                if (username === user.username && password === user.password) {
+                    alert("Login successful!");
+                    setTimeout(function () {
+                        window.location.href = "home-logged_in.html";
+                    }, 2000);
+                } else {
+                    document.getElementById("errorMessage").innerText = "Invalid username or password.";
+                }
             } else {
                 document.getElementById("errorMessage").innerText = "Invalid username or password.";
             }

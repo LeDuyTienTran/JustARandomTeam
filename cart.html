@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>UTR | Cart</title>
+
+        <link rel="stylesheet" href="style.css">
+
+        <script>
+            const prices = {
+                burger: 10.00,
+                fries: 5.00
+            };
+
+            function changeQuantity(item, amount) {
+                let quantityElement = document.getElementById(item + '-quantity');
+                let currentQuantity = parseInt(quantityElement.value);
+                let newQuantity = currentQuantity + amount;
+                
+                if (newQuantity < 1) newQuantity = 1;
+                
+                quantityElement.value = newQuantity;
+
+                updateItemTotal(item, newQuantity);
+                updateCartTotal();
+            }
+
+            function updateItemTotal(item, quantity) {
+                let totalElement = document.getElementById(item + '-total');
+                totalElement.innerHTML = '$' + (prices[item] * quantity).toFixed(2);
+            }
+
+            function updateCartTotal() {
+                let burgerTotal = prices.burger * parseInt(document.getElementById('burger-quantity').value);
+                let friesTotal = prices.fries * parseInt(document.getElementById('fries-quantity').value);
+                let cartTotal = burgerTotal + friesTotal;
+
+                document.getElementById('cart-total').innerHTML = '$' + cartTotal.toFixed(2);
+            }
+        </script>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <div id="logo">UTR</div>
+
+                    <li>
+                        <a href="home-logged_in.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="locations.html">Locations</a>
+                    </li>
+                    <li>
+                        <a href="Food & Beverage.html">Food & Beverage</a>
+                    </li>
+                    <li>
+                        <a href="Gas & Go.html">Gas & Go</a>
+                    </li>
+                    <li>
+                        <a href="account.html">Account</a>
+                    </li>
+
+                    <a href="cart.html" class="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon"/>
+                    </a>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div>
+                <h1>Your Cart</h1>
+    
+                <div class="cart-container">
+                    <div class="cart-item">
+                        <img src="" alt="Image of a burger">
+                        
+                        <div class="item-details">
+                            <p>Burger</p>
+                            <p>$10.00</p>
+                        </div>
+        
+                        <div class="quantity-controls">
+                            <button onclick="changeQuantity('burger', -1)">-</button>
+                            <input type="number" id="burger-quantity" value="1" readonly>
+                            <button onclick="changeQuantity('burger', 1)">+</button>
+                        </div>
+        
+                        <div class="item-total" id="burger-total">$10.00</div>
+                    </div>
+        
+                    <div class="cart-item">
+                        <img src="" alt="Image of fries">
+                        
+                        <div class="item-details">
+                            <p>Fries</p>
+                            <p>$5.00</p>
+                        </div>
+        
+                        <div class="quantity-controls">
+                            <button onclick="changeQuantity('fries', -1)">-</button>
+                            <input type="number" id="fries-quantity" value="1" readonly>
+                            <button onclick="changeQuantity('fries', 1)">+</button>
+                        </div>
+                        
+                        <div class="item-total" id="fries-total">$5.00</div>
+                    </div>
+        
+                    <div class="cart-summary">
+                        Total: <span id="cart-total">$15.00</span>
+                    </div>
+                    
+                    <a href="checkout.html">
+                        <button class="checkout-button">Proceed to Checkout</button>
+                    </a>
+                </div>    
+            </div>        
+        </main>
+
+        <footer>
+            ©Copyright UTR Pty Ltd, 2024. All rights reserved.
+        </footer>
+    </body>
+
+</html>

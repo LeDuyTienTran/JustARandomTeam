@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="utf-8">
-        
         <title>UTR | Sign Up</title>
-        
         <link rel="stylesheet" href="style.css">
     </head>
     
@@ -14,22 +11,14 @@
             <nav>
                 <ul>
                     <div id="logo">UTR</div>
-                    
-                    <li>
-                        <a href="home.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="locations.html">Locations</a>
-                    </li>
-                    <li>
-                        <a href="Food & Beverage.html">Food & Beverage</a>
-                    </li>
-                    <li>
-                        <a href="Gas & Go.html">Gas & Go</a>
-                    </li>
-                    <li>
-                        <a href="LogIn.html">Account</a>
-                    </li>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="Food & Beverage.html">Food & Beverage</a></li>
+                    <li><a href="Gas & Go.html">Gas & Go</a></li>
+                    <li><a href="LogIn.html">Account</a></li>
+                    <a href="LogIn.html" class="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon"/>
+                    </a>
                 </ul>
             </nav>
         </header><br/>
@@ -39,7 +28,7 @@
                 <div class="container">
                     <h2>Create Account</h2>
                     <form id="signupForm" onsubmit="validateSignup(event)">
-                        <input type="text" id="fullname" placeholder="Full Name" required>
+                        <input type="text" id="username" placeholder="Username" required>
                         <input type="email" id="email" placeholder="Email" required>
                         <input type="password" id="password" placeholder="Password (min 6 characters)" required>
                         <button type="submit">Sign Up</button><br/>
@@ -48,24 +37,26 @@
                         <div id="successMessage" class="success-message"></div>
                     </form>
                 </div>            
-        </div>
+            </div>
         </div>
         
         <script>
             function validateSignup(event) {
-                event.preventDefault();
+                event.preventDefault(); 
 
-                const fullName = document.getElementById("fullname").value;
+                const userName = document.getElementById("username").value;
                 const email = document.getElementById("email").value;
                 const password = document.getElementById("password").value;
                 const errorMessage = document.getElementById("errorMessage");
                 const successMessage = document.getElementById("successMessage");
     
+            
                 errorMessage.innerText = "";
                 successMessage.innerText = "";
     
-                if (fullName.length < 3) {
-                    errorMessage.innerText = "Full name must be at least 3 characters long.";
+                
+                if (userName.length < 3) {
+                    errorMessage.innerText = "Username must be at least 3 characters long.";
                     return;
                 }
                 if (!validateEmail(email)) {
@@ -77,8 +68,20 @@
                     return;
                 }
     
+            
                 successMessage.innerText = "Signup successful!";
                 
+             
+                var user = {
+                    email: email,
+                    username: userName,
+                    password: password,
+                };
+
+                localStorage.setItem(userName, JSON.stringify(user));
+                console.log('User added to local storage');
+
+               
                 setTimeout(function() {
                     window.location.href = "LogIn.html"; 
                 }, 2000); 
