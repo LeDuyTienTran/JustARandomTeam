@@ -64,6 +64,10 @@ nav ul li button:hover {
     background-color: rgb(152, 152, 152);
 }
 
+path {
+    fill: var(--secondary-color);
+}
+
 #logo {
     color: var(--primary-color);
     font-size: xxx-large;
