@@ -2,7 +2,7 @@
     --background-color: #e0f7fa; /* Sky blue background for a refreshing look */
     --primary-color: #0277bd; /* Sky blue for headings and primary elements */
     --secondary-color: #d32f2f; /* Red accent for buttons and highlights */
-    --box-color: #01579b; /* Darker blue for navigation */
+    --navigation-color: #01579b; /* Darker blue for navigation */
     --border-color: #b3e5fc; /* Lighter blue for soft borders */
     --button-hover-color: #b71c1c; /* Dark red for button hover */
     --menu-icon-color: #ffffff; /* White for the hamburger icon */
@@ -89,7 +89,6 @@ img {
     max-width: 100%; /* Ensure images don't exceed the container width */
     height: auto; /* Maintain aspect ratio */
 }
-
 /* Images */
 #gas_station {
     padding-top: 20px;
