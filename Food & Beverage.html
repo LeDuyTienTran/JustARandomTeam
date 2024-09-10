@@ -18,6 +18,9 @@
                 <li><a href="Food & Beverage.html">Food & Beverage</a></li>
                 <li><a href="Gas & Go.html">Gas & Go</a></li>
                 <li><a href="account.html">Account</a></li>
+                <a href="LogIn.html" class="cart-link">
+                    <img src="images/cart.png" alt="Image of a cart" class="cart-icon" />
+                </a>
             </ul>
         </nav>
     </header>
@@ -26,8 +29,15 @@
         <section id="menu">
             <h1>UTR Menus</h1>
             <div class="order-options">
-                <button id="delivery">Delivery</button>
-                <button id="pickup">Pickup</button>
+                <button id="delivery" onclick="toggleMode('delivery')">Delivery</button>
+                <button id="pickup" onclick="toggleMode('pickup')">Pickup</button>
+            </div>
+
+            <div id="pickup-locations" style="display:none;">
+                <h2>Pickup Locations</h2>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509617!2d144.9630579153182!3d-37.816279579751934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43df29d3df%3A0x9b65b1b5d8aa8c7a!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sin!4v1601583367390!5m2!1sen!2sin"
+                    width="600" height="450"></iframe>
             </div>
 
             <div class="menu-category">
@@ -45,7 +55,7 @@
                         <p>Sandwich</p>
                         <p>Price: $6.00</p>
                         <button>Customise</button>
-                        <button>Add to Cart</button>
+                        <button class="add-to-cart-btn" data-name="Sandwich" data-price="6.00">Add to Cart</button>
                     </div>
                 </div>
 
@@ -168,12 +178,23 @@
             <p>Skip the menu and proceed to your fuel payment.</p>
             <a href="Gas & Go.html"><button>Gas and Go</button></a>
         </section>
-
     </main>
 
     <footer>
         ©Copyright UTR Pty Ltd, 2024. All rights reserved.
     </footer>
 </body>
+
+<script>
+    function toggleMode(mode) {
+        if (mode === 'pickup') {
+            document.getElementById('pickup-locations').style.display = 'block';
+        } else {
+            document.getElementById('pickup-locations').style.display = 'none';
+        }
+    }
+</script>
+</body>
+
 
 </html>
