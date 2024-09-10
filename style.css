@@ -440,21 +440,6 @@ img {
     margin-top: 10px;
 }
 
-.update {
-    
-    border: none !important;
-    box-shadow: none !important;
-    border-bottom: 2px solid lightblue !important;
-    padding: 20px;
-}
-
-.image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
 /* Khurl's part */
 
 
@@ -662,6 +647,5 @@ img {
     font-size: large;
     margin-bottom: 1px;
 }
-
 
 /* checkout.html */
