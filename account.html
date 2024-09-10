@@ -1,24 +1,10 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="utf-8">
-        
         <title>UTR | Account</title>
-        
         <link rel="stylesheet" href="style.css">
-
-        <script>
-            function showPassword() {
-                var password = document.getElementById("password");
-                
-                if (password.type == "password") {
-                    password.type = "text";
-                } else {
-                    password.type = "password";
-                }
-            }
-        </script>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     </head>
     
     <body>
@@ -26,61 +12,107 @@
             <nav>
                 <ul>
                     <div id="logo">UTR</div>
-                    
-                    <li>
-                        <a href="home-logged_in.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="locations.html">Locations</a>
-                    </li>
-                    <li>
-                        <a href="Food & Beverage.html">Food & Beverage</a>
-                    </li>
-                    <li>
-                        <a href="Gas & Go.html">Gas & Go</a>
-                    </li>
-                    <li>
-                        <a href="account.html">Account</a>
-                    </li>
-                    
+                    <li><a href="home-logged_in.html">Home</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="Food & Beverage.html">Food & Beverage</a></li>
+                    <li><a href="Gas & Go.html">Gas & Go</a></li>
+                    <li><a href="account.html">Account</a></li>
                     <a href="cart.html" class="cart-link">
                         <img src="images/cart.png" alt="Image of a cart" class="cart-icon"/>
                     </a>
                 </ul>
             </nav>
         </header>     
-        
-        <main>
-            <div>
-                <form>
-                    <label for="name">Full Name:</label><br>
-                    <input type="text" id="name" name="name"><br><br>
 
-                    <label for="email">Email:</label><br>
-                    <input type="email" id="email" name="email"><br><br>
-
-                    <label for="username">Username:</label><br>
-                    <input type="text" id="username" name="username"><br><br>
-
-                    <label for="password">Password:</label><br>
-                    <input type="password" id="password" name="password">
-                    <button type="button" onclick="showPassword()">Show Password</button><br><br>
-                    
-                    <button type="button" onclick="alert('Account details successfully updated.')">Update</button><br><br>
-                </form>
-
-                <article>
-                    <p>To update payment details, click <a href="payment_details.html">here</a></p>
-                </article>
-
-                <article>
-                    <p>To log out and return to the homepage, click <a href="home.html">here</a></p>
-                </article>
+        <div class="container pt-5">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 text-center">
+                    <img src="images/password.png" alt="Image of password" class="img-fluid">
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="update">
+                        <form onsubmit="validate(event)">
+                            <input type="text" id="username" name="username" placeholder="UserName"><br><br>
+                            <input type="email" id="email" name="email" placeholder="Email"><br><br>
+                            <input type="password" id="password" name="password" placeholder="Password">
+                            <button type="button" onclick="showPassword()">Show Password</button><br><br>
+                            <button type="submit">Update</button><br><br>
+                            <p id="errorMessage" style="color: red;"></p>
+                            <p id="successMessage" style="color: green;"></p>
+                        </form>
+                        <article>
+                            <p>To update payment details, click <a href="payment_details.html">here</a></p>
+                        </article>
+                        <article>
+                            <p>To log out and return to the homepage, click <a href="home.html">here</a></p>
+                        </article>
+                    </div>
+                </div>
             </div>
-        </main>
-        
+        </div>
+
         <footer>
-            ©Copyright UTR Pty Ltd, 2024. All rights reserved.
+            &copy; Copyright UTR Pty Ltd, 2024. All rights reserved.
         </footer>
+
+        <script>
+            function showPassword() {
+                var password = document.getElementById("password");
+                password.type = password.type === "password" ? "text" : "password";
+            }
+
+            function validate(event) {
+                event.preventDefault(); 
+
+                const userName = document.getElementById("username").value;
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                const errorMessage = document.getElementById("errorMessage");
+                const successMessage = document.getElementById("successMessage");
+                errorMessage.innerText = "";
+                successMessage.innerText = "";
+    
+                if (userName.length < 3) {
+                    errorMessage.innerText = "Username must be at least 3 characters long.";
+                    return;
+                }
+                if (!validateEmail(email)) {
+                    errorMessage.innerText = "Please enter a valid email address.";
+                    return;
+                }
+                if (password.length < 6) {
+                    errorMessage.innerText = "Password must be at least 6 characters long.";
+                    return;
+                }
+
+                const existingUserData = JSON.parse(localStorage.getItem(userName));
+
+                if (existingUserData) {
+                    existingUserData.email = email;
+                    existingUserData.password = password;
+                    localStorage.setItem(userName, JSON.stringify(existingUserData));
+                    successMessage.innerText = "User details updated successfully!";
+                } else {
+                    const user = {
+                        email: email,
+                        username: userName,
+                        password: password,
+                    };
+                    localStorage.setItem(userName, JSON.stringify(user));
+                    successMessage.innerText = "New user created and saved successfully!";
+                }
+    
+                console.log('User data updated in local storage');
+
+                setTimeout(function() {
+                    window.location.href = "LogIn.html"; 
+                }, 2000); 
+            }
+    
+            function validateEmail(email) {
+                const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return pattern.test(email);
+            }
+        </script>
     </body>
 </html>
