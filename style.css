@@ -41,6 +41,9 @@ p {
 }
 
 aside {
+    background-color: var(--border-color);
+    border-radius: 12px;
+    padding: 1px;
     padding-left: 50px;
 }
 
@@ -360,6 +363,7 @@ img {
     background-size: cover;
     position: relative;
     align-items: center;
+    border-radius: 12px;
 }
 
 .body1 {
@@ -462,6 +466,66 @@ img {
 }
 
 /* Chun's part */
+
+
+
+/* home.html + home-logged_in.html */
+
+.home-section {
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    align-items: center;
+    border-radius: 12px;
+}
+
+#home-about-body,
+#home-locations-body {
+    display: flex;
+    justify-content: center;
+    padding-top: 170px;
+}
+
+#home-food-body,
+#home-fuel-body {
+    display: flex;
+    justify-content: center;
+    padding-top: 240px;
+}
+
+#home-about {
+    background-image: url(images/gas_station.jpg);
+}
+
+#home-locations {
+    background-image: url(images/map.jpg);
+    padding-top: 200px;
+}
+
+#home-food {
+    background-image: url(images/food.jpeg);
+}
+
+#home-fuel {
+    background-image: url(images/gas.jpg);
+}
+
+article:not(#home-login) {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+}
+
+article#home-login p {
+    text-align: center;
+}
+
+/* home.html + home-logged_in.html */
 
 
 
