@@ -27,107 +27,110 @@
     </header>
 
     <main>
-        <section class="gas-section">
-            <div class="gas-info">
-                <h2>Select Your Fuel Type</h2>
+        <main>
+            <section class="gas-section">
+                <div class="gas-info">
+                    <button id="delivery">Delivery</button>
+                    <button id="pickup">Pickup</button>
+                    <h2>Select Your Fuel Type</h2>
 
-                <form id="fuel-form">
-                    <label for="fuel-type">Fuel Type:</label>
-                    <select id="fuel-type" name="fuel-type">
-                        <option value="Unleaded">Unleaded</option>
-                        <option value="Unleaded 95">Unleaded 95</option>
-                        <option value="Prmium Unleaded 98">Prmium Unleaded 98</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Ultimate Diesel">Ultimate Diesel</option>
-                        <option value="LPG">LPG</option>
-                    </select>
+                    <form id="fuel-form">
+                        <label for="fuel-type">Fuel Type:</label>
+                        <select id="fuel-type" name="fuel-type">
+                            <option value="Unleaded">Unleaded</option>
+                            <option value="Unleaded 95">Unleaded 95</option>
+                            <option value="Prmium Unleaded 98">Prmium Unleaded 98</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Ultimate Diesel">Ultimate Diesel</option>
+                            <option value="LPG">LPG</option>
+                        </select>
 
-                    <label for="fuel-amount">Amount (Liters)</label>
-                    <input type="number" id="fuel-amount" name="fuel-amount" placeorder="e.g. 50" min="1" required>
-                    <button type="submit" class="Find-location-btn">Add to Cart</button>
-                </form>
-            </div>
+                        <label for="fuel-amount">Amount (Liters)</label>
+                        <input type="number" id="fuel-amount" name="fuel-amount" placeorder="e.g. 50" min="1" required>
+                        <button type="submit" class="Find-location-btn">Add to Cart</button>
+                    </form>
+                </div>
 
-            <div class="gas-image">
-                <img src="images/fuel.webp" alt="Fuel Hub" />
-            </div>
-        </section>
-    </main>
+                <div class="gas-image">
+                    <img src="images/fuel.webp" alt="Fuel Hub" />
+                </div>
+            </section>
+        </main>
 
-    <footer>
-        ©Copyright UTR Pty Ltd, 2024. All rights reserved.
-    </footer>
+        <footer>
+            ©Copyright UTR Pty Ltd, 2024. All rights reserved.
+        </footer>
 
-    <script>
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        function addFuelToCart(fuelType, fuelAmount) {
-            const fuelPricePerLiter = {
-                "Unleaded": 1.50,
-                "Unleaded 95": 1.70,
-                "Premium Unlead 98": 1.90
+        <script>
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            function addFuelToCart(fuelType, fuelAmount) {
+                const fuelPricePerLiter = {
+                    "Unleaded": 1.50,
+                    "Unleaded 95": 1.70,
+                    "Premium Unlead 98": 1.90
                 "Diesel": 1.75,
-                "Ultimate Diesel": 1.85,
-                "LPG": 1.00
-            };
+                    "Ultimate Diesel": 1.85,
+                    "LPG": 1.00
+                };
 
-            const totalCost = fuelAmount * fuelPricePerLiter[fuelType];
 
-            const fuelItem = {
-                name: fuelType + " - Fuel",
-                price: totalCost.toFixed(2),
-                quantity: fuelAmount + " Liters"
-            };
+                const totalCost = fuelAmount * fuelPricePerLiter[fuelType];
 
-            cart.push(fuelItem);
-            localStorage.setItem('cart', JSON.stringify(cart));
+                const fuelItem = {
+                    name: fuelType + " - Fuel",
+                    price: totalCost.toFixed(2),
+                    quantity: fuelAmount + " Liters"
+                };
 
-            alert(fuelItem.name + " added to the cart. Total: $" + fuelItem.price);
-        }
+                cart.push(fuelItem);
+                localStorage.setItem('cart', JSON.stringify(cart));
 
-        function addFoodOrDrinkToCart(itemName, itemPrice) {
-            const item = {
-                name: itemName,
-                price: parseFloat(itemPrice),
-                quantity: 1
-            };
-
-            // Check if the item already exists in the cart
-            const existingItemIndex = cart.findIndex(cartItem => cartItem.name === itemName);
-
-            if (existingItemIndex !== -1) {
-                cart[existingItemIndex].quantity += 1;
-            } else {
-                cart.push(item);
+                alert(fuelItem.name + " added to the cart. Total: $" + fuelItem.price);
             }
 
-            localStorage.setItem('cart', JSON.stringify(cart));
+            function addFoodOrDrinkToCart(itemName, itemPrice) {
+                const item = {
+                    name: itemName,
+                    price: parseFloat(itemPrice),
+                    quantity: 1
+                };
 
-            alert(itemName + " added to the cart.");
-        }
+                const existingItemIndex = cart.findIndex(cartItem => cartItem.name === itemName);
 
-        document.getElementById('fuel-form').addEventListener('submit', function (event) {
-            event.preventDefault();
+                if (existingItemIndex !== -1) {
+                    cart[existingItemIndex].quantity += 1;
+                } else {
+                    cart.push(item);
+                }
 
-            const fuelType = document.getElementById('fuel-type').value;
-            const fuelAmount = document.getElementById('fuel-amount').value;
+                localStorage.setItem('cart', JSON.stringify(cart));
 
-            if (fuelAmount && fuelAmount > 0) {
-                addFuelToCart(fuelType, fuelAmount);
-            } else {
-                alert("Please enter a valid amount of fuel.");
+                alert(itemName + " added to the cart.");
             }
-        });
 
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const itemName = this.getAttribute('data-name');
-                const itemPrice = this.getAttribute('data-price');
-                addFoodOrDrinkToCart(itemName, itemPrice);
+            document.getElementById('fuel-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const fuelType = document.getElementById('fuel-type').value;
+                const fuelAmount = document.getElementById('fuel-amount').value;
+
+                if (fuelAmount && fuelAmount > 0) {
+                    addFuelToCart(fuelType, fuelAmount);
+                } else {
+                    alert("Please enter a valid amount of fuel.");
+                }
             });
-        });
 
-    </script>
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const itemName = this.getAttribute('data-name');
+                    const itemPrice = this.getAttribute('data-price');
+                    addFoodOrDrinkToCart(itemName, itemPrice);
+                });
+            });
+
+        </script>
 </body>
 
 </html>
