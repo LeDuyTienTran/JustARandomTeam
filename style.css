@@ -656,7 +656,7 @@ article#home-login p {
 
 /* cart.html */
 
-.cart-container {
+#cart-container {
     background-color: var(--container-color);
     max-width: 800px;
     margin: 50px auto;
@@ -705,10 +705,6 @@ article#home-login p {
     text-align: center;
     font-size: large;
     margin: 0 10px;
-}
-
-#fries-quantity,
-#burger-quantity {
     background: none;
     border: none;
 }
@@ -739,6 +735,11 @@ article#home-login p {
     border-radius: 12px;
     margin-top: 20px;
     font-weight: bold;
+}
+
+#empty-cart {
+    color: var(--container-content-color);
+    padding: 50px;
 }
 
 /* cart.html */

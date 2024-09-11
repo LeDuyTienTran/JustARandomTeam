@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lange="en">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UTR | Gas & Go</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gas & Go</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <div id="logo">UTR</div>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="Food & Beverage.html">Food & Beverage</a></li>
+                    <li><a href="Gas & Go.html">Gas & Go</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <a href="cart.html" class="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon" />
+                    </a>
+                </ul>
+            </nav>
+        </header>
 
-<body>
-    <header>
-        <nav>
-            <ul>
-                <div id="logo">UTR</div>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="locations.html">Locations</a></li>
-                <li><a href="Food & Beverage.html">Food & Beverage</a></li>
-                <li><a href="Gas & Go.html">Gas & Go</a></li>
-                <li><a href="account.html">Account</a></li>
-                <a href="cart.html" class="cart-link">
-                    <img src="images/cart.png" alt="Image of a cart" class="cart-icon" />
-                </a>
-                </a>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
         <main>
             <section class="gas-section">
                 <div class="gas-info">
@@ -39,15 +36,15 @@
                         <select id="fuel-type" name="fuel-type">
                             <option value="Unleaded">Unleaded</option>
                             <option value="Unleaded 95">Unleaded 95</option>
-                            <option value="Prmium Unleaded 98">Prmium Unleaded 98</option>
+                            <option value="Premium Unleaded 98">Premium Unleaded 98</option>
                             <option value="Diesel">Diesel</option>
                             <option value="Ultimate Diesel">Ultimate Diesel</option>
                             <option value="LPG">LPG</option>
                         </select>
 
                         <label for="fuel-amount">Amount (Liters)</label>
-                        <input type="number" id="fuel-amount" name="fuel-amount" placeorder="e.g. 50" min="1" required>
-                        <button type="submit" class="Find-location-btn">Add to Cart</button>
+                        <input type="number" id="fuel-amount" name="fuel-amount" min="1" required>
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
                     </form>
                 </div>
 
@@ -63,23 +60,23 @@
 
         <script>
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
             function addFuelToCart(fuelType, fuelAmount) {
                 const fuelPricePerLiter = {
                     "Unleaded": 1.50,
                     "Unleaded 95": 1.70,
-                    "Premium Unlead 98": 1.90,
+                    "Premium Unleaded 98": 1.90,
                     "Diesel": 1.75,
                     "Ultimate Diesel": 1.85,
                     "LPG": 1.00
                 };
-
 
                 const totalCost = fuelAmount * fuelPricePerLiter[fuelType];
 
                 const fuelItem = {
                     name: fuelType + " - Fuel",
                     price: totalCost.toFixed(2),
-                    quantity: fuelAmount + " Liters"
+                    quantity: parseFloat(fuelAmount)
                 };
 
                 cart.push(fuelItem);
@@ -88,49 +85,18 @@
                 alert(fuelItem.name + " added to the cart. Total: $" + fuelItem.price);
             }
 
-            function addFoodOrDrinkToCart(itemName, itemPrice) {
-                const item = {
-                    name: itemName,
-                    price: parseFloat(itemPrice),
-                    quantity: 1
-                };
-
-                const existingItemIndex = cart.findIndex(cartItem => cartItem.name === itemName);
-
-                if (existingItemIndex !== -1) {
-                    cart[existingItemIndex].quantity += 1;
-                } else {
-                    cart.push(item);
-                }
-
-                localStorage.setItem('cart', JSON.stringify(cart));
-
-                alert(itemName + " added to the cart.");
-            }
-
             document.getElementById('fuel-form').addEventListener('submit', function (event) {
                 event.preventDefault();
 
                 const fuelType = document.getElementById('fuel-type').value;
                 const fuelAmount = document.getElementById('fuel-amount').value;
 
-                if (fuelAmount && fuelAmount > 0) {
+                if (fuelAmount > 0) {
                     addFuelToCart(fuelType, fuelAmount);
                 } else {
                     alert("Please enter a valid amount of fuel.");
                 }
             });
-
-            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const itemName = this.getAttribute('data-name');
-                    const itemPrice = this.getAttribute('data-price');
-                    addFoodOrDrinkToCart(itemName, itemPrice);
-                });
-            });
-
         </script>
-</body>
-
+    </body>
 </html>

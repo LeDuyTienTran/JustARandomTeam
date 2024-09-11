@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html>
-
     <head>
         <meta charset="utf-8">
 
@@ -10,40 +9,54 @@
         <link rel="stylesheet" href="style.css">
 
         <script>
-            const prices = {
-                burger: 10.00,
-                fries: 5.00
-            };
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            function changeQuantity(item, amount) {
-                let quantityElement = document.getElementById(item + '-quantity');
-                let currentQuantity = parseInt(quantityElement.value);
-                let newQuantity = currentQuantity + amount;
-                
-                if (newQuantity < 1) newQuantity = 1;
-                
-                quantityElement.value = newQuantity;
+            function createCartItem() {
+                if (cart.length > 0) {
+                    for (let i = 0; i < cart.length; i++) {
+                        let item = cart[i];
+                        let name = item.name;
+                        let price = parseFloat(item.price).toFixed(2);
+                        let quantity = item.quantity;
 
-                updateItemTotal(item, newQuantity);
-                updateCartTotal();
+                        document.getElementById("cart-container").innerHTML +=
+                            "<div class='cart-item'><div class='item-details'><p>" + name + "</p><p>$" + price + "</p></div><div class='quantity-controls'><button onclick='changeQuantity(\"" + name + "\", " + price + ", -1)'>-</button><input type='number' id='" + name + "-quantity' value='" + quantity + "' readonly><button onclick='changeQuantity(\"" + name + "\", " + price + ", 1)'>+</button></div><div class='item-total' id='" + name + "-total'>$" + (price * quantity).toFixed(2) + "</div></div>"
+                    }
+
+                    document.getElementById("cart-container").innerHTML +=
+                        "<a href='checkout.html'><button class='checkout-button'>Proceed to Checkout</button></a>"
+                } else {
+                    document.getElementById("cart-container").innerHTML +=
+                        "<p id='empty-cart'>There's nothing in your cart. Add more <a href='Food & Beverage.html'>food and beverage</a> or <a href='Gas & Go.html'>fuel</a>.</p>"
+                }
+            }
+            
+            function changeQuantity(name, price, quantity) {
+                let quantity_element = document.getElementById(name + '-quantity');
+                let current_quantity = parseInt(quantity_element.value);
+                let new_quantity = current_quantity + quantity;
+                
+                if (new_quantity < 1) {
+                    new_quantity = 1;
+                }
+                
+                quantity_element.value = new_quantity;
+
+                const existing_item_index = cart.findIndex(cart_item => cart_item.name === name);
+                cart[existing_item_index].quantity += quantity;
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                updateItemTotal(name, price, new_quantity);
             }
 
-            function updateItemTotal(item, quantity) {
+            function updateItemTotal(item, price, new_quantity) {
                 let totalElement = document.getElementById(item + '-total');
-                totalElement.innerHTML = '$' + (prices[item] * quantity).toFixed(2);
-            }
-
-            function updateCartTotal() {
-                let burgerTotal = prices.burger * parseInt(document.getElementById('burger-quantity').value);
-                let friesTotal = prices.fries * parseInt(document.getElementById('fries-quantity').value);
-                let cartTotal = burgerTotal + friesTotal;
-
-                document.getElementById('cart-total').innerHTML = '$' + cartTotal.toFixed(2);
+                totalElement.innerHTML = '$' + (price * new_quantity).toFixed(2);
             }
         </script>
     </head>
 
-    <body>
+    <body onload="createCartItem()">
         <header>
             <nav>
                 <ul>
@@ -76,49 +89,7 @@
             <div>
                 <h1>Your Cart</h1>
     
-                <div class="cart-container">
-                    <div class="cart-item">
-                        <img src="" alt="Image of a burger">
-                        
-                        <div class="item-details">
-                            <p>Burger</p>
-                            <p>$10.00</p>
-                        </div>
-        
-                        <div class="quantity-controls">
-                            <button onclick="changeQuantity('burger', -1)">-</button>
-                            <input type="number" id="burger-quantity" value="1" readonly>
-                            <button onclick="changeQuantity('burger', 1)">+</button>
-                        </div>
-        
-                        <div class="item-total" id="burger-total">$10.00</div>
-                    </div>
-        
-                    <div class="cart-item">
-                        <img src="" alt="Image of fries">
-                        
-                        <div class="item-details">
-                            <p>Fries</p>
-                            <p>$5.00</p>
-                        </div>
-        
-                        <div class="quantity-controls">
-                            <button onclick="changeQuantity('fries', -1)">-</button>
-                            <input type="number" id="fries-quantity" value="1" readonly>
-                            <button onclick="changeQuantity('fries', 1)">+</button>
-                        </div>
-                        
-                        <div class="item-total" id="fries-total">$5.00</div>
-                    </div>
-        
-                    <div class="cart-summary">
-                        Total: <span id="cart-total">$15.00</span>
-                    </div>
-                    
-                    <a href="checkout.html">
-                        <button class="checkout-button">Proceed to Checkout</button>
-                    </a>
-                </div>    
+                <div id="cart-container"></div>    
             </div>        
         </main>
 
