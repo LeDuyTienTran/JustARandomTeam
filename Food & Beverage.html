@@ -18,8 +18,8 @@
                 <li><a href="Food & Beverage.html">Food & Beverage</a></li>
                 <li><a href="Gas & Go.html">Gas & Go</a></li>
                 <li><a href="account.html">Account</a></li>
-                <a href="cart.html" class="cart-link">
-                    <img src="images/cart.png" alt="Image of a cart" class="cart-icon" />
+                <a href="cart.html" class="cart-link" aria-label="View cart">
+                    <img src="images/cart.png" alt="Cart" class="cart-icon" />
                 </a>
             </ul>
         </nav>
@@ -28,9 +28,9 @@
     <section class="hero-section text-center bg-light py-5">
         <div class="container">
             <h1 class="display-4">Order Food & Drinks</h1>
-            <form class="search-form mt-3">
-                <input type="text" class="form-control w-50 mx-auto"
-                    placeholder="Search for food, drinks, and more..." />
+            <form class="search-form mt-3" role="search">
+                <input type="text" class="form-control w-50 mx-auto" placeholder="Search for food, drinks, and more..."
+                    aria-label="Search items" />
                 <button type="submit" class="btn btn-primary mt-2">Search</button>
             </form>
         </div>
@@ -39,26 +39,27 @@
     <main class="container my-5">
         <h2 class="text-center mb-5">UTR Menus</h2>
         <div class="order-options text-center mb-5">
-            <button id="delivery" class="btn btn-outline-primary me-2"
+            <button id="delivery" class="btn btn-outline-primary me-2" aria-label="Select delivery mode"
                 onclick="toggleMode('delivery')">Delivery</button>
-            <button id="pickup" class="btn btn-outline-secondary" onclick="toggleMode('pickup')">Pickup</button>
+            <button id="pickup" class="btn btn-outline-secondary" aria-label="Select pickup mode"
+                onclick="toggleMode('pickup')">Pickup</button>
         </div>
 
         <div id="delivery-form" style="display: none;">
             <h3>Delivery Information</h3>
             <label for="address">Address:</label>
-            <input type="text" id="address" placeholder="Enter your address">
+            <input type="text" id="address" placeholder="Enter your address" required>
             <label for="city">City:</label>
-            <input type="text" id="city" placeholder="Enter your city">
+            <input type="text" id="city" placeholder="Enter your city" required>
             <button class="btn btn-primary">Submit Delivery</button>
         </div>
 
         <div id="pickup-form" style="display: none;">
             <h3>Pickup Information</h3>
             <label for="name">Name:</label>
-            <input type="text" id="name" placeholder="Enter your name">
+            <input type="text" id="name" placeholder="Enter your name" required>
             <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" placeholder="Enter your phone number">
+            <input type="tel" id="phone" placeholder="Enter your phone number" required>
             <button class="btn btn-primary">Submit Pickup</button>
         </div>
 
@@ -70,7 +71,7 @@
                         <h5 class="card-title">Sandwich</h5>
                         <p class="card-text">$6.00</p>
                         <button class="btn btn-outline-secondary">Customize</button>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -143,7 +144,8 @@
         <section id="checkout" class="text-center my-5">
             <h2>Ready to Checkout?</h2>
             <p>Add both your food & beverage items and fuel to proceed with a single payment.</p>
-            <button class="btn btn-primary" onclick="proceedToPayment()">Checkout and Pay</button>
+            <button class="btn btn-primary" aria-label="Proceed to payment" onclick="proceedToPayment()">Checkout and
+                Pay</button>
         </section>
     </main>
 
