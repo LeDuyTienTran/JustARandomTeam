@@ -20,7 +20,7 @@
                         let quantity = item.quantity;
 
                         document.getElementById("cart-container").innerHTML +=
-                            "<div class='cart-item'><div class='item-details'><p>" + name + "</p><p>$" + price + "</p></div><div class='quantity-controls'><button onclick='changeQuantity(\"" + name + "\", " + price + ", -1)'>-</button><input type='number' id='" + name + "-quantity' value='" + quantity + "' readonly><button onclick='changeQuantity(\"" + name + "\", " + price + ", 1)'>+</button></div><div class='item-total' id='" + name + "-total'>$" + (price * quantity).toFixed(2) + "</div></div>"
+                            "<div class='cart-item' id='" + name + "'><img src='images/remove.png' id='remove-button' alt='Image of a remove button' onclick='removeCartItem(\"" + name + "\")' /><div class='item-details'><p>" + name + "</p><p>$" + price + "</p></div><div class='quantity-controls'><button onclick='changeQuantity(\"" + name + "\", " + price + ", -1)'>-</button><input type='number' id='" + name + "-quantity' value='" + quantity + "' readonly><button onclick='changeQuantity(\"" + name + "\", " + price + ", 1)'>+</button></div><div class='item-total' id='" + name + "-total'>$" + (price * quantity).toFixed(2) + "</div></div>"
                     }
 
                     document.getElementById("cart-container").innerHTML +=
@@ -52,6 +52,19 @@
             function updateItemTotal(item, price, new_quantity) {
                 let totalElement = document.getElementById(item + '-total');
                 totalElement.innerHTML = '$' + (price * new_quantity).toFixed(2);
+            }
+
+            function removeCartItem(name) {
+                document.getElementById(name).remove();
+
+                const existing_item_index = cart.findIndex(cart_item => cart_item.name === name);
+                cart.splice(existing_item_index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                if (cart.length == 0) {
+                    document.getElementById("cart-container").innerHTML =
+                        "<p id='empty-cart'>There's nothing in your cart. Add more <a href='Food & Beverage.html'>food and beverage</a> or <a href='Gas & Go.html'>fuel</a>.</p>"
+                }
             }
         </script>
     </head>
