@@ -54,25 +54,69 @@
     </style>
     <script>
         // Function to embed Google Maps with the delivery address
-        function initMap() {
-            // Retrieve delivery details from localStorage
-            const deliveryDetails = JSON.parse(localStorage.getItem('deliveryDetails'));
-            if (!deliveryDetails) {
-                alert("No delivery address found.");
-                return;
-            }
+        
+    let currentStage = 0; // Initialize the current stage index
+    const stages = ['order-placed', 'preparing', 'on-the-way', 'delivered']; // Define the stages of the progress
 
-            // Construct the Google Maps URL with the delivery address
-            const address = `${deliveryDetails.address}, ${deliveryDetails.city}, ${deliveryDetails.postcode}`;
-            const encodedAddress = encodeURIComponent(address);
-            const googleMapsEmbedUrl = `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
-
-            // Update the iframe src with the generated URL
-            document.getElementById('google-map').src = googleMapsEmbedUrl;
+    // Function to embed Google Maps with the delivery address
+    function initMap() {
+        // Retrieve delivery details from localStorage
+        const deliveryDetails = JSON.parse(localStorage.getItem('deliveryDetails'));
+        if (!deliveryDetails) {
+            alert("No delivery address found.");
+            return;
         }
 
-        window.onload = initMap;
-    </script>
+        // Construct the Google Maps URL with the delivery address
+        const address = `${deliveryDetails.address}, ${deliveryDetails.city}, ${deliveryDetails.postcode}`;
+        const encodedAddress = encodeURIComponent(address);
+        const googleMapsEmbedUrl = `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
+
+        // Update the iframe src with the generated URL
+        document.getElementById('google-map').src = googleMapsEmbedUrl;
+
+        // Start the progress simulation
+        simulateProgress();
+    }
+
+    // Function to simulate order progress
+    function simulateProgress() {
+        const progressInterval = 3000; // 3 seconds for each stage
+
+        const interval = setInterval(() => {
+            if (currentStage < stages.length) {
+                updateProgress(); // Update status icons for each stage
+            }
+
+            // When we reach the "Delivered" stage, stop the interval
+            if (currentStage === stages.length) {
+                clearInterval(interval);
+            }
+        }, progressInterval);
+    }
+
+    // Function to update the progress icons based on the current stage
+    function updateProgress() {
+        const progressIcons = document.querySelectorAll('.icon');
+
+        // Deactivate all icons
+        progressIcons.forEach((icon) => {
+            icon.classList.remove('active');
+            icon.classList.add('inactive');
+        });
+
+        // Activate the current stage icon
+        if (currentStage < stages.length) {
+            document.getElementById(stages[currentStage]).classList.add('active');
+            document.getElementById(stages[currentStage]).classList.remove('inactive');
+            currentStage++;
+        }
+    }
+
+    // Initialize the map and progress tracking when the page loads
+    window.onload = initMap;
+</script>
+
 </head>
 <body>
     <!-- Header section for consistent design -->
