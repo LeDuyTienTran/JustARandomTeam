@@ -53,7 +53,9 @@ aside ul li {
 
 footer {
     font-size: small;
+    font-weight: bold;
     float: right;
+    padding: 10px;
 }
 
 form {
@@ -151,7 +153,7 @@ nav ul li a {
 
 
 
-/* Location container style */
+/* locations.html */
 
 #locations-container {
     display: flex;
@@ -190,8 +192,6 @@ nav ul li a {
     font-size: 14px;
 }
 
-/* Location container style */
-
 #map-container {
     position: sticky;
     top: 60px;
@@ -210,7 +210,12 @@ iframe {
     padding: 20px;
 }
 
+/* locations.html */
+
+
+
 /* Responsive search bar */
+
 #search-bar {
     width: 100%;
     padding: 10px;
@@ -220,7 +225,12 @@ iframe {
     font-size: 1rem;
 }
 
-/* Location card */
+/* Responsive search bar */
+
+
+
+/* Location card style */
+
 .location {
     display: flex;
     flex-direction: column;
@@ -253,14 +263,7 @@ iframe {
     text-decoration: none;
 }
 
-/* Footer styling */
-footer {
-    padding: 20px;
-    text-align: center;
-    background-color: #333;
-    color: white;
-    margin-top: 20px;
-}
+/* Location card style */
 
 
 
@@ -286,6 +289,7 @@ button {
     color: var(--container-content-color);
     border: none;
     padding: 10px 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -537,23 +541,6 @@ img {
     border-radius: 10px;
 }
 
-/* Chun's part */
-
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
 #menu-items {
     max-height: 400px;
     overflow-y: scroll;
@@ -579,11 +566,6 @@ button:hover {
     margin: 0;
 }
 
-label {
-    display: block;
-    margin: 10px 0;
-}
-
 input[type="text"],
 input[type="tel"] {
     padding: 10px;
@@ -607,6 +589,10 @@ input[type="tel"] {
         width: 100%;
     }
 }
+
+/* Chun's part */
+
+
 
 /* home.html + home-logged_in.html */
 
@@ -761,7 +747,7 @@ article#home-login p {
 
 /* checkout.html */
 
-.checkout-container {
+#checkout-container {
     background-color: var(--container-color);
     margin: 50px auto;
     border-radius: 12px;
@@ -770,9 +756,10 @@ article#home-login p {
     width: 400px;
 }
 
-.checkout-container div h2 {
+#checkout-container div h2 {
     color: var(--container-content-color);
     font-size: xx-large;
+    margin-bottom: 10px;
 }
 
 .checkout-information {
@@ -788,6 +775,25 @@ article#home-login p {
     padding: 10px;
     border-radius: 12px;
     font-size: large;
+    text-align: center;
+    width: 300px;
+}
+
+div#payment-method button {
+    font-size: large;
+    cursor: pointer;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+#cash-chosen {
+    color: var(--container-content-color);
+    font-weight: bold;
+    font-size: large;
+}
+
+#expiration-date {
+    width: 150px;
 }
 
 #postcode,
@@ -832,7 +838,7 @@ article#home-login p {
     font-weight: bold;
 }
 
-.pay-button {
+#pay-button {
     display: block;
     width: 100%;
     padding: 15px 0;
