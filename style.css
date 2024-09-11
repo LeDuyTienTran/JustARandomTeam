@@ -573,347 +573,342 @@ body {
 
 .hero-section {
     background-image: url('https://example.com/food-background.jpg');
-    /* Use a high-quality background */
     background-size: cover;
     background-position: center;
     color: white;
     padding: 100px 0;
 }
 
-.hero-section h1 {
-    font-size: 3rem;
-    font-weight: bold;
+.btn {
+    padding: 15px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: rgb(18, 18, 18);
+    border: none;
+    border-radius: 5px;
 }
 
-.btn-primary {
-    background-color: #ff5722;
-    border-color: #ff5722;
+.btn:hover {
+    background-color: #0056b3;
 }
 
-.btn-outline-primary:hover {
-    background-color: #ff5722;
-    border-color: #ff5722;
+.btn:disabled {
+    background-color: #6c757d;
+}
+
+.button-added {
+    background-color: green;
     color: white;
 }
 
-.card {
-    transition: all 0.3s ease;
+.gas-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-}
+.gas-image img {
+    max-width: 100%;
+    height: auto;
 
-footer {
-    background-color: #f8f9fa;
-    padding: 20px 0;
-}
-
-.footer-text {
-    color: #6c757d;
-}
-
-.menu-item-img {
-    max-height: 200px;
-    object-fit: cover;
-}
-
-.order-options button.active {
-    background-color: #ff5722;
-    color: white;
-
-    .menu-item img {
-        width: 100px;
-        height: auto;
-        margin-right: 20px;
-    }
-
-    .menu-item h3 {
-        margin: 0;
-    }
-
-    label {
-        display: block;
-        margin: 10px 0;
-    }
-
-    input[type="text"],
-    input[type="tel"] {
-        padding: 10px;
-        width: 100%;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-
-    @media (max-width: 768px) {
-        .menu-item {
-            flex-direction: column;
-            align-items: flex-start;
-        }
+    .order-options button.active {
+        background-color: #ff5722;
+        color: white;
 
         .menu-item img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .menu-item h3 {
+            margin: 0;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            padding: 10px;
             width: 100%;
+            font-size: 16px;
             margin-bottom: 10px;
         }
 
-        button {
-            width: 100%;
+        @media (max-width: 768px) {
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu-item img {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            button {
+                width: 100%;
+            }
         }
-    }
 
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
-    .navbar {
-        background-color: #fff;
-    }
+        .navbar {
+            background-color: #fff;
+        }
 
-    .btn-primary {
-        background-color: #5bc236;
-        border: none;
-    }
+        .btn-primary {
+            background-color: #5bc236;
+            border: none;
+        }
 
-    .footer {
-        background-color: #f8f9fa;
-    }
-
-
-    /* cart.html */
-
-    .cart-container {
-        background-color: var(--container-color);
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 20px;
-        border-radius: 12px;
-    }
-
-    .cart-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 0;
-        border-bottom: 1px solid;
-    }
-
-    .cart-item img {
-        width: 80px;
-        height: 80px;
-        border-radius: 8px;
-    }
-
-    .item-details {
-        color: var(--container-content-color);
-        flex: 1;
-        margin-left: 20px;
-    }
-
-    .quantity-controls {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 120px;
-    }
-
-    .quantity-controls button {
-        background: none;
-        border: none;
-        padding: 5px 10px;
-        font-size: large;
-        cursor: pointer;
-    }
-
-    .quantity-controls input {
-        color: var(--container-content-color);
-        width: 40px;
-        text-align: center;
-        font-size: large;
-        margin: 0 10px;
-    }
-
-    #fries-quantity,
-    #burger-quantity {
-        background: none;
-        border: none;
-    }
-
-    .item-total {
-        color: var(--container-content-color);
-        font-size: x-large;
-        min-width: 100px;
-        text-align: right;
-    }
-
-    .cart-summary {
-        color: var(--container-content-color);
-        text-align: right;
-        padding: 20px 0;
-        font-size: x-large;
-        font-weight: bold;
-    }
-
-    .checkout-button {
-        display: block;
-        width: 100%;
-        padding: 15px 0;
-        text-align: center;
-        font-size: large;
-        border: none;
-        cursor: pointer;
-        border-radius: 12px;
-        margin-top: 20px;
-        font-weight: bold;
-    }
-
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .gas-section {
-        display: flex;
-        justify-content: space-between;
-        padding: 50px 0;
-        align-items: center;
-        background-color: #f9f9f9;
-    }
-
-    .gas-info {
-        flex: 1;
-        margin-right: 20px;
-    }
-
-    .gas-info h2 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-    }
-
-    .gas-image img {
-        width: 100%;
-        max-width: 450px;
-        height: auto;
-    }
-
-    .Find-location-btn {
-        background-color: #ff5722;
-        color: white;
-        border: none;
-    }
-
-    .Find-location-btn:hover {
-        background-color: #ff7043;
-    }
-
-    /* Change button color visually after adding to cart */
-    .button-added {
-        background-color: green !important;
-        color: white !important;
-    }
-
-    footer {
-        background-color: #f8f9fa;
-        padding: 20px 0;
-        text-align: center;
-    }
-
-    footer span {
-        color: #6c757d;
-    }
-
-    /* cart.html */
+        .footer {
+            background-color: #f8f9fa;
+        }
 
 
+        /* cart.html */
 
-    /* checkout.html */
+        .cart-container {
+            background-color: var(--container-color);
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 12px;
+        }
 
-    .checkout-container {
-        background-color: var(--container-color);
-        margin: 50px auto;
-        border-radius: 12px;
-        padding: 30px;
-        text-align: center;
-        width: 400px;
-    }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid;
+        }
 
-    .checkout-container div h2 {
-        color: var(--container-content-color);
-        font-size: xx-large;
-    }
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+        }
 
-    .checkout-information {
-        margin-bottom: 10px;
-    }
+        .item-details {
+            color: var(--container-content-color);
+            flex: 1;
+            margin-left: 20px;
+        }
 
-    .checkout-information label {
-        display: block;
-        margin-bottom: 5px;
-    }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+        }
 
-    .checkout-information input {
-        padding: 10px;
-        border-radius: 12px;
-        font-size: large;
-    }
+        .quantity-controls button {
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            font-size: large;
+            cursor: pointer;
+        }
 
-    #postcode,
-    #cvv {
-        width: 40px;
-    }
+        .quantity-controls input {
+            color: var(--container-content-color);
+            width: 40px;
+            text-align: center;
+            font-size: large;
+            margin: 0 10px;
+        }
 
-    #cvv-unhide {
-        color: var(--secondary-color);
-        font-size: large;
-        font-weight: bold;
-        cursor: pointer;
-    }
+        #fries-quantity,
+        #burger-quantity {
+            background: none;
+            border: none;
+        }
 
-    #cvv-unhide:hover {
-        color: var(--hover-color);
-    }
+        .item-total {
+            color: var(--container-content-color);
+            font-size: x-large;
+            min-width: 100px;
+            text-align: right;
+        }
 
-    #cvv-hidden {
-        color: var(--container-content-color);
-        font-size: large;
-        display: none;
-    }
+        .cart-summary {
+            color: var(--container-content-color);
+            text-align: right;
+            padding: 20px 0;
+            font-size: x-large;
+            font-weight: bold;
+        }
 
-    #cvv-unhide:hover+#cvv-hidden {
-        display: block;
-    }
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            font-size: large;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
 
-    .summary {
-        color: var(--container-content-color);
-        border-radius: 12px;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
-    .summary p {
-        display: flex;
-        justify-content: space-between;
-        font-size: large;
-    }
+        .gas-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 50px 0;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
 
-    .total p {
-        font-size: large;
-        font-weight: bold;
-    }
+        .gas-info {
+            flex: 1;
+            margin-right: 20px;
+        }
 
-    .pay-button {
-        display: block;
-        width: 100%;
-        padding: 15px 0;
-        text-align: center;
-        font-size: large;
-        border: none;
-        cursor: pointer;
-        border-radius: 12px;
-        margin-top: 20px;
-        font-weight: bold;
-    }
+        .gas-info h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
 
-    #pay-confirmed {
-        color: var(--container-content-color);
-        font-size: large;
-        margin-bottom: 1px;
-    }
+        .gas-image img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+        }
 
-    /* checkout.html */
+        .Find-location-btn {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+        }
+
+        .Find-location-btn:hover {
+            background-color: #ff7043;
+        }
+
+        /* Change button color visually after adding to cart */
+        .button-added {
+            background-color: green !important;
+            color: white !important;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer span {
+            color: #6c757d;
+        }
+
+        /* cart.html */
+
+
+
+        /* checkout.html */
+
+        .checkout-container {
+            background-color: var(--container-color);
+            margin: 50px auto;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            width: 400px;
+        }
+
+        .checkout-container div h2 {
+            color: var(--container-content-color);
+            font-size: xx-large;
+        }
+
+        .checkout-information {
+            margin-bottom: 10px;
+        }
+
+        .checkout-information label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .checkout-information input {
+            padding: 10px;
+            border-radius: 12px;
+            font-size: large;
+        }
+
+        #postcode,
+        #cvv {
+            width: 40px;
+        }
+
+        #cvv-unhide {
+            color: var(--secondary-color);
+            font-size: large;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #cvv-unhide:hover {
+            color: var(--hover-color);
+        }
+
+        #cvv-hidden {
+            color: var(--container-content-color);
+            font-size: large;
+            display: none;
+        }
+
+        #cvv-unhide:hover+#cvv-hidden {
+            display: block;
+        }
+
+        .summary {
+            color: var(--container-content-color);
+            border-radius: 12px;
+        }
+
+        .summary p {
+            display: flex;
+            justify-content: space-between;
+            font-size: large;
+        }
+
+        .total p {
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .pay-button {
+            display: block;
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            font-size: large;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #pay-confirmed {
+            color: var(--container-content-color);
+            font-size: large;
+            margin-bottom: 1px;
+        }
+
+        /* checkout.html */
