@@ -174,7 +174,11 @@
                 } else {
                     document.getElementById('pickup-locations').style.display = 'none';
                 }
+
+                // Store the user's selection in localStorage
+        localStorage.setItem('orderMode', mode);
             }
+
             
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
