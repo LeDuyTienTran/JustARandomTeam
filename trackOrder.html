@@ -1,0 +1,121 @@
+
+    
+   
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Track Order</title>
+        
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="orderTracking.js" defer></script>
+        <style>
+            body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    .order-details {
+        text-align: left;
+        margin-bottom: 30px;
+    }
+
+    .order-status {
+        display: flex;
+        justify-content: space-around;
+        margin: 40px 0;
+    }
+
+    .status-step {
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    .status-icon {
+        font-size: 2em;
+    }
+
+    #map {
+        width: 100%;
+        height: 300px;
+        background-color: #eaeaea;
+        border: 2px solid #ccc;
+        margin: 20px 0;
+    }
+
+    .order-history-link {
+        text-align: center;
+    }
+
+    .order-history-link a {
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .order-history-link a:hover {
+        text-decoration: underline;
+    }
+
+    </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1>Track Your Order</h1>
+    
+            <!-- Order Details Section -->
+            <div class="order-details">
+                <h2>Order #123456</h2>
+                <p>Estimated Delivery Time: <span id="estimatedTime">45 mins</span></p>
+                <p>Delivery Address: 1234 Elm Street, Springfield</p>
+                <p>Order Total: $45.67</p>
+            </div>
+    
+            <!-- Order Status Progress -->
+            <div class="order-status">
+                <div class="status-step" id="step1">
+                    <div class="status-icon">✔️</div>
+                    <p>Order Placed</p>
+                </div>
+                <div class="status-step" id="step2">
+                    <div class="status-icon">⏳</div>
+                    <p>Being Prepared</p>
+                </div>
+                <div class="status-step" id="step3">
+                    <div class="status-icon">🛵</div>
+                    <p>On the Way</p>
+                </div>
+                <div class="status-step" id="step4">
+                    <div class="status-icon">🏠</div>
+                    <p>Delivered</p>
+                </div>
+            </div>
+    
+            <!-- Map Section (For Real-Time Tracking) -->
+            <div class="map-container">
+                <h3>Driver Location</h3>
+                <div id="map" style="height: 400px;"></div> <!-- Placeholder for the map -->
+            </div>
+    
+           
+            
+        </div>
+    </body>
+    </html>
+    
