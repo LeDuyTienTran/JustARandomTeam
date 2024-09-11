@@ -206,9 +206,11 @@ iframe {
     border: none;
 }
 
-#locations-list {
-    padding: 20px;
-}
+ #locations-list {
+            max-height: 400px; /* Set the height to control the scrollable area */
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding: 20px;
+        }
 
 /* locations.html */
 
