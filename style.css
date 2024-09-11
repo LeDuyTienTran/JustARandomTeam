@@ -766,6 +766,60 @@ footer {
         font-weight: bold;
     }
 
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .gas-section {
+        display: flex;
+        justify-content: space-between;
+        padding: 50px 0;
+        align-items: center;
+        background-color: #f9f9f9;
+    }
+
+    .gas-info {
+        flex: 1;
+        margin-right: 20px;
+    }
+
+    .gas-info h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .gas-image img {
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+    }
+
+    .Find-location-btn {
+        background-color: #ff5722;
+        color: white;
+        border: none;
+    }
+
+    .Find-location-btn:hover {
+        background-color: #ff7043;
+    }
+
+    /* Change button color visually after adding to cart */
+    .button-added {
+        background-color: green !important;
+        color: white !important;
+    }
+
+    footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    footer span {
+        color: #6c757d;
+    }
+
     /* cart.html */
 
 
