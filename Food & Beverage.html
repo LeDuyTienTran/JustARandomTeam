@@ -1,181 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UTR | Food & Beverage</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTR | Food & Beverage</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <div id="logo">UTR</div>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="Food & Beverage.html">Food & Beverage</a></li>
+                    <li><a href="Gas & Go.html">Gas & Go</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <a href="cart.html" class="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon" />
+                    </a>
+                </ul>
+            </nav>
+        </header>
 
-<body>
-    <header>
-        <nav>
-            <ul>
-                <div id="logo">UTR</div>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="locations.html">Locations</a></li>
-                <li><a href="Food & Beverage.html">Food & Beverage</a></li>
-                <li><a href="Gas & Go.html">Gas & Go</a></li>
-                <li><a href="account.html">Account</a></li>
-                <a href="cart.html" class="cart-link" aria-label="View cart">
-                    <img src="images/cart.png" alt="Cart" class="cart-icon" />
-                </a>
-            </ul>
-        </nav>
-    </header>
+        <main>
+            <section id="menu">
+                <h1>UTR Menus</h1>
+                <div class="order-options">
+                    <button id="delivery" onclick="toggleMode('delivery')">Delivery</button>
+                    <button id="pickup" onclick="toggleMode('pickup')">Pickup</button>
+                </div>
 
-    <section class="hero-section text-center bg-light py-5">
-        <div class="container">
-            <h1 class="display-4">Order Food & Drinks</h1>
-            <form class="search-form mt-3" role="search">
-                <input type="text" class="form-control w-50 mx-auto" placeholder="Search for food, drinks, and more..."
-                    aria-label="Search items" />
-                <button type="submit" class="btn btn-primary mt-2">Search</button>
-            </form>
-        </div>
-    </section>
+                <div id="pickup-locations" style="display:none;">
+                    <h2>Pickup Locations</h2>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509617!2d144.9630579153182!3d-37.816279579751934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43df29d3df%3A0x9b65b1b5d8aa8c7a!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sin!4v1601583367390!5m2!1sen!2sin"
+                        width="600" height="450"></iframe>
+                </div>
 
-    <main class="container my-5">
-        <h2 class="text-center mb-5">UTR Menus</h2>
-        <div class="order-options text-center mb-5">
-            <button id="delivery" class="btn btn-outline-primary me-2" aria-label="Select delivery mode"
-                onclick="toggleMode('delivery')">Delivery</button>
-            <button id="pickup" class="btn btn-outline-secondary" aria-label="Select pickup mode"
-                onclick="toggleMode('pickup')">Pickup</button>
-        </div>
+                <div class="menu-category">
+                    <h2>Food</h2>
+                    <div class="menu-item">
+                        <img src="images/Sandwich.jpg" alt="Sandwich">
+                        <p>Sandwich</p>
+                        <p>Price: $6.00</p>
+                        <button>Customise</button>
+                        <button class="add-to-cart-btn" data-name="Sandwich" data-price="6.00">Add to Cart</button>
+                    </div>
+                
+                    <h2>Lunch</h2>
+                    <div class="menu-item">
+                        <img src="images/Wraps.jpg" alt="Wrap">
+                        <p>Wrap</p>
+                        <p>Price: $8.00</p>
+                        <button>Customise</button>
+                        <button class="add-to-cart-btn" data-name="Wrap" data-price="8.00">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="images/salad.jpg" alt="Salad">
+                        <p>Greek Salad</p>
+                        <p>Price: $6.00</p>
+                        <button>Customise</button>
+                        <button class="add-to-cart-btn" data-name="Greek Salad" data-price="6.00">Add to Cart</button>
+                    </div>
+                    <div class="menu-category">
 
-        <div id="delivery-form" style="display: none;">
-            <h3>Delivery Information</h3>
-            <label for="address">Address:</label>
-            <input type="text" id="address" placeholder="Enter your address" required>
-            <label for="city">City:</label>
-            <input type="text" id="city" placeholder="Enter your city" required>
-            <button class="btn btn-primary">Submit Delivery</button>
-        </div>
-
-        <div id="pickup-form" style="display: none;">
-            <h3>Pickup Information</h3>
-            <label for="name">Name:</label>
-            <input type="text" id="name" placeholder="Enter your name" required>
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" placeholder="Enter your phone number" required>
-            <button class="btn btn-primary">Submit Pickup</button>
-        </div>
-
-        <div class="row" id="menu-items">
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="images/sandwich.jpg" class="card-img-top menu-item-img" alt="Sandwich">
-                    <div class="card-body">
-                        <h5 class="card-title">Sandwich</h5>
-                        <p class="card-text">$6.00</p>
-                        <button class="btn btn-outline-secondary">Customize</button>
-                        <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                    <h2>Beverages</h2>
+                    <div class="menu-item">
+                        <img src="https://tkcdn.tekedia.com/wp-content/uploads/2022/05/23204855/coke-768x432.jpg"
+                            alt="Coke">
+                        <h3>Coke</h3>
+                        <p>Price: $1.99</p>
+                        <button class="add-to-cart-btn" data-name="Coke" data-price="1.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://insidefmcg.com.au/wp-content/uploads/2020/11/Pepsi.png" alt="Pepsi">
+                        <h3>Pepsi</h3>
+                        <p>Price: $1.89</p>
+                        <button class="add-to-cart-btn" data-name="Pepsi" data-price="1.89">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://images-prod.healthline.com/hlcmsresource/images/AN_images/orange-juice-1296x728-feature.jpg"
+                            alt="Orange Juice">
+                        <h3>Orange Juice</h3>
+                        <p>Price: $2.49</p>
+                        <button class="add-to-cart-btn" data-name="Orange Juice" data-price="2.49">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://coffeeconnection.com.au/cdn/shop/articles/Health-Benefits-Of-Cappuccino-Coffee.jpg?v=1667752802"
+                            alt="Coffee">
+                        <h3>Coffee</h3>
+                        <p>Price: $2.99</p>
+                        <button class="add-to-cart-btn" data-name="Coffee" data-price="2.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://imageio.forbes.com/specials-images/imageserve/5f6c061ca71799093f55fd02/0x0.jpg?format=jpg&crop=5023,3350,x0,y0,safe&height=600&width=1200&fit=bounds"
+                            alt="Tea">
+                        <h3>Tea</h3>
+                        <p>Price: $1.99</p>
+                        <button class="add-to-cart-btn" data-name="Tea" data-price="1.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://i.guim.co.uk/img/media/9ebfe6eb392f208e944a21d1903b698965d35527/0_0_7360_4417/master/7360.jpg?width=465&dpr=1&s=none"
+                            alt="Water">
+                        <h3>Water</h3>
+                        <p>Price: $0.99</p>
+                        <button class="add-to-cart-btn" data-name="Water" data-price="0.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://img.freepik.com/premium-vector/cartoon-milk-box-carton-varian-design-vector-illustration_773815-92.jpg"
+                            alt="Milk">
+                        <h3>Milk</h3>
+                        <p>Price: $1.49</p>
+                        <button class="add-to-cart-btn" data-name="Milk" data-price="1.49">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://www.jocooks.com/wp-content/uploads/2023/05/lemonade-1-28.jpg"
+                            alt="Lemonade">
+                        <h3>Lemonade</h3>
+                        <p>Price: $2.29</p>
+                        <button class="add-to-cart-btn" data-name="Lemonade" data-price="2.29">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://www.mydrinkbeverages.com/wp-content/uploads/bfi_thumb/dreamstime_m_97745941-39x022mlw2ksem0gfw1ugp8bxroltel28zs1f9o3s3jcz1kao.jpg"
+                            alt="Energy Drink">
+                        <h3>Energy Drink</h3>
+                        <p>Price: $3.49</p>
+                        <button class="add-to-cart-btn" data-name="Energy Drink" data-price="3.49">Add to Cart</button>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://www.dinneratthezoo.com/wp-content/uploads/2018/05/frozen-fruit-smoothie-3.jpg"
+                            alt="Smoothie">
+                        <h3>Smoothie</h3>
+                        <p>Price: $3.99</p>
+                        <button class="add-to-cart-btn" data-name="Smoothie" data-price="3.99">Add to Cart</button>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="images/wrap.jpg" class="card-img-top menu-item-img" alt="Wrap">
-                    <div class="card-body">
-                        <h5 class="card-title">Wrap</h5>
-                        <p class="card-text">$8.00</p>
-                        <button class="btn btn-outline-secondary">Customize</button>
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
+            <section id="customise-menu">
+                <h2>Customise Set Menu</h2>
+                <p>Choose the ingredients you like</p>
+                <form id="customise-form">
+                    <label>
+                        <input type="checkbox" name="ingredient" value="extra cheese"> Extra Cheese
+                    </label>
+                    <label>
+                        <input type="checkbox" name="ingredient" value="bacon"> Bacon
+                    </label>
+                    <label>
+                        <input type="checkbox" name="ingredient" value="tomatoes"> Tomatoes
+                    </label>
+                    <button type="submit">Add to Order</button>
+                </form>
+            </section>
 
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="images/salad.jpg" class="card-img-top menu-item-img" alt="Greek Salad">
-                    <div class="card-body">
-                        <h5 class="card-title">Greek Salad</h5>
-                        <p class="card-text">$6.00</p>
-                        <button class="btn btn-outline-secondary">Customize</button>
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <section id="fuel-skip">
+                <h2> Fuel Only?</h2>
+                <p>Skip the menu and proceed to your fuel payment.</p>
+                <a href="Gas & Go.html"><button>Gas and Go</button></a>
+            </section>
+        </main>
 
-        <h3 class="mt-5 text-center">Beverages</h3>
-        <div class="row">
+        <footer>
+            ©Copyright UTR Pty Ltd, 2024. All rights reserved.
+        </footer>
 
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="https://tkcdn.tekedia.com/wp-content/uploads/2022/05/23204855/coke-768x432.jpg"
-                        class="card-img-top menu-item-img" alt="Coke">
-                    <div class="card-body">
-                        <h5 class="card-title">Coke</h5>
-                        <p class="card-text">$1.99</p>
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
+        <script>
+            function toggleMode(mode) {
+                if (mode === 'pickup') {
+                    document.getElementById('pickup-locations').style.display = 'block';
+                } else {
+                    document.getElementById('pickup-locations').style.display = 'none';
+                }
 
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="https://insidefmcg.com.au/wp-content/uploads/2020/11/Pepsi.png"
-                        class="card-img-top menu-item-img" alt="Pepsi">
-                    <div class="card-body">
-                        <h5 class="card-title">Pepsi</h5>
-                        <p class="card-text">$1.89</p>
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
+                // Store the user's selection in localStorage
+        localStorage.setItem('orderMode', mode);
+            }
 
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="https://images-prod.healthline.com/hlcmsresource/images/AN_images/orange-juice-1296x728-feature.jpg"
-                        class="card-img-top menu-item-img" alt="Orange Juice">
-                    <div class="card-body">
-                        <h5 class="card-title">Orange Juice</h5>
-                        <p class="card-text">$2.49</p>
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        <section id="checkout" class="text-center my-5">
-            <h2>Ready to Checkout?</h2>
-            <p>Add both your food & beverage items and fuel to proceed with a single payment.</p>
-            <button class="btn btn-primary" aria-label="Proceed to payment" onclick="proceedToPayment()">Checkout and
-                Pay</button>
-        </section>
-    </main>
+            function addFoodOrDrinkToCart(itemName, itemPrice) {
+                const item = {
+                    name: itemName,
+                    price: parseFloat(itemPrice).toFixed(2),
+                    quantity: 1
+                };
 
-    <footer class="footer mt-auto py-3 bg-light text-center">
-        <div class="container">
-            <span class="footer-text">© UTR Pty Ltd, 2024. All rights reserved.</span>
-        </div>
-    </footer>
+                const existingItemIndex = cart.findIndex(cartItem => cartItem.name === itemName);
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+                if (existingItemIndex !== -1) {
+                    cart[existingItemIndex].quantity += 1;
+                } else {
+                    cart.push(item);
+                }
 
-    <div class="toast" id="cartToast" style="position: absolute; top: 10px; right: 10px;" role="alert"
-        aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="me-auto">Cart</strong>
-            <small>Just now</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            Item added to cart!
-        </div>
-    </div>
+                localStorage.setItem('cart', JSON.stringify(cart));
 
-    <script>
-        function addToCart() {
-            var toast = new bootstrap.Toast(document.getElementById('cartToast'));
-            toast.show();
-        }
-    </script>
-</body>
+                alert(itemName + " added to the cart.");
+            }
 
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const itemName = this.getAttribute('data-name');
+                    const itemPrice = this.getAttribute('data-price');
+                    addFoodOrDrinkToCart(itemName, itemPrice);
+                });
+            });
+        </script>
+    </body>
 </html>

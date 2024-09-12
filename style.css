@@ -529,27 +529,6 @@ img {
 
 
 /* Chun's part */
-.hero-section {
-    background-image: url('images/food-background.jpg');
-    background-size: cover;
-    padding: 150px 0;
-    color: white;
-}
-
-.search-form {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-}
-
-.search-bar {
-    width: 50%;
-    border-radius: 5px 0 0 5px;
-}
-
-.btn-primary {
-    border-radius: 0 5px 5px 0;
-}
 
 .menu-category,
 .menu-item {
@@ -566,361 +545,321 @@ img {
     border-radius: 10px;
 }
 
-/* Chun's part */
-
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-}
-
-.hero-section {
-    background-image: url('https://example.com/food-background.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 100px 0;
-}
-
-.btn {
-    padding: 15px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: rgb(18, 18, 18);
-    border: none;
-    border-radius: 5px;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-.btn:disabled {
-    background-color: #6c757d;
-}
-
-.button-added {
-    background-color: green;
-    color: white;
-}
-
-.gas-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#menu-items {
+    max-height: 400px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
     margin-top: 20px;
 }
 
-.gas-image img {
-    max-width: 100%;
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.menu-item img {
+    width: 100px;
     height: auto;
+    margin-right: 20px;
+}
 
-    .order-options button.active {
-        background-color: #ff5722;
-        color: white;
+.menu-item h3 {
+    margin: 0;
+}
 
-        .menu-item img {
-            width: 100px;
-            height: auto;
-            margin-right: 20px;
-        }
+input[type="text"],
+input[type="tel"] {
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
 
-        .menu-item h3 {
-            margin: 0;
-        }
+@media (max-width: 768px) {
+    .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-        label {
-            display: block;
-            margin: 10px 0;
-        }
+    .menu-item img {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 
-        input[type="text"],
-        input[type="tel"] {
-            padding: 10px;
-            width: 100%;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
+    button {
+        width: 100%;
+    }
+}
 
-        @media (max-width: 768px) {
-            .menu-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .menu-item img {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-
-            button {
-                width: 100%;
-            }
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .navbar {
-            background-color: #fff;
-        }
-
-        .btn-primary {
-            background-color: #5bc236;
-            border: none;
-        }
-
-        .footer {
-            background-color: #f8f9fa;
-        }
-
-
-        /* cart.html */
-
-        .cart-container {
-            background-color: var(--container-color);
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            border-radius: 12px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid;
-        }
-
-        .cart-item img {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-        }
-
-        .item-details {
-            color: var(--container-content-color);
-            flex: 1;
-            margin-left: 20px;
-        }
-
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 120px;
-        }
-
-        .quantity-controls button {
-            background: none;
-            border: none;
-            padding: 5px 10px;
-            font-size: large;
-            cursor: pointer;
-        }
-
-        .quantity-controls input {
-            color: var(--container-content-color);
-            width: 40px;
-            text-align: center;
-            font-size: large;
-            margin: 0 10px;
-        }
-
-        #fries-quantity,
-        #burger-quantity {
-            background: none;
-            border: none;
-        }
-
-        .item-total {
-            color: var(--container-content-color);
-            font-size: x-large;
-            min-width: 100px;
-            text-align: right;
-        }
-
-        .cart-summary {
-            color: var(--container-content-color);
-            text-align: right;
-            padding: 20px 0;
-            font-size: x-large;
-            font-weight: bold;
-        }
-
-        .checkout-button {
-            display: block;
-            width: 100%;
-            padding: 15px 0;
-            text-align: center;
-            font-size: large;
-            border: none;
-            cursor: pointer;
-            border-radius: 12px;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .gas-section {
-            display: flex;
-            justify-content: space-between;
-            padding: 50px 0;
-            align-items: center;
-            background-color: #f9f9f9;
-        }
-
-        .gas-info {
-            flex: 1;
-            margin-right: 20px;
-        }
-
-        .gas-info h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .gas-image img {
-            width: 100%;
-            max-width: 450px;
-            height: auto;
-        }
-
-        .Find-location-btn {
-            background-color: #ff5722;
-            color: white;
-            border: none;
-        }
-
-        .Find-location-btn:hover {
-            background-color: #ff7043;
-        }
-
-        /* Change button color visually after adding to cart */
-        .button-added {
-            background-color: green !important;
-            color: white !important;
-        }
-
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        footer span {
-            color: #6c757d;
-        }
-
-        /* cart.html */
+/* Chun's part */
 
 
 
-        /* checkout.html */
+/* home.html + home-logged_in.html */
 
-        .checkout-container {
-            background-color: var(--container-color);
-            margin: 50px auto;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            width: 400px;
-        }
+.home-section {
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    align-items: center;
+    border-radius: 12px;
+}
 
-        .checkout-container div h2 {
-            color: var(--container-content-color);
-            font-size: xx-large;
-        }
+#home-about-body,
+#home-locations-body {
+    display: flex;
+    justify-content: center;
+    padding-top: 170px;
+}
 
-        .checkout-information {
-            margin-bottom: 10px;
-        }
+#home-food-body,
+#home-fuel-body {
+    display: flex;
+    justify-content: center;
+    padding-top: 240px;
+}
 
-        .checkout-information label {
-            display: block;
-            margin-bottom: 5px;
-        }
+#home-about {
+    background-image: url(images/gas_station.jpg);
+}
 
-        .checkout-information input {
-            padding: 10px;
-            border-radius: 12px;
-            font-size: large;
-        }
+#home-locations {
+    background-image: url(images/map.jpg);
+    padding-top: 200px;
+}
 
-        #postcode,
-        #cvv {
-            width: 40px;
-        }
+#home-food {
+    background-image: url(images/food.jpeg);
+}
 
-        #cvv-unhide {
-            color: var(--secondary-color);
-            font-size: large;
-            font-weight: bold;
-            cursor: pointer;
-        }
+#home-fuel {
+    background-image: url(images/gas.jpg);
+}
 
-        #cvv-unhide:hover {
-            color: var(--hover-color);
-        }
+article:not(#home-login) {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+}
 
-        #cvv-hidden {
-            color: var(--container-content-color);
-            font-size: large;
-            display: none;
-        }
+article#home-login p {
+    text-align: center;
+}
 
-        #cvv-unhide:hover+#cvv-hidden {
-            display: block;
-        }
+/* home.html + home-logged_in.html */
 
-        .summary {
-            color: var(--container-content-color);
-            border-radius: 12px;
-        }
 
-        .summary p {
-            display: flex;
-            justify-content: space-between;
-            font-size: large;
-        }
 
-        .total p {
-            font-size: large;
-            font-weight: bold;
-        }
+/* cart.html */
 
-        .pay-button {
-            display: block;
-            width: 100%;
-            padding: 15px 0;
-            text-align: center;
-            font-size: large;
-            border: none;
-            cursor: pointer;
-            border-radius: 12px;
-            margin-top: 20px;
-            font-weight: bold;
-        }
+#cart-container {
+    background-color: var(--container-color);
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 12px;
+}
 
-        #pay-confirmed {
-            color: var(--container-content-color);
-            font-size: large;
-            margin-bottom: 1px;
-        }
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid;
+}
 
-        /* checkout.html */
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.item-details {
+    color: var(--container-content-color);
+    flex: 1;
+    margin-left: 20px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+}
+
+.quantity-controls button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.quantity-controls input {
+    color: var(--container-content-color);
+    width: 40px;
+    text-align: center;
+    font-size: large;
+    margin: 0 10px;
+    background: none;
+    border: none;
+}
+
+.item-total {
+    color: var(--container-content-color);
+    font-size: x-large;
+    min-width: 100px;
+    text-align: right;
+}
+
+.cart-summary {
+    color: var(--container-content-color);
+    text-align: right;
+    padding: 20px 0;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.checkout-button {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#empty-cart {
+    color: var(--container-content-color);
+    padding: 50px;
+}
+
+/* cart.html */
+
+
+
+/* checkout.html */
+
+#checkout-container {
+    background-color: var(--container-color);
+    margin: 50px auto;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    width: 400px;
+}
+
+#checkout-container div h2 {
+    color: var(--container-content-color);
+    font-size: xx-large;
+    margin-bottom: 10px;
+}
+
+.checkout-information {
+    margin-bottom: 10px;
+}
+
+.checkout-information label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.checkout-information input {
+    padding: 10px;
+    border-radius: 12px;
+    font-size: large;
+    text-align: center;
+    width: 300px;
+}
+
+div#payment-method button {
+    font-size: large;
+    cursor: pointer;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+#cash-chosen {
+    color: var(--container-content-color);
+    font-weight: bold;
+    font-size: large;
+}
+
+#expiration-date {
+    width: 150px;
+}
+
+#postcode,
+#cvv {
+    width: 40px;
+}
+
+#cvv-unhide {
+    color: var(--secondary-color);
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#cvv-unhide:hover {
+    color: var(--hover-color);
+}
+
+#cvv-hidden {
+    color: var(--container-content-color);
+    font-size: large;
+    display: none;
+}
+
+#cvv-unhide:hover+#cvv-hidden {
+    display: block;
+}
+
+.summary {
+    color: var(--container-content-color);
+    border-radius: 12px;
+}
+
+.summary p {
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+}
+
+.total p {
+    font-size: large;
+    font-weight: bold;
+}
+
+#pay-button {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#pay-confirmed {
+    color: var(--container-content-color);
+    font-size: large;
+    margin-bottom: 1px;
+}
+
+/* checkout.html */
