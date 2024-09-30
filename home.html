@@ -28,18 +28,20 @@
                         <a href="Gas & Go.html">Gas & Go</a>
                     </li>
                     <li>
-                        <a href="LogIn.html">Account</a>
+                        <a href="LogIn.html" id="login-link">Account</a>
                     </li>
                     
-                    <a href="LogIn.html" class="cart-link">
-                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon"/>
+                    <a href="LogIn.html" id="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" id="cart-icon"/>
                     </a>
                 </ul>
             </nav>
         </header>
     
         <main>
-            <br>
+            <p id="home-welcome"></p>
+            <div id="home-break"></div>
+
             <div class="home-section" id="home-about">
                 <div id="home-about-body">
                     <article>
@@ -104,8 +106,7 @@
                     <h1>Account</h1>
                 </a>
 
-                <p>Want to use our services online? That's simple! Create an account with us now to also receive frequent
-                    promotions and discounts.</p>
+                <p>Want to use our services online? That's simple! Log in or create an account with us now to also receive your very first achievement with a 20% discount on your first order.</p>
             </article>
 
             <aside>
@@ -134,5 +135,25 @@
         <footer>
             ©Copyright UTR Pty Ltd, 2024. All rights reserved.
         </footer>
+
+        <script>
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
+
+            function checkLoginStatus() {
+                if (current_user_index === -1) {
+                    document.getElementById("home-welcome").remove();
+                    document.getElementById("home-break").innerHTML = "<br>";
+                    document.getElementById("login-link").innerText = "Log In";
+                } else {
+                    document.getElementById("home-welcome").innerText = "Welcome back " + users[current_user_index].username + "!";
+                    document.getElementById("home-login").innerHTML = "<br>";
+                    document.getElementById("login-link").setAttribute("href", "account.html");
+                    document.getElementById("cart-link").setAttribute("href", "cart.html");
+                }
+            }
+
+            window.onload = checkLoginStatus();
+        </script>
     </body>
 </html>
