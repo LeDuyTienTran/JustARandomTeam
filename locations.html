@@ -10,23 +10,15 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <style>
-        
         header {
             position: sticky;
         }
 
-    #map-container {
-        position: sticky;
-        
-    }
-
-   
-   
-
-
-
-    
-</style>
+        #map-container {
+            position: sticky;
+            
+        }
+    </style>
 
 </head>
 <body>
@@ -39,9 +31,9 @@
                 <li><a href="locations.html">Locations</a></li>
                 <li><a href="Food & Beverage.html">Food & Beverage</a></li>
                 <li><a href="Gas & Go.html">Gas & Go</a></li>
-                <li><a href="LogIn.html">Account</a></li>
-                <a href="cart.html" class="cart-link">
-                    <img src="images/cart.png" alt="Cart Icon" class="cart-icon"/>
+                <li><a href="LogIn.html" id="login-link">Account</a></li>
+                <a href="LogIn.html" id="cart-link">
+                    <img src="images/cart.png" alt="Cart Icon" id="cart-icon"/>
                 </a>
             </ul>
         </nav>
@@ -187,6 +179,19 @@
                 }
             });
         }
+
+        let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
+
+        function checkLoginStatus() {
+            if (current_user_index === -1) {
+                document.getElementById("login-link").innerText = "Log In";
+            } else {
+                document.getElementById("login-link").setAttribute("href", "account.html");
+                document.getElementById("cart-link").setAttribute("href", "cart.html");
+            }
+        }
+
+        window.onload = checkLoginStatus();
     </script>
 </body>
 </html>

@@ -16,9 +16,9 @@
                     <li><a href="locations.html">Locations</a></li>
                     <li><a href="Food & Beverage.html">Food & Beverage</a></li>
                     <li><a href="Gas & Go.html">Gas & Go</a></li>
-                    <li><a href="account.html">Account</a></li>
-                    <a href="cart.html" class="cart-link">
-                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon" />
+                    <li><a href="LogIn.html" id="login-link">Account</a></li>
+                    <a href="LogIn.html" id="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" id="cart-icon" />
                     </a>
                 </ul>
             </nav>
@@ -26,11 +26,12 @@
 
         <main>
             <section id="menu">
-                <h1>UTR Menus</h1>
-                <div class="order-options">
+                <h1>Food & Beverage</h1>
+                <div id="order-options">
                     <button id="delivery" onclick="toggleMode('delivery')">Delivery</button>
                     <button id="pickup" onclick="toggleMode('pickup')">Pickup</button>
                 </div>
+                <p id="login-prompt"><a href="LogIn.html">Log in</a> now to start shopping for food and beverage.</p>
 
                 <div id="pickup-locations" style="display:none;">
                     <h2>Pickup Locations</h2>
@@ -45,7 +46,7 @@
                         <img src="images/Sandwich.jpg" alt="Sandwich">
                         <p>Sandwich</p>
                         <p>Price: $6.00</p>
-                        <button>Customise</button>
+                        <button class="customise-btn">Customise</button>
                         <button class="add-to-cart-btn" data-name="Sandwich" data-price="6.00">Add to Cart</button>
                     </div>
                 
@@ -54,14 +55,14 @@
                         <img src="images/Wraps.jpg" alt="Wrap">
                         <p>Wrap</p>
                         <p>Price: $8.00</p>
-                        <button>Customise</button>
+                        <button class="customise-btn">Customise</button>
                         <button class="add-to-cart-btn" data-name="Wrap" data-price="8.00">Add to Cart</button>
                     </div>
                     <div class="menu-item">
                         <img src="images/salad.jpg" alt="Salad">
                         <p>Greek Salad</p>
                         <p>Price: $6.00</p>
-                        <button>Customise</button>
+                        <button class="customise-btn">Customise</button>
                         <button class="add-to-cart-btn" data-name="Greek Salad" data-price="6.00">Add to Cart</button>
                     </div>
                     <div class="menu-category">
@@ -176,9 +177,8 @@
                 }
 
                 // Store the user's selection in localStorage
-        localStorage.setItem('orderMode', mode);
+                localStorage.setItem('orderMode', mode);
             }
-
             
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -211,6 +211,25 @@
                     addFoodOrDrinkToCart(itemName, itemPrice);
                 });
             });
+
+            let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
+
+            function checkLoginStatus() {
+                if (current_user_index === -1) {
+                    document.getElementById("login-link").innerText = "Log In";
+                    document.getElementById("order-options").remove();
+                    document.getElementById("customise-menu").remove();
+                    document.getElementById("fuel-skip").remove();
+                    document.querySelectorAll(".add-to-cart-btn").forEach(button => button.remove());
+                    document.querySelectorAll(".customise-btn").forEach(button => button.remove());
+                } else {
+                    document.getElementById("login-link").setAttribute("href", "account.html");
+                    document.getElementById("cart-link").setAttribute("href", "cart.html");
+                    document.getElementById("login-prompt").remove();
+                }
+            }
+
+            window.onload = checkLoginStatus();
         </script>
     </body>
 </html>

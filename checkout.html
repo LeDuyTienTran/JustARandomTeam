@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="style.css">
 
         <script>
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
+
             function validatePayment() {
                 event.preventDefault();
 
@@ -32,7 +35,8 @@
                     const cvv = document.getElementById("cvv").value;
                     
                     if ((address.length > 0 && city.length > 0 && postcode.length > 0) && (card_number.length > 0 && card_name.length > 0 && expiration_date.length > 0 && cvv.length > 0)) {
-                        document.getElementById("pay-confirmed").innerText = "Payment confirmed. Track your order...";
+                        increaseOrders();
+                        document.getElementById("pay-confirmed").innerText = "Payment confirmed. Tracking your order...";
                        
                         setTimeout(function () {
                             window.location.href = "trackOrder.html";
@@ -40,7 +44,8 @@
                     }
                 } else {
                     if (address.length > 0 && city.length > 0 && postcode.length > 0) {
-                        document.getElementById("pay-confirmed").innerText = "Payment confirmed. Track your order ....";
+                        increaseOrders();
+                        document.getElementById("pay-confirmed").innerText = "Payment confirmed. Tracking your order...";
                        
                         setTimeout(function () {
                             window.location.href = "trackOrder.html";
@@ -64,8 +69,22 @@
                     document.getElementById("card-method").style = "background-color: var(--secondary-color)"
                 }
             }
-            
-            
+
+            function increaseOrders() {
+                users[current_user_index].orders += 1;
+
+                if (users[current_user_index].orders === 3) {
+                    addAchievement(2);
+                } else if (users[current_user_index].orders === 6) {
+                    addAchievement(3);
+                }
+
+                localStorage.setItem("users", JSON.stringify(users));
+            }
+
+            function addAchievement(achievementId) {
+                users[current_user_index].achievements.push(achievementId);
+            }
         </script>
     </head>
 
@@ -88,11 +107,11 @@
                         <a href="Gas & Go.html">Gas & Go</a>
                     </li>
                     <li>
-                        <a href="account.html">Account</a>
+                        <a href="account.html" id="login-link">Account</a>
                     </li>
 
-                    <a href="cart.html" class="cart-link">
-                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon"/>
+                    <a href="cart.html" id="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" id="cart-icon"/>
                     </a>
                 </ul>
             </nav>
@@ -180,5 +199,4 @@
             ©Copyright UTR Pty Ltd, 2024. All rights reserved.
         </footer>
     </body>
-
 </html>

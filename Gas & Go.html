@@ -16,9 +16,9 @@
                     <li><a href="locations.html">Locations</a></li>
                     <li><a href="Food & Beverage.html">Food & Beverage</a></li>
                     <li><a href="Gas & Go.html">Gas & Go</a></li>
-                    <li><a href="account.html">Account</a></li>
-                    <a href="cart.html" class="cart-link">
-                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon" />
+                    <li><a href="LogIn.html" id="login-link">Account</a></li>
+                    <a href="LogIn.html" id="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" id="cart-icon" />
                     </a>
                 </ul>
             </nav>
@@ -27,9 +27,20 @@
         <main>
             <section class="gas-section">
                 <div class="gas-info">
-                    <button id="delivery">Delivery</button>
-                    <button id="pickup">Pickup</button>
-                    <h2>Select Your Fuel Type</h2>
+                    <h1>Gas & Go</h1>
+                    <p id="login-prompt"><a href="LogIn.html">Log in</a> now to start shopping for fuel.</p>
+
+                    <div id="order-options">
+                        <button id="delivery" onclick="toggleMode('delivery')">Delivery</button>
+                        <button id="pickup" onclick="toggleMode('pickup')">Pickup</button>
+                    </div>
+
+                    <div id="pickup-locations" style="display:none;">
+                        <h2>Pickup Locations</h2>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509617!2d144.9630579153182!3d-37.816279579751934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43df29d3df%3A0x9b65b1b5d8aa8c7a!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sin!4v1601583367390!5m2!1sen!2sin"
+                            width="600" height="450"></iframe>
+                    </div>
 
                     <form id="fuel-form">
                         <label for="fuel-type">Fuel Type:</label>
@@ -44,10 +55,11 @@
 
                         <label for="fuel-amount">Amount (Liters)</label>
                         <input type="number" id="fuel-amount" name="fuel-amount" min="1" required>
-                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                        <button type="submit" id="add-to-cart-btn">Add to Cart</button>
                     </form>
                 </div>
 
+                <br>
                 <div class="gas-image">
                     <img src="images/fuel.webp" alt="Fuel Hub" />
                 </div>
@@ -59,6 +71,17 @@
         </footer>
 
         <script>
+            function toggleMode(mode) {
+                if (mode === 'pickup') {
+                    document.getElementById('pickup-locations').style.display = 'block';
+                } else {
+                    document.getElementById('pickup-locations').style.display = 'none';
+                }
+
+                // Store the user's selection in localStorage
+                localStorage.setItem('orderMode', mode);
+            }
+
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
             function addFuelToCart(fuelType, fuelAmount) {
@@ -97,6 +120,23 @@
                     alert("Please enter a valid amount of fuel.");
                 }
             });
+
+            let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
+
+            function checkLoginStatus() {
+                if (current_user_index === -1) {
+                    document.getElementById("login-link").innerText = "Log In";
+                    document.getElementById("delivery").remove();
+                    document.getElementById("pickup").remove();
+                    document.getElementById("add-to-cart-btn").remove();
+                } else {
+                    document.getElementById("login-link").setAttribute("href", "account.html");
+                    document.getElementById("cart-link").setAttribute("href", "cart.html");
+                    document.getElementById("login-prompt").remove();
+                }
+            }
+
+            window.onload = checkLoginStatus();
         </script>
     </body>
 </html>
