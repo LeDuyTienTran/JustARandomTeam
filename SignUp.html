@@ -15,13 +15,13 @@
                     <li><a href="locations.html">Locations</a></li>
                     <li><a href="Food & Beverage.html">Food & Beverage</a></li>
                     <li><a href="Gas & Go.html">Gas & Go</a></li>
-                    <li><a href="LogIn.html">Account</a></li>
-                    <a href="LogIn.html" class="cart-link">
-                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon"/>
+                    <li><a href="LogIn.html" id="login-link">Log In</a></li>
+                    <a href="LogIn.html" id="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" id="cart-icon"/>
                     </a>
                 </ul>
             </nav>
-        </header><br/>
+        </header><br>
         
         <div class="hero-image">
             <div class="body1">
@@ -29,7 +29,7 @@
                     <h2>Create Account</h2>
                     <form id="signupForm" onsubmit="validateSignup(event)">
                         <input type="text" id="username" placeholder="Username" required>
-                        <input type="email" id="email" placeholder="Email" required>
+                        <input type="email" id="email" placeholder="Email (cannot be changed)" required>
                         <input type="password" id="password" placeholder="Password (min 6 characters)" required>
                         <button type="submit">Sign Up</button><br/>
                         <a href="LogIn.html" class="login-link">Already have an account? Log In</a>
@@ -41,8 +41,10 @@
         </div>
         
         <script>
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
             function validateSignup(event) {
-                event.preventDefault(); 
+                event.preventDefault();
 
                 const userName = document.getElementById("username").value;
                 const email = document.getElementById("email").value;
@@ -50,10 +52,8 @@
                 const errorMessage = document.getElementById("errorMessage");
                 const successMessage = document.getElementById("successMessage");
     
-            
                 errorMessage.innerText = "";
                 successMessage.innerText = "";
-    
                 
                 if (userName.length < 3) {
                     errorMessage.innerText = "Username must be at least 3 characters long.";
@@ -67,24 +67,30 @@
                     errorMessage.innerText = "Password must be at least 6 characters long.";
                     return;
                 }
-    
-            
-                successMessage.innerText = "Signup successful!";
                 
-             
-                var user = {
+                const user = {
                     email: email,
                     username: userName,
                     password: password,
+                    orders: 0,
+                    achievements: [1]
                 };
+                
+                const existingUserIndex = users.findIndex(user => user.email === email);
+                
+                if (existingUserIndex !== -1) {
+                    errorMessage.innerText = "This email has already been registered, please use a different one."
+                } else {
+                    users.push(user);
+                    successMessage.innerText = "Signup successful!";
 
-                localStorage.setItem(userName, JSON.stringify(user));
-                console.log('User added to local storage');
+                    localStorage.setItem("users", JSON.stringify(users));
+                    console.log('User added to local storage');
 
-               
-                setTimeout(function() {
-                    window.location.href = "LogIn.html"; 
-                }, 2000); 
+                    setTimeout(function() {
+                        window.location.href = "LogIn.html"; 
+                    }, 2000);
+                }
             }
     
             function validateEmail(email) {

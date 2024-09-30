@@ -16,20 +16,20 @@
                 <li><a href="locations.html">Locations</a></li>
                 <li><a href="Food & Beverage.html">Food & Beverage</a></li>
                 <li><a href="Gas & Go.html">Gas & Go</a></li>
-                <li><a href="LogIn.html">Account</a></li>
-                <a href="LogIn.html" class="cart-link">
-                    <img src="images/cart.png" alt="Image of a cart" class="cart-icon" />
+                <li><a href="LogIn.html" id="login-link">Log In</a></li>
+                <a href="LogIn.html" id="cart-link">
+                    <img src="images/cart.png" alt="Image of a cart" id="cart-icon" />
                 </a>
             </ul>
         </nav>
-    </header><br />
+    </header><br>
 
     <div class="hero-image">
         <div class="body1">
             <div class="container">
                 <h2>Log In</h2>
                 <form id="loginForm" onsubmit="validateLogin(event)">
-                    <input type="text" id="username" placeholder="Username or Email" required>
+                    <input type="email" id="email" placeholder="Email" required>
                     <input type="password" id="password" placeholder="Password" required>
                     <button type="submit">Login</button><br />
                     <a href="SignUp.html" class="create-account">Create Account? </a>
@@ -41,20 +41,25 @@
     </div>
 
     <script>
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
         function validateLogin(event) {
             event.preventDefault();
 
-            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            const storedUser = localStorage.getItem(username);
-            if (storedUser) {
-                const user = JSON.parse(storedUser);
-                
-                if (username === user.username && password === user.password) {
+            const existingUserIndex = users.findIndex(user => user.email === email);
+
+            if (existingUserIndex !== -1) {
+                const user = users[existingUserIndex];
+
+                if (email === user.email && password === user.password) {
                     alert("Login successful!");
+                    localStorage.setItem("current_user_index", existingUserIndex);
+
                     setTimeout(function () {
-                        window.location.href = "home-logged_in.html";
+                        window.location.href = "home.html";
                     }, 2000);
                 } else {
                     document.getElementById("errorMessage").innerText = "Invalid username or password.";
