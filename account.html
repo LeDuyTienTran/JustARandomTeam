@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <title>UTR | Account</title>
         <link rel="stylesheet" href="style.css">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     </head>
     
     <body>
@@ -12,39 +11,42 @@
             <nav>
                 <ul>
                     <div id="logo">UTR</div>
-                    <li><a href="home-logged_in.html">Home</a></li>
+                    <li><a href="home.html">Home</a></li>
                     <li><a href="locations.html">Locations</a></li>
                     <li><a href="Food & Beverage.html">Food & Beverage</a></li>
                     <li><a href="Gas & Go.html">Gas & Go</a></li>
-                    <li><a href="account.html">Account</a></li>
-                    <a href="cart.html" class="cart-link">
-                        <img src="images/cart.png" alt="Image of a cart" class="cart-icon"/>
+                    <li><a href="account.html" id="login-link">Account</a></li>
+                    <a href="cart.html" id="cart-link">
+                        <img src="images/cart.png" alt="Image of a cart" id="cart-icon"/>
                     </a>
                 </ul>
             </nav>
-        </header>     
+        </header><br>  
 
-        <div class="container pt-5">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-6 text-center">
-                    <img src="images/password.png" alt="Image of password" class="img-fluid">
+        <div class="body1">
+            <div class="container" id="account">
+                <div id="lock-image">
+                    <img src="images/lock.png" alt="Image of a lock">
                 </div>
-                <div class="col-12 col-md-6">
-                    <div class="update">
-                        <form onsubmit="validate(event)">
-                            <input type="text" id="username" name="username" placeholder="UserName"><br><br>
-                            <input type="email" id="email" name="email" placeholder="Email"><br><br>
-                            <input type="password" id="password" name="password" placeholder="Password">
-                            <button type="button" onclick="showPassword()">Show Password</button><br><br>
-                            <button type="submit">Update</button><br><br>
-                            <p id="errorMessage" style="color: red;"></p>
-                            <p id="successMessage" style="color: green;"></p>
-                        </form>
+
+                <div id="account-management">
+                    <form onsubmit="validate(event)">
+                        <p id="email" style="color: rgb(148, 148, 148);"></p>
+                        <input type="text" id="username" name="username" placeholder="Username"><br><br>
+                        <input type="password" id="password" name="password" placeholder="Password">
+                        <button type="button" onclick="showPassword()">Show Password</button>
+                        <button type="submit">Update</button><br><br>
+                        <p id="errorMessage" style="color: red; font-size: larger;"></p>
+                        <p id="successMessage" style="color: green; font-size: larger;"></p>
+                    </form>
+
+                    <div id="other-links">
                         <article>
                             <p>To update payment details, click <a href="payment_details.html">here</a></p>
                         </article>
+                        
                         <article>
-                            <p>To log out and return to the homepage, click <a href="home.html">here</a></p>
+                            <p>To log out and return to the homepage, click <a href="home.html" onclick=logOut()>here</a></p>
                         </article>
                     </div>
                 </div>
@@ -52,7 +54,7 @@
         </div>
 
         <footer>
-            &copy; Copyright UTR Pty Ltd, 2024. All rights reserved.
+            ©Copyright UTR Pty Ltd, 2024. All rights reserved.
         </footer>
 
         <script>
@@ -61,18 +63,21 @@
                 password.type = password.type === "password" ? "text" : "password";
             }
 
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
             function validate(event) {
                 event.preventDefault(); 
 
-                const userName = document.getElementById("username").value;
-                const email = document.getElementById("email").value;
+                const email = getEmail();
+                const username = document.getElementById("username").value;
                 const password = document.getElementById("password").value;
                 const errorMessage = document.getElementById("errorMessage");
                 const successMessage = document.getElementById("successMessage");
+
                 errorMessage.innerText = "";
                 successMessage.innerText = "";
     
-                if (userName.length < 3) {
+                if (username.length < 3) {
                     errorMessage.innerText = "Username must be at least 3 characters long.";
                     return;
                 }
@@ -85,23 +90,16 @@
                     return;
                 }
 
-                const existingUserData = JSON.parse(localStorage.getItem(userName));
+                const existingUserIndex = users.findIndex(user => user.email === email);
 
-                if (existingUserData) {
-                    existingUserData.email = email;
-                    existingUserData.password = password;
-                    localStorage.setItem(userName, JSON.stringify(existingUserData));
+                if (existingUserIndex !== -1) {
+                    users[existingUserIndex].username = username;
+                    users[existingUserIndex].password = password;
+
+                    localStorage.setItem("users", JSON.stringify(users));
                     successMessage.innerText = "User details updated successfully!";
-                } else {
-                    const user = {
-                        email: email,
-                        username: userName,
-                        password: password,
-                    };
-                    localStorage.setItem(userName, JSON.stringify(user));
-                    successMessage.innerText = "New user created and saved successfully!";
                 }
-    
+
                 console.log('User data updated in local storage');
 
                 setTimeout(function() {
@@ -113,6 +111,25 @@
                 const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return pattern.test(email);
             }
+
+            function getEmail() {
+                const currentUserIndex = localStorage.getItem("current_user_index");
+                const currentEmail = users[currentUserIndex].email;
+                return currentEmail;
+            }
+
+            function showEmail() {
+                const currentEmail = getEmail();
+                document.getElementById("email").innerText = currentEmail + "\n(Cannot be changed)";
+            }
+
+            function logOut() {
+                localStorage.setItem("current_user_index", -1);
+            }
+
+            let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
+
+            window.onload = showEmail();
         </script>
     </body>
 </html>

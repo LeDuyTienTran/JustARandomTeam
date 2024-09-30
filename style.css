@@ -63,8 +63,13 @@ form {
 }
 
 label {
-    color: var(--container-content-color);
+    color: black;
     font-size: x-large;
+}
+
+#order-options,
+#login-prompt {
+    text-align: center;
 }
 
 /* Overall style */
@@ -273,12 +278,12 @@ iframe {
 
 /* Cart icon style */
 
-.cart-link {
+#cart-link {
     display: flex;
     cursor: pointer;
 }
 
-.cart-icon {
+#cart-icon {
     width: 50px;
 }
 
@@ -486,7 +491,7 @@ img {
 }
 
 .container input:focus {
-    background: rgb(255, 255, 255);
+    background: rgb(224, 224, 224);
 }
 
 .container button {
@@ -522,6 +527,34 @@ img {
     color: black;
     font-size: small;
     margin-top: 10px;
+}
+
+.container#account {
+    width: 70%;
+    backdrop-filter: none;
+}
+
+#lock-image {
+    float: left;
+    max-width: 50%;
+}
+
+#account-management {
+    float: right;
+}
+
+#other-links {
+    color: black;
+    margin-left: 6%;
+}
+
+#other-links article {
+    padding: 1%;
+    margin-bottom: 30px;
+}
+
+#other-links article p {
+    font-size: larger;
 }
 
 /* Khurl's part */
@@ -570,7 +603,6 @@ img {
     margin: 0;
 }
 
-input[type="text"],
 input[type="tel"] {
     padding: 10px;
     width: 100%;
@@ -598,7 +630,7 @@ input[type="tel"] {
 
 
 
-/* home.html + home-logged_in.html */
+/* home.html */
 
 .home-section {
     height: 700px;
@@ -608,6 +640,15 @@ input[type="tel"] {
     position: relative;
     align-items: center;
     border-radius: 12px;
+}
+
+#home-welcome {
+    background: rgb(235, 219, 137);
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
 }
 
 #home-about-body,
@@ -654,7 +695,7 @@ article#home-login p {
     text-align: center;
 }
 
-/* home.html + home-logged_in.html */
+/* home.html */
 
 
 
