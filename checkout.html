@@ -8,14 +8,35 @@
         let users = JSON.parse(localStorage.getItem('users')) || [];
         let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
 
+        // Function to handle toggling order mode (pickup or delivery)
+        function toggleMode(mode) {
+            localStorage.setItem('orderMode', mode);
+            toggleAddressFields();
+
+            // Highlight the selected mode
+            document.getElementById('pickup-button').style.backgroundColor = mode === 'pickup' ? 'var(--hover-color)' : 'var(--secondary-color)';
+            document.getElementById('delivery-button').style.backgroundColor = mode === 'delivery' ? 'var(--hover-color)' : 'var(--secondary-color)';
+        }
+
+        // Toggle visibility of address fields based on order mode
+        function toggleAddressFields() {
+            const orderMode = localStorage.getItem('orderMode');
+            const addressFields = document.getElementById('address-fields');
+
+            if (orderMode === 'pickup') {
+                // Hide address fields for pickup mode
+                addressFields.style.display = 'none';
+            } else {
+                // Show address fields for delivery mode
+                addressFields.style.display = 'block';
+            }
+        }
+
         // Function to validate payment and handle order submission
         function validatePayment(event) {
             event.preventDefault();
 
-            // Retrieve the order mode from localStorage
             const orderMode = localStorage.getItem('orderMode');
-            
-            // Retrieve values from form fields
             const address = document.getElementById("address").value;
             const city = document.getElementById("city").value;
             const postcode = document.getElementById("postcode").value;
@@ -37,7 +58,6 @@
                 const expiration_date = document.getElementById("expiration-date").value;
                 const cvv = document.getElementById("cvv").value;
                 
-                // Only require address details if order mode is not 'pickup'
                 if ((orderMode === 'pickup' || (address.length > 0 && city.length > 0 && postcode.length > 0)) && 
                     (card_number.length > 0 && card_name.length > 0 && expiration_date.length > 0 && cvv.length > 0)) {
                     increaseOrders();
@@ -57,20 +77,6 @@
                         window.location.href = "trackOrder.html";
                     }, 2000);
                 }
-            }
-        }
-
-        // Toggle visibility of address fields based on order mode
-        function toggleAddressFields() {
-            const orderMode = localStorage.getItem('orderMode');
-            const addressFields = document.getElementById('address-fields');
-
-            if (orderMode === 'pickup') {
-                // Hide address fields for pickup mode
-                addressFields.style.display = 'none';
-            } else {
-                // Show address fields for delivery mode
-                addressFields.style.display = 'block';
             }
         }
 
@@ -107,8 +113,12 @@
             users[current_user_index].achievements.push(achievementId);
         }
 
-        // Call toggleAddressFields on page load
-        window.onload = toggleAddressFields;
+        // Call toggleAddressFields on page load and set initial order mode button state
+        window.onload = function() {
+            toggleAddressFields();
+            const orderMode = localStorage.getItem('orderMode') || 'delivery';
+            toggleMode(orderMode);
+        };
     </script>
 </head>
 
@@ -133,12 +143,19 @@
     <main>
         <div>
             <h1>Payment Information</h1>
+            
+            
 
             <form id="checkout-container" onsubmit="validatePayment(event)">
                 <div>
                     <a href="cart.html">Return to Cart</a>
                     
-                    
+                    <!-- Pickup and Delivery selection buttons -->
+                    <div id="order-mode-selection">
+                        <button id="pickup-button" onclick="toggleMode('pickup')">Pickup</button>
+                        <button id="delivery-button" onclick="toggleMode('delivery')">Delivery</button>
+                    </div>
+                    <h2>Enter Details</h2>
                     <div id="address-fields">
                         <div class="checkout-information">
                             <label for="address">Address</label>
