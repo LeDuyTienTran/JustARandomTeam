@@ -58,13 +58,11 @@
 
             // If it's pickup, change the stages to reflect the pickup process
             if (orderMode === 'pickup') {
+                updateOrderSummaryForPickup(); // Remove delivery fee for pickup
                 stages = ['order-placed', 'preparing', 'ready-for-pickup'];
                 document.getElementById('on-the-way').style.display = 'none'; // Hide "On the Way" stage
                 document.getElementById('delivered').style.display = 'none'; // Hide "Delivered" stage
                 document.getElementById('ready-for-pickup').style.display = 'block'; // Show "Ready for Pickup"
-
-                // Set the delivery fee to $0 in the order summary
-                updateOrderSummaryForPickup();
             }
 
             // Start the progress simulation
@@ -122,9 +120,10 @@
 
         // Function to update the order summary for pickup
         function updateOrderSummaryForPickup() {
-            const deliveryFeeElement = document.getElementById('delivery-fee');
+            // Remove the delivery fee line
+            const deliveryFeeElement = document.getElementById('delivery-fee-line');
             if (deliveryFeeElement) {
-                deliveryFeeElement.innerText = '$0.00';
+                deliveryFeeElement.remove();
             }
 
             // Update the total amount to exclude delivery fee
@@ -192,7 +191,7 @@
         <div class="order-summary">
             <h2>Order Summary</h2>
             <p>Subtotal: <span id="subtotal">$7.50</span></p>
-            <p>Delivery Fee: <span id="delivery-fee">$2.99</span></p>
+            <p id="delivery-fee-line">Delivery Fee: <span id="delivery-fee">$2.99</span></p>
             <p>Service Fee: <span id="service-fee">$1.75</span></p>
             <div class="total">
                 <p>Total: <span id="total">$12.24</span></p>

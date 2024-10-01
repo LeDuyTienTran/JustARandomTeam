@@ -6,7 +6,12 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* Style for buttons to keep them consistent */
-        
+        .button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
 
         .button:hover {
             opacity: 0.9;
@@ -33,6 +38,9 @@
             // Highlight the selected mode
             document.getElementById('pickup-button').className = mode === 'pickup' ? 'button selected' : 'button unselected';
             document.getElementById('delivery-button').className = mode === 'delivery' ? 'button selected' : 'button unselected';
+            
+            // Update the order summary whenever the mode changes
+            updateOrderSummary();
         }
 
         // Toggle visibility of address fields based on order mode
@@ -41,10 +49,8 @@
             const addressFields = document.getElementById('address-fields');
 
             if (orderMode === 'pickup') {
-                // Hide address fields for pickup mode
                 addressFields.style.display = 'none';
             } else {
-                // Show address fields for delivery mode
                 addressFields.style.display = 'block';
             }
         }
@@ -60,6 +66,11 @@
 
             // Store the delivery details in localStorage if order mode is 'delivery'
             if (orderMode !== 'pickup') {
+                if (address.length === 0 || city.length === 0 || postcode.length === 0) {
+                    alert('Please fill out all address fields for delivery.');
+                    return;
+                }
+
                 const deliveryDetails = {
                     address: address,
                     city: city,
@@ -74,35 +85,32 @@
                 const card_name = document.getElementById("card-name").value;
                 const expiration_date = document.getElementById("expiration-date").value;
                 const cvv = document.getElementById("cvv").value;
-                
-                if ((orderMode === 'pickup' || (address.length > 0 && city.length > 0 && postcode.length > 0)) && 
-                    (card_number.length > 0 && card_name.length > 0 && expiration_date.length > 0 && cvv.length > 0)) {
-                    increaseOrders();
-                    document.getElementById("pay-confirmed").innerText = "Payment confirmed. Tracking your order...";
-                    
-                    setTimeout(function () {
-                        window.location.href = "trackOrder.html";
-                    }, 2000);
-                }
-            } else {
-                // For cash payment, only require address details if order mode is not 'pickup'
-                if (orderMode === 'pickup' || (address.length > 0 && city.length > 0 && postcode.length > 0)) {
-                    increaseOrders();
-                    document.getElementById("pay-confirmed").innerText = "Payment confirmed. Tracking your order...";
-                    
-                    setTimeout(function () {
-                        window.location.href = "trackOrder.html";
-                    }, 2000);
+
+                if (card_number.length === 0 || card_name.length === 0 || expiration_date.length === 0 || cvv.length === 0) {
+                    alert('Please fill out all card payment details.');
+                    return;
                 }
             }
+
+            // If cash payment is selected, no card details are needed
+            increaseOrders();
+            document.getElementById("pay-confirmed").innerText = "Payment confirmed. Tracking your order...";
+            
+            // Redirect to the trackOrder.html page after 2 seconds
+            setTimeout(function () {
+                window.location.href = "trackOrder.html";
+            }, 2000);
         }
 
         // Function to switch payment method (card or cash)
         function switchPaymentMethod(payment_method) {
-            if (payment_method == "card") {
+            if (payment_method === "card") {
                 document.getElementById("payment-information").innerHTML =
-                    "<div class='checkout-information'><label for='card-number'>Card Number</label><input type='text' id='card-number' placeholder='XXXX XXXX XXXX XXXX' required></div><div class='checkout-information'><label for='card-name'>Name on Card</label><input type='text' id='card-name' placeholder='Jane Doe' required></div><div class='checkout-information'><label for='expiration-date'>Expiration Date</label><input type='month' id='expiration-date' required></div><div class='checkout-information'><label for='cvv'>Security Code (CVV/CVC)</label><input type='text' id='cvv' maxlength='4' placeholder='100' required><p id='cvv-unhide'>What's this?</p><p id='cvv-hidden'>The security code is the last 3 digits on the back of your card. For American Express cards, the security code is a 4-digit number on the front of the card.</p></div>";
-                
+                    "<div class='checkout-information'><label for='card-number'>Card Number</label><input type='text' id='card-number' placeholder='XXXX XXXX XXXX XXXX' required></div>" +
+                    "<div class='checkout-information'><label for='card-name'>Name on Card</label><input type='text' id='card-name' placeholder='Jane Doe' required></div>" +
+                    "<div class='checkout-information'><label for='expiration-date'>Expiration Date</label><input type='month' id='expiration-date' required></div>" +
+                    "<div class='checkout-information'><label for='cvv'>Security Code (CVV/CVC)</label><input type='text' id='cvv' maxlength='4' placeholder='100' required></div>";
+
                 document.getElementById("card-method").className = 'button selected';
                 document.getElementById("cash-method").className = 'button unselected';
             } else {
@@ -122,30 +130,50 @@
             });
 
             document.getElementById('subtotal').innerText = `$${subtotal.toFixed(2)}`;
-            // You can add logic here to calculate delivery fee and total if needed
+
+            // Get the order mode
+            const orderMode = localStorage.getItem('orderMode') || 'delivery';
+            
+            // Set delivery fee based on order mode
+            let deliveryFee = orderMode === 'pickup' ? 0 : 2.99;
+
+            // Update the delivery fee in the summary
+            document.getElementById('delivery-fee').innerText = `$${deliveryFee.toFixed(2)}`;
+
+            // Assuming service fee is fixed
+            let serviceFee = 1.75;
+
+            // Calculate total
+            let total = subtotal + deliveryFee + serviceFee;
+            document.getElementById('total').innerText = `$${total.toFixed(2)}`;
         }
 
         function increaseOrders() {
-            users[current_user_index].orders += 1;
+            if (current_user_index !== -1 && users[current_user_index]) {
+                users[current_user_index].orders = (users[current_user_index].orders || 0) + 1;
 
-            if (users[current_user_index].orders === 3) {
-                addAchievement(2);
-            } else if (users[current_user_index].orders === 6) {
-                addAchievement(3);
+                if (users[current_user_index].orders === 3) {
+                    addAchievement(2);
+                } else if (users[current_user_index].orders === 6) {
+                    addAchievement(3);
+                }
+
+                localStorage.setItem("users", JSON.stringify(users));
             }
-
-            localStorage.setItem("users", JSON.stringify(users));
         }
 
         function addAchievement(achievementId) {
-            users[current_user_index].achievements.push(achievementId);
+            if (current_user_index !== -1 && users[current_user_index]) {
+                users[current_user_index].achievements = users[current_user_index].achievements || [];
+                users[current_user_index].achievements.push(achievementId);
+            }
         }
 
         // Call toggleAddressFields and update order summary on page load
         window.onload = function() {
-            toggleAddressFields();
             const orderMode = localStorage.getItem('orderMode') || 'delivery';
             toggleMode(orderMode);
+            toggleAddressFields();
             updateOrderSummary();
         };
     </script>
@@ -229,8 +257,6 @@
                         <div class="checkout-information">
                             <label for="cvv">Security Code (CVV/CVC)</label>
                             <input type="text" id="cvv" maxlength="4" placeholder="100">
-                            <p id="cvv-unhide">What's this?</p>
-                            <p id="cvv-hidden">The security code is the last 3 digits on the back of your card. For American Express cards, the security code is a 4-digit number on the front of the card.</p>
                         </div>
                     </div>
                 </div>
@@ -238,10 +264,10 @@
                 <div class="summary">
                     <h2>Order Summary</h2>
                     <p>Subtotal: <span id="subtotal">$0.00</span></p>
-                    <p>Delivery Fee: <span>$2.99</span></p>
+                    <p>Delivery Fee: <span id="delivery-fee">$2.99</span></p>
                     <p>Service Fee: <span>$1.75</span></p>
                     <div class="total">
-                        <p>Total: <span>$12.24</span></p>
+                        <p>Total: <span id="total">$12.24</span></p>
                     </div>
                 </div>
 
