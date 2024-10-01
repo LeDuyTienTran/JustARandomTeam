@@ -4,6 +4,154 @@
         <meta charset="utf-8">
         <title>UTR | Account</title>
         <link rel="stylesheet" href="style.css">
+     <!-- Add viewport meta tag for mobile scaling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* Style for navigation bar */
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            list-style: none;
+            background-color: #004080;
+        }
+
+        nav ul li, nav ul div {
+            margin: 5px;
+            flex: 1 1 auto;
+            text-align: center;
+        }
+
+        nav ul a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        #logo {
+            font-size: 1.8em;
+            color: #FF5733;
+            font-weight: bold;
+        }
+
+        /* Adjust the account container for mobile */
+        .body1 {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #e6f2ff;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        /* Center the lock image and form */
+        #lock-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #lock-image img {
+            width: 80px;
+            height: 80px;
+        }
+
+        /* Adjust the form elements for mobile */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form input, form button {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #FF5733;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #cc4629;
+        }
+
+        #account-management {
+            width: 100%;
+        }
+
+        /* Adjust "other-links" section */
+        #other-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #other-links article {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #004080;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: row;
+            }
+
+            #logo {
+                font-size: 1.5em;
+            }
+
+            #lock-image img {
+                width: 60px;
+                height: 60px;
+            }
+
+            form input, form button {
+                max-width: 100%;
+                font-size: 1em;
+            }
+
+            .container {
+                padding: 15px;
+                margin-top: 10px;
+            }
+
+            #other-links article {
+                font-size: 0.9em;
+            }
+        }
+    </style>
     </head>
     
     <body>
