@@ -51,33 +51,43 @@
         let currentStage = 0; // Initialize the current stage index
         let stages = ['order-placed', 'preparing', 'on-the-way', 'delivered']; // Default stages for delivery
         let interval; // To hold the interval ID
-    
+
         // Function to check the order mode and initialize tracking
         function initMap() {
             const orderMode = localStorage.getItem('orderMode') || 'delivery';
 
-            // If it's pickup, change the stages to reflect pickup process
+            // If it's pickup, change the stages to reflect the pickup process
             if (orderMode === 'pickup') {
                 stages = ['order-placed', 'preparing', 'ready-for-pickup'];
-                document.getElementById('on-the-way').innerHTML = '📦<p>Ready for Pickup</p>';
+                document.getElementById('on-the-way').style.display = 'none'; // Hide "On the Way" stage
                 document.getElementById('delivered').style.display = 'none'; // Hide "Delivered" stage
+                document.getElementById('ready-for-pickup').style.display = 'block'; // Show "Ready for Pickup"
+
+                // Set the delivery fee to $0 in the order summary
+                updateOrderSummaryForPickup();
             }
 
             // Start the progress simulation
-            simulateProgress();
+            simulateProgress(orderMode);
         }
     
         // Function to simulate order progress
-        function simulateProgress() {
+        function simulateProgress(orderMode) {
             const progressInterval = 3000; // 3 seconds for each stage
-
+            
             interval = setInterval(() => {
                 if (currentStage < stages.length) {
                     updateProgress(); // Update status icons for each stage
                 }
 
-                // When we reach the "ready-for-pickup" or "delivered" stage, stop the interval
-                if (currentStage === stages.length) {
+                // If it's pickup mode and we reach the "ready-for-pickup" stage, stop the interval
+                if (orderMode === 'pickup' && currentStage === stages.length) {
+                    clearInterval(interval);
+                    clearCartAndRedirect(); // Clear cart and redirect
+                }
+
+                // If it's delivery mode and we reach the "delivered" stage, stop the interval
+                if (orderMode === 'delivery' && currentStage === stages.length) {
                     clearInterval(interval);
                     clearCartAndRedirect(); // Clear cart and redirect
                 }
@@ -108,6 +118,20 @@
             setTimeout(() => {
                 window.location.href = 'home.html'; // Redirect to homepage after a short delay
             }, 3000); // 3-second delay before redirecting
+        }
+
+        // Function to update the order summary for pickup
+        function updateOrderSummaryForPickup() {
+            const deliveryFeeElement = document.getElementById('delivery-fee');
+            if (deliveryFeeElement) {
+                deliveryFeeElement.innerText = '$0.00';
+            }
+
+            // Update the total amount to exclude delivery fee
+            const subtotal = parseFloat(document.getElementById('subtotal').innerText.replace('$', ''));
+            const serviceFee = parseFloat(document.getElementById('service-fee').innerText.replace('$', ''));
+            const total = subtotal + serviceFee; // No delivery fee for pickup
+            document.getElementById('total').innerText = `$${total.toFixed(2)}`;
         }
 
         // Initialize the map and progress tracking when the page loads
@@ -155,10 +179,25 @@
                 🏠
                 <p>Delivered</p>
             </div>
+            <div class="icon inactive" id="ready-for-pickup" style="display: none;">
+                📦
+                <p>Ready for Pickup</p>
+            </div>
         </div>
 
         <!-- Embed Google Maps -->
         <iframe id="google-map" src="" allowfullscreen></iframe>
+
+        <!-- Order Summary (Add elements with IDs for JavaScript manipulation) -->
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <p>Subtotal: <span id="subtotal">$7.50</span></p>
+            <p>Delivery Fee: <span id="delivery-fee">$2.99</span></p>
+            <p>Service Fee: <span id="service-fee">$1.75</span></p>
+            <div class="total">
+                <p>Total: <span id="total">$12.24</span></p>
+            </div>
+        </div>
     </main>
 
     <!-- Footer section for consistent design -->
