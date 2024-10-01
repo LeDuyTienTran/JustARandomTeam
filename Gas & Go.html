@@ -1,143 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>UTR | Gas & Go</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
 
-    <body>
-        <header>
-            <nav>
-                <ul>
-                    <div id="logo">UTR</div>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="locations.html">Locations</a></li>
-                    <li><a href="Food & Beverage.html">Food & Beverage</a></li>
-                    <li><a href="Gas & Go.html">Gas & Go</a></li>
-                    <li><a href="LogIn.html" id="login-link">Account</a></li>
-                    <li><a href="Achievement.html">Achievement</a></li>
-                    <a href="LogIn.html" id="cart-link">
-                        <img src="images/cart.png" alt="Image of a cart" id="cart-icon" />
-                    </a>
-                </ul>
-            </nav>
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTR | Gas & Go</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        <main>
-            <section class="gas-section">
-                <div class="gas-info">
-                    <h1>Gas & Go</h1>
-                    <p id="login-prompt"><a href="LogIn.html">Log in</a> now to start shopping for fuel.</p>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <div id="logo">UTR</div>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="locations.html">Locations</a></li>
+                <li><a href="Food & Beverage.html">Food & Beverage</a></li>
+                <li><a href="Gas & Go.html">Gas & Go</a></li>
+                <li><a href="LogIn.html" id="login-link">Account</a></li>
+                <li><a href="Achievement.html">Achievement</a></li>
+                <a href="LogIn.html" id="cart-link">
+                    <img src="images/cart.png" alt="Image of a cart" id="cart-icon" />
+                </a>
+            </ul>
+        </nav>
+    </header>
 
-                    <div id="order-options">
-                        <button id="delivery" onclick="toggleMode('delivery')">Delivery</button>
-                        <button id="pickup" onclick="toggleMode('pickup')">Pickup</button>
-                    </div>
+    <main>
+        <section class="gas-section">
+            <div class="gas-info">
+                <h1>Gas & Go</h1>
+                <p id="login-prompt"><a href="LogIn.html">Log in</a> now to start shopping for fuel.</p>
 
-                    <div id="pickup-locations" style="display:none;">
-                        <h2>Pickup Locations</h2>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509617!2d144.9630579153182!3d-37.816279579751934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43df29d3df%3A0x9b65b1b5d8aa8c7a!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sin!4v1601583367390!5m2!1sen!2sin"
-                            width="600" height="450"></iframe>
-                    </div>
-
-                    <form id="fuel-form">
-                        <label for="fuel-type">Fuel Type:</label>
-                        <select id="fuel-type" name="fuel-type">
-                            <option value="Unleaded">Unleaded</option>
-                            <option value="Unleaded 95">Unleaded 95</option>
-                            <option value="Premium Unleaded 98">Premium Unleaded 98</option>
-                            <option value="Diesel">Diesel</option>
-                            <option value="Ultimate Diesel">Ultimate Diesel</option>
-                            <option value="LPG">LPG</option>
-                        </select>
-
-                        <label for="fuel-amount">Amount (Liters)</label>
-                        <input type="number" id="fuel-amount" name="fuel-amount" min="1" required>
-                        <button type="submit" id="add-to-cart-btn">Add to Cart</button>
-                    </form>
+                <div id="order-options">
+                    <button id="delivery" onclick="toggleMode('delivery')">Delivery</button>
+                    <button id="pickup" onclick="toggleMode('pickup')">Pickup</button>
                 </div>
 
+                <div id="pickup-locations" style="display: none">
+                    <h2 class="text-center">Pickup Locations</h2>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509617!2d144.9630579153182!3d-37.816279579751934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43df29d3df%3A0x9b65b1b5d8aa8c7a!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sin!4v1601583367390!5m2!1sen!2sin"
+                        width="600" height="450"></iframe>
+                </div>
+            </div>
+            <div class="cust-menu">
+                <form id="fuel-form">
+                    <label for="fuel-type">Fuel Type:</label>
+                    <select id="fuel-type" name="fuel-type">
+                        <option value="Unleaded">Unleaded</option>
+                        <option value="Unleaded 95">Unleaded 95</option>
+                        <option value="Premium Unleaded 98">Premium Unleaded 98</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Ultimate Diesel">Ultimate Diesel</option>
+                        <option value="LPG">LPG</option>
+                    </select>
+
+                    <label for="fuel-amount">Amount (Liters)</label>
+                    <input type="number" id="fuel-amount" name="fuel-amount" min="1" required>
+                    <button type="submit" id="add-to-cart-btn">Add to Cart</button>
+                </form>
                 <br>
                 <div class="gas-image">
                     <img src="images/fuel.webp" alt="Fuel Hub" />
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
+    </main>
 
-        <footer>
-            ©Copyright UTR Pty Ltd, 2024. All rights reserved.
-        </footer>
+    <footer>
+        ©Copyright UTR Pty Ltd, 2024. All rights reserved.
+    </footer>
 
-        <script>
-            function toggleMode(mode) {
-                if (mode === 'pickup') {
-                    document.getElementById('pickup-locations').style.display = 'block';
-                } else {
-                    document.getElementById('pickup-locations').style.display = 'none';
-                }
-
-                // Store the user's selection in localStorage
-                localStorage.setItem('orderMode', mode);
+    <script>
+        function toggleMode(mode) {
+            if (mode === 'pickup') {
+                document.getElementById('pickup-locations').style.display = 'block';
+            } else {
+                document.getElementById('pickup-locations').style.display = 'none';
             }
 
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Store the user's selection in localStorage
+            localStorage.setItem('orderMode', mode);
+        }
 
-            function addFuelToCart(fuelType, fuelAmount) {
-                const fuelPricePerLiter = {
-                    "Unleaded": 1.50,
-                    "Unleaded 95": 1.70,
-                    "Premium Unleaded 98": 1.90,
-                    "Diesel": 1.75,
-                    "Ultimate Diesel": 1.85,
-                    "LPG": 1.00
-                };
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-                const totalCost = fuelAmount * fuelPricePerLiter[fuelType];
+        function addFuelToCart(fuelType, fuelAmount) {
+            const fuelPricePerLiter = {
+                "Unleaded": 1.50,
+                "Unleaded 95": 1.70,
+                "Premium Unleaded 98": 1.90,
+                "Diesel": 1.75,
+                "Ultimate Diesel": 1.85,
+                "LPG": 1.00
+            };
 
-                const fuelItem = {
-                    name: fuelType + " - Fuel",
-                    price: totalCost.toFixed(2),
-                    quantity: parseFloat(fuelAmount)
-                };
+            const totalCost = fuelAmount * fuelPricePerLiter[fuelType];
 
-                cart.push(fuelItem);
-                localStorage.setItem('cart', JSON.stringify(cart));
+            const fuelItem = {
+                name: fuelType + " - Fuel",
+                price: totalCost.toFixed(2),
+                quantity: parseFloat(fuelAmount)
+            };
 
-                alert(fuelItem.name + " added to the cart. Total: $" + fuelItem.price);
+            cart.push(fuelItem);
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert(fuelItem.name + " added to the cart. Total: $" + fuelItem.price);
+        }
+
+        document.getElementById('fuel-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const fuelType = document.getElementById('fuel-type').value;
+            const fuelAmount = document.getElementById('fuel-amount').value;
+
+            if (fuelAmount > 0) {
+                addFuelToCart(fuelType, fuelAmount);
+            } else {
+                alert("Please enter a valid amount of fuel.");
             }
+        });
 
-            document.getElementById('fuel-form').addEventListener('submit', function (event) {
-                event.preventDefault();
+        let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
 
-                const fuelType = document.getElementById('fuel-type').value;
-                const fuelAmount = document.getElementById('fuel-amount').value;
-
-                if (fuelAmount > 0) {
-                    addFuelToCart(fuelType, fuelAmount);
-                } else {
-                    alert("Please enter a valid amount of fuel.");
-                }
-            });
-
-            let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
-
-            function checkLoginStatus() {
-                if (current_user_index === -1) {
-                    document.getElementById("login-link").innerText = "Log In";
-                    document.getElementById("delivery").remove();
-                    document.getElementById("pickup").remove();
-                    document.getElementById("add-to-cart-btn").remove();
-                } else {
-                    document.getElementById("login-link").setAttribute("href", "account.html");
-                    document.getElementById("cart-link").setAttribute("href", "cart.html");
-                    document.getElementById("login-prompt").remove();
-                }
+        function checkLoginStatus() {
+            if (current_user_index === -1) {
+                document.getElementById("login-link").innerText = "Log In";
+                document.getElementById("delivery").remove();
+                document.getElementById("pickup").remove();
+                document.getElementById("add-to-cart-btn").remove();
+            } else {
+                document.getElementById("login-link").setAttribute("href", "account.html");
+                document.getElementById("cart-link").setAttribute("href", "cart.html");
+                document.getElementById("login-prompt").remove();
             }
+        }
 
-            window.onload = checkLoginStatus();
-        </script>
-    </body>
+        window.onload = checkLoginStatus();
+    </script>
+</body>
+
 </html>
