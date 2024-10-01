@@ -120,8 +120,20 @@
                 }
             }
 
+            function checkLoginStatus() {
+                if (current_user_index === -1) {
+                    document.getElementById("login-link").innerText = "Log In";
+                } else {
+                    document.getElementById("login-link").setAttribute("href", "account.html");
+                    document.getElementById("cart-link").setAttribute("href", "cart.html");
+                }
+            }
+
             // Call the function on page load to update achievement status
-            window.onload = checkAchievements();
+            window.onload = function() {
+                checkAchievements();
+                checkLoginStatus();
+            }
         </script>
     </body>
 </html>
