@@ -41,11 +41,6 @@
             font-family: Arial, sans-serif;
         }
 
-        .scooter-icon {
-            font-size: 50px;
-            color: red;
-        }
-
         iframe {
             border: 0;
             width: 100%;
@@ -54,26 +49,20 @@
     </style>
     <script>
         let currentStage = 0; // Initialize the current stage index
-        const stages = ['order-placed', 'preparing', 'on-the-way', 'delivered']; // Define the stages of the progress
+        let stages = ['order-placed', 'preparing', 'on-the-way', 'delivered']; // Default stages for delivery
         let interval; // To hold the interval ID
     
-        // Function to embed Google Maps with the delivery address
+        // Function to check the order mode and initialize tracking
         function initMap() {
-            // Retrieve delivery details from localStorage
-            const deliveryDetails = JSON.parse(localStorage.getItem('deliveryDetails'));
-            if (!deliveryDetails) {
-                alert("No delivery address found.");
-                return;
+            const orderMode = localStorage.getItem('orderMode') || 'delivery';
+
+            // If it's pickup, change the stages to reflect pickup process
+            if (orderMode === 'pickup') {
+                stages = ['order-placed', 'preparing', 'ready-for-pickup'];
+                document.getElementById('on-the-way').innerHTML = '📦<p>Ready for Pickup</p>';
+                document.getElementById('delivered').style.display = 'none'; // Hide "Delivered" stage
             }
-    
-            // Construct the Google Maps URL with the delivery address
-            const address = `${deliveryDetails.address}, ${deliveryDetails.city}, ${deliveryDetails.postcode}`;
-            const encodedAddress = encodeURIComponent(address);
-            const googleMapsEmbedUrl = `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
-    
-            // Update the iframe src with the generated delivery address URL
-            document.getElementById('google-map').src = googleMapsEmbedUrl;
-    
+
             // Start the progress simulation
             simulateProgress();
         }
@@ -81,65 +70,30 @@
         // Function to simulate order progress
         function simulateProgress() {
             const progressInterval = 3000; // 3 seconds for each stage
-    
+
             interval = setInterval(() => {
                 if (currentStage < stages.length) {
                     updateProgress(); // Update status icons for each stage
                 }
-    
-                // When we reach the "On the Way" stage, show the driver moving
-                if (currentStage === 2) {
-                    simulateDriverMovement();
-                }
-    
-                // When we reach the "Delivered" stage, stop the interval
+
+                // When we reach the "ready-for-pickup" or "delivered" stage, stop the interval
                 if (currentStage === stages.length) {
                     clearInterval(interval);
+                    clearCartAndRedirect(); // Clear cart and redirect
                 }
             }, progressInterval);
-        }
-    
-        // Function to simulate driver movement from a nearby location
-        function simulateDriverMovement() {
-            // Retrieve delivery details from localStorage
-            const address = `${deliveryDetails.postcode}`;
-           
-    
-            // Simulate a nearby address by adjusting the street name slightly
-            const encodedAddress = encodeURIComponent(address);
-            const googleMapsEmbedUrl = `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
-    
-            // Show the driver location at a random street in the suburb
-            document.getElementById('google-map').src = googleMapsEmbedUrl;
-    
-            // Start simulating driver movement towards the delivery address after a short delay
-            setTimeout(() => {
-                // Construct the Google Maps URL with the original delivery address
-                const deliveryAddress = `${deliveryDetails.address}, ${deliveryDetails.city}, ${deliveryDetails.postcode}`;
-                const encodedDeliveryAddress = encodeURIComponent(deliveryAddress);
-                const finalGoogleMapsEmbedUrl = `https://www.google.com/maps?q=${encodedDeliveryAddress}&output=embed`;
-    
-                // Move the driver to the delivery address (simulated by changing the iframe source)
-                document.getElementById('google-map').src = finalGoogleMapsEmbedUrl;
-    
-                // Update to "Delivered" status after 2 minutes
-                setTimeout(() => {
-                    currentStage++; // Move to "Delivered" stage
-                    updateProgress(); // Update the progress to show "Delivered"
-                }, 120000); // 2 minutes delay to simulate movement
-            }, 3000); // Wait for 3 seconds to simulate the "On the Way" status
         }
     
         // Function to update the progress icons based on the current stage
         function updateProgress() {
             const progressIcons = document.querySelectorAll('.icon');
-    
+
             // Deactivate all icons
             progressIcons.forEach((icon) => {
                 icon.classList.remove('active');
                 icon.classList.add('inactive');
             });
-    
+
             // Activate the current stage icon
             if (currentStage < stages.length) {
                 document.getElementById(stages[currentStage]).classList.add('active');
@@ -147,11 +101,18 @@
                 currentStage++;
             }
         }
-    
+
+        // Function to clear the cart and redirect to the homepage
+        function clearCartAndRedirect() {
+            localStorage.removeItem('cart'); // Clear the cart
+            setTimeout(() => {
+                window.location.href = 'home.html'; // Redirect to homepage after a short delay
+            }, 3000); // 3-second delay before redirecting
+        }
+
         // Initialize the map and progress tracking when the page loads
         window.onload = initMap;
     </script>
-    
 </head>
 <body>
     <!-- Header section for consistent design -->
@@ -197,10 +158,7 @@
         </div>
 
         <!-- Embed Google Maps -->
-        <iframe id="google-map"
-            src=""
-            allowfullscreen>
-        </iframe>
+        <iframe id="google-map" src="" allowfullscreen></iframe>
     </main>
 
     <!-- Footer section for consistent design -->
