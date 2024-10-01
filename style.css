@@ -904,3 +904,47 @@ div#payment-method button {
 }
 
 /* checkout.html */
+
+
+/* Achievement page*/
+#achieve {
+    position: relative; /* Required for ::before to be positioned relative to this div */
+    background-image: url('images/gas_station.jpg'); 
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    padding: 20px;
+    color: var(--container-content-color);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    overflow: hidden; /* Ensure the blur stays within the container */
+}
+
+#achieve::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white layer */
+    backdrop-filter: blur(10px); /* Blurring effect */
+    border-radius: 12px; /* Optional: for rounded corners */
+    z-index: 0; /* Make sure the blur is behind the text */
+}
+
+#achievement-section {
+    position: relative; /* Keep the text above the blur */
+    z-index: 1;
+}
+
+#achievement-section p{
+    color: rgb(0, 0, 0); /* Darker text for readability */
+}
+
+#achievement-status {
+    margin-top: 20px;
+    position: relative; /* Ensure it's inside the blurred container */
+    z-index: 1;
+    color: rgb(0, 0, 0); /* Darker text for readability */
+}
