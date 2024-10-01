@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>UTR | Achievements</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <div id="logo">UTR</div>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="Food & Beverage.html">Food & Beverage</a></li>
+                    <li><a href="Gas & Go.html">Gas & Go</a></li>
+                    <li><a href="LogIn.html" id="login-link">Account</a></li>
+                    <li><a href="Achievement.html">Achievement</a></li>
+                    <a href="LogIn.html" id="cart-link">
+                        <img src="images/cart.png" alt="Cart icon" id="cart-icon"/>
+                    </a>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Background div for achievements section -->
+            <div class="home-section">
+                <div id="achieve">
+                    <section id="achievement-section">
+                        <h1>Achievements</h1>
+                        <div class="achievement" id="achievement-1">
+                            <h2>Create an Acount</h2>
+                            <p>You Create an Acount.</p>
+                            <p>Status: <span id="status-1">Locked</span></p>
+                        </div>
+                        <br>
+                        <div class="achievement" id="achievement-2">
+                            <h2>Purchase 3 Times</h2>
+                            <p>Complete 3 purchases to unlock this achievement.</p>
+                            <p>Status: <span id="status-2">Locked</span></p>
+                        </div>
+                        <br>
+                        <div class="achievement" id="achievement-3">
+                            <h2>Purchasea 6 Times</h2>
+                            <p>Complete 3 purchases to unlock this achievement.</p>
+                            <p>Status: <span id="status-3">Locked</span></p>
+                        </div>
+                        
+                        <br>
+
+                        <!-- Achievement Unlock Status Inside Blur -->
+                        <div class="achievement-status">
+                            <h2>Achievement Status</h2>
+                            <p id="status-message">No achievements unlocked yet.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <br>
+        </main>
+
+        <footer>
+            ©Copyright UTR Pty Ltd, 2024. All rights reserved.
+        </footer>
+
+        <script>
+            // Retrieve users array from localStorage
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            // Get the index of the currently logged-in user
+            let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
+
+            // Function to check achievements and update the display
+            function checkAchievements() {
+                if (current_user_index === -1) {
+                    console.log("No user is currently logged in.");
+                    return;
+                }
+
+                // Get the current user
+                let currentUser = users[current_user_index];
+
+                // Check if the current user has an achievements array
+                if (!currentUser || !currentUser.achievements) {
+                    console.log("No achievements data found for the current user.");
+                    return;
+                }
+
+                // Get the achievements array for the current user
+                let achievements = currentUser.achievements;
+                let unlockedAchievements = [];
+
+                // Check Achievement 1
+                if (achievements.includes(1)) {
+                    document.getElementById('status-1').innerText = 'Unlocked';
+                    unlockedAchievements.push("Create an Acount");
+                }
+
+                // Check Achievement 2
+                if (achievements.includes(2)) {
+                    document.getElementById('status-2').innerText = 'Unlocked';
+                    unlockedAchievements.push("Purchase 3 Times");
+                }
+
+                // Check Achievement 3
+                if (achievements.includes(3)) {
+                    document.getElementById('status-3').innerText = 'Unlocked';
+                    unlockedAchievements.push("Purchase 6 Times");
+                }
+
+                // Update the status message at the bottom of the page
+                if (unlockedAchievements.length > 0) {
+                    document.getElementById('status-message').innerText =
+                        "You have unlocked the following achievements: " + unlockedAchievements.join(", ");
+                } else {
+                    document.getElementById('status-message').innerText = "No achievements unlocked yet.";
+                }
+            }
+
+            // Call the function on page load to update achievement status
+            window.onload = checkAchievements();
+        </script>
+    </body>
+</html>
