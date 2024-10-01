@@ -16,7 +16,7 @@
         .progress-icons {
             display: flex;
             justify-content: space-around;
-            margin: 20px 0;
+            margin: 10px 0; /* Reduce spacing between sections */
         }
 
         .progress-icons .icon {
@@ -39,12 +39,31 @@
 
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the content */
+        }
+
+        main {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            margin-top: 20px;
         }
 
         iframe {
             border: 0;
             width: 100%;
             height: 400px;
+            margin: 20px 0; /* Add some space around the map */
+        }
+
+        .order-summary {
+            margin-top: 20px;
         }
     </style>
     <script>
@@ -56,13 +75,24 @@
         function initMap() {
             const orderMode = localStorage.getItem('orderMode') || 'delivery';
 
-            // If it's pickup, change the stages to reflect the pickup process
+            // If it's pickup, adjust the stages and hide the map
             if (orderMode === 'pickup') {
                 updateOrderSummaryForPickup(); // Remove delivery fee for pickup
                 stages = ['order-placed', 'preparing', 'ready-for-pickup'];
                 document.getElementById('on-the-way').style.display = 'none'; // Hide "On the Way" stage
                 document.getElementById('delivered').style.display = 'none'; // Hide "Delivered" stage
                 document.getElementById('ready-for-pickup').style.display = 'block'; // Show "Ready for Pickup"
+                document.getElementById('google-map').style.display = 'none'; // Hide the map for pickup
+            } else {
+                // Show the map for delivery and set the src to the correct URL
+                document.getElementById('google-map').style.display = 'block';
+                const deliveryDetails = JSON.parse(localStorage.getItem('deliveryDetails'));
+                if (deliveryDetails) {
+                    const address = `${deliveryDetails.address}, ${deliveryDetails.city}, ${deliveryDetails.postcode}`;
+                    const encodedAddress = encodeURIComponent(address);
+                    const googleMapsEmbedUrl = `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
+                    document.getElementById('google-map').src = googleMapsEmbedUrl;
+                }
             }
 
             // Start the progress simulation
