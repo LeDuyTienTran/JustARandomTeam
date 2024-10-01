@@ -4,9 +4,26 @@
     <meta charset="utf-8">
     <title>UTR | Checkout</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style for buttons to keep them consistent */
+        
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        .selected {
+            background-color: var(--hover-color);
+        }
+
+        .unselected {
+            background-color: var(--secondary-color);
+        }
+    </style>
     <script>
         let users = JSON.parse(localStorage.getItem('users')) || [];
         let current_user_index = parseInt(localStorage.getItem('current_user_index') || -1);
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         // Function to handle toggling order mode (pickup or delivery)
         function toggleMode(mode) {
@@ -14,8 +31,8 @@
             toggleAddressFields();
 
             // Highlight the selected mode
-            document.getElementById('pickup-button').style.backgroundColor = mode === 'pickup' ? 'var(--hover-color)' : 'var(--secondary-color)';
-            document.getElementById('delivery-button').style.backgroundColor = mode === 'delivery' ? 'var(--hover-color)' : 'var(--secondary-color)';
+            document.getElementById('pickup-button').className = mode === 'pickup' ? 'button selected' : 'button unselected';
+            document.getElementById('delivery-button').className = mode === 'delivery' ? 'button selected' : 'button unselected';
         }
 
         // Toggle visibility of address fields based on order mode
@@ -86,15 +103,26 @@
                 document.getElementById("payment-information").innerHTML =
                     "<div class='checkout-information'><label for='card-number'>Card Number</label><input type='text' id='card-number' placeholder='XXXX XXXX XXXX XXXX' required></div><div class='checkout-information'><label for='card-name'>Name on Card</label><input type='text' id='card-name' placeholder='Jane Doe' required></div><div class='checkout-information'><label for='expiration-date'>Expiration Date</label><input type='month' id='expiration-date' required></div><div class='checkout-information'><label for='cvv'>Security Code (CVV/CVC)</label><input type='text' id='cvv' maxlength='4' placeholder='100' required><p id='cvv-unhide'>What's this?</p><p id='cvv-hidden'>The security code is the last 3 digits on the back of your card. For American Express cards, the security code is a 4-digit number on the front of the card.</p></div>";
                 
-                document.getElementById("card-method").style = "background-color: var(--hover-color)";
-                document.getElementById("cash-method").style = "background-color: var(--secondary-color)";
+                document.getElementById("card-method").className = 'button selected';
+                document.getElementById("cash-method").className = 'button unselected';
             } else {
                 document.getElementById("payment-information").innerHTML =
                     "<p id='cash-chosen'>Please prepare the required amount and await your delivery.</p>";
 
-                document.getElementById("cash-method").style = "background-color: var(--hover-color)";
-                document.getElementById("card-method").style = "background-color: var(--secondary-color)";
+                document.getElementById("cash-method").className = 'button selected';
+                document.getElementById("card-method").className = 'button unselected';
             }
+        }
+
+        // Function to calculate subtotal and update order summary
+        function updateOrderSummary() {
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+
+            document.getElementById('subtotal').innerText = `$${subtotal.toFixed(2)}`;
+            // You can add logic here to calculate delivery fee and total if needed
         }
 
         function increaseOrders() {
@@ -113,11 +141,12 @@
             users[current_user_index].achievements.push(achievementId);
         }
 
-        // Call toggleAddressFields on page load and set initial order mode button state
+        // Call toggleAddressFields and update order summary on page load
         window.onload = function() {
             toggleAddressFields();
             const orderMode = localStorage.getItem('orderMode') || 'delivery';
             toggleMode(orderMode);
+            updateOrderSummary();
         };
     </script>
 </head>
@@ -144,17 +173,16 @@
         <div>
             <h1>Payment Information</h1>
             
-            
-
             <form id="checkout-container" onsubmit="validatePayment(event)">
                 <div>
                     <a href="cart.html">Return to Cart</a>
                     
                     <!-- Pickup and Delivery selection buttons -->
                     <div id="order-mode-selection">
-                        <button id="pickup-button" onclick="toggleMode('pickup')">Pickup</button>
-                        <button id="delivery-button" onclick="toggleMode('delivery')">Delivery</button>
+                        <button type="button" id="pickup-button" class="button" onclick="toggleMode('pickup')">Pickup</button>
+                        <button type="button" id="delivery-button" class="button" onclick="toggleMode('delivery')">Delivery</button>
                     </div>
+                    
                     <h2>Enter Details</h2>
                     <div id="address-fields">
                         <div class="checkout-information">
@@ -177,8 +205,8 @@
                 <div>
                     <h2>Payment Method</h2>
                     <div id="payment-method">
-                        <button type="button" id="card-method" onclick="switchPaymentMethod('card')">Card</button>
-                        <button type="button" id="cash-method" onclick="switchPaymentMethod('cash')">Cash</button>
+                        <button type="button" id="card-method" class="button" onclick="switchPaymentMethod('card')">Card</button>
+                        <button type="button" id="cash-method" class="button" onclick="switchPaymentMethod('cash')">Cash</button>
                     </div>
 
                     <div id="payment-information">
@@ -209,7 +237,7 @@
 
                 <div class="summary">
                     <h2>Order Summary</h2>
-                    <p>Subtotal: <span>$7.50</span></p>
+                    <p>Subtotal: <span id="subtotal">$0.00</span></p>
                     <p>Delivery Fee: <span>$2.99</span></p>
                     <p>Service Fee: <span>$1.75</span></p>
                     <div class="total">
@@ -217,7 +245,7 @@
                     </div>
                 </div>
 
-                <button type="submit" id="pay-button">Pay Now</button>
+                <button type="submit" id="pay-button" class="button">Pay Now</button>
                 <p id="pay-confirmed"></p>
             </form>
         </div>
